@@ -1,6 +1,6 @@
 package com.rossotti.basketball.dao.model;
 
-enum GameStatus {
+public enum GameStatus {
 	Scheduled,
 	Completed,
 	Postponed,

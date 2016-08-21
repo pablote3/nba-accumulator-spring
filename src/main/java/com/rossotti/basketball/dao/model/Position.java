@@ -1,6 +1,6 @@
 package com.rossotti.basketball.dao.model;
 
-enum Position {
+public enum Position {
 	PG,
 	SG,
 	SF,

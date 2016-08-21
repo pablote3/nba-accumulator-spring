@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="gameOfficial")
-class GameOfficial {
+public class GameOfficial {
 	public GameOfficial() {}
 
 	@Id

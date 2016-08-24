@@ -3,7 +3,6 @@ package com.rossotti.basketball.dao.repository;
 import com.rossotti.basketball.dao.model.Team;
 import com.rossotti.basketball.dao.model.Team.Conference;
 import com.rossotti.basketball.dao.model.Team.Division;
-import org.hibernate.PropertyValueException;
 import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
@@ -98,7 +97,7 @@ public class TeamRepositoryTest {
 		Assert.assertTrue(createTeam.isFound());
 	}
 
-	@Test(expected=PropertyValueException.class)
+	@Test(expected=DataIntegrityViolationException.class)
 	public void createTeam_MissingRequiredData() {
 		Team team = new Team();
 		team.setTeamKey("missing-required-data-key");

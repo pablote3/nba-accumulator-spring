@@ -2,13 +2,13 @@ package com.rossotti.basketball.dao.repository;
 
 import java.util.List;
 
-import org.hibernate.PropertyValueException;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -154,7 +154,7 @@ public class GameRepositoryTest {
 		Assert.assertTrue(game.isFound());
 	}
 
-	@Test(expected=PropertyValueException.class)
+	@Test(expected=DataIntegrityViolationException.class)
 	public void createGame_Exception_MissingRequiredData() {
 		Game game = createMockGame(new LocalDateTime("2015-10-11T21:00"), 1L, "chicago-zephyr's", 2L, "harlem-globetrotter's");
 		game.getBoxScores().get(0).setLocation(null);

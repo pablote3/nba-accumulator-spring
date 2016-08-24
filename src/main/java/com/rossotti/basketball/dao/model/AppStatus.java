@@ -1,6 +1,6 @@
 package com.rossotti.basketball.dao.model;
 
-enum AppStatus {
+public enum AppStatus {
 	Completed,
 	ClientError,
 	ServerError

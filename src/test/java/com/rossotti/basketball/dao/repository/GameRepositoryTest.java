@@ -24,7 +24,6 @@ import com.rossotti.basketball.dao.model.Team;
 import com.rossotti.basketball.dao.model.BoxScore.Location;
 import com.rossotti.basketball.dao.model.Position;
 import com.rossotti.basketball.dao.model.Game.SeasonType;
-import com.rossotti.basketball.dao.repository.GameRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:applicationContext.xml"})

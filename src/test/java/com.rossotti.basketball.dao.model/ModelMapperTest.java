@@ -9,13 +9,6 @@ import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rossotti.basketball.app.provider.JsonProvider;
-import com.rossotti.basketball.dao.model.Game;
-import com.rossotti.basketball.dao.model.Official;
-import com.rossotti.basketball.dao.model.Player;
-import com.rossotti.basketball.dao.model.RosterPlayer;
-import com.rossotti.basketball.dao.model.Standing;
-import com.rossotti.basketball.dao.model.Team;
-import com.rossotti.basketball.dao.model.Position;
 
 public class ModelMapperTest {
 	private ObjectMapper mapper = JsonProvider.buildObjectMapper();

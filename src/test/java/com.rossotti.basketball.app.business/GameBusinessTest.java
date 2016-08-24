@@ -230,7 +230,7 @@ public class GameBusinessTest {
 	}
 
 	private GameDTO createMockGameDTO_Found() {
-		GameDTO game = null;
+		GameDTO game;
 		try {
 			ObjectMapper mapper = JsonProvider.buildObjectMapper();
 			InputStream baseJson = this.getClass().getClassLoader().getResourceAsStream("mockClient/gameClient.json");

@@ -45,7 +45,7 @@ public class StandingsBusiness {
 	public AppStandings rankStandings(String asOfDateString) {
 		AppStandings appStandings = new AppStandings();
 		try {
-			StandingsDTO standingsDTO = null;
+			StandingsDTO standingsDTO;
 			ClientSource clientSource = propertyService.getProperty_ClientSource("accumulator.source.standings");
 			LocalDate asOfDate = DateTimeUtil.getLocalDate(asOfDateString);
 			String nakedAsOfDate = DateTimeUtil.getStringDateNaked(asOfDate);

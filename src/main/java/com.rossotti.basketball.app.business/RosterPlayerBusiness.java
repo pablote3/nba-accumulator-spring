@@ -68,7 +68,7 @@ public class RosterPlayerBusiness {
 					List<RosterPlayer> activeRosterPlayers = rosterPlayerService.getRosterPlayers(rosterDTO.players, fromDate, teamKey);
 					if (activeRosterPlayers.size() > 0) {
 						for (int i = 0; i < activeRosterPlayers.size(); i++) {
-							RosterPlayer activeRosterPlayer = (RosterPlayer)activeRosterPlayers.get(i);
+							RosterPlayer activeRosterPlayer = activeRosterPlayers.get(i);
 							Player activePlayer = activeRosterPlayer.getPlayer();
 							RosterPlayer finderRosterPlayer = rosterPlayerService.findByDatePlayerNameTeam(fromDate, activePlayer.getLastName(), activePlayer.getFirstName(), teamKey);
 							if (finderRosterPlayer.isNotFound()) {
@@ -188,14 +188,13 @@ public class RosterPlayerBusiness {
 	}
 
 	private String generateLogMessage(String messageType, RosterPlayer rosterPlayer) {
-		StringBuilder sb;
-		sb = new StringBuilder();
-		sb.append(FormatUtil.padString(messageType, 40));
-		sb.append(" name = " + FormatUtil.padString(rosterPlayer.getPlayer().getFirstName() + " " + rosterPlayer.getPlayer().getLastName(), 35));
-		sb.append(" dob = " + DateTimeUtil.getStringDate(rosterPlayer.getPlayer().getBirthdate()));
-		sb.append(" team = " + rosterPlayer.getTeam().getAbbr());
-		sb.append(" fromDate = " + DateTimeUtil.getStringDate(rosterPlayer.getFromDate()));
-		sb.append(" toDate = " + DateTimeUtil.getStringDate(rosterPlayer.getToDate()));
+		StringBuilder sb = new StringBuilder();
+		sb	.append(FormatUtil.padString(messageType, 40))
+			.append(" name = " + FormatUtil.padString(rosterPlayer.getPlayer().getFirstName() + " " + rosterPlayer.getPlayer().getLastName(), 35))
+			.append(" dob = " + DateTimeUtil.getStringDate(rosterPlayer.getPlayer().getBirthdate()))
+			.append(" team = " + rosterPlayer.getTeam().getAbbr())
+			.append(" fromDate = " + DateTimeUtil.getStringDate(rosterPlayer.getFromDate()))
+			.append(" toDate = " + DateTimeUtil.getStringDate(rosterPlayer.getToDate()));
 		return sb.toString();
 	}
 }

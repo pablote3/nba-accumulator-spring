@@ -68,7 +68,7 @@ public class GameBusiness {
 			if (game.isScheduled()) {
 				logger.info('\n' + "Scheduled game ready to be scored: " + event);
 
-				GameDTO gameDTO = null;
+				GameDTO gameDTO;
 				ClientSource clientSource = propertyService.getProperty_ClientSource("accumulator.source.boxScore");
 				if (clientSource == ClientSource.File) {
 					gameDTO = fileStatsService.retrieveBoxScore(event);

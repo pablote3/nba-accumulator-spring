@@ -2,6 +2,7 @@ package com.rossotti.basketball.dao.repository;
 
 import java.util.List;
 
+import org.hibernate.PropertyValueException;
 import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
@@ -87,7 +88,7 @@ public class PlayerRepositoryTest {
 		Assert.assertTrue(createPlayer.isFound());
 	}
 
-	@Test(expected=DataIntegrityViolationException.class)
+	@Test(expected=PropertyValueException.class)
 	public void createPlayer_Exception_MissingRequiredData() {
 		Player createPlayer = new Player();
 		createPlayer.setLastName("missing-required-data");

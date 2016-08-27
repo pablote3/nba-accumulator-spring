@@ -2,4 +2,4 @@
 /.idea/
 /nba-accumulator-spring.iml
 /target/
-/src/main/resources/service.properties
+/service.properties

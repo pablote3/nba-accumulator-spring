@@ -2,8 +2,6 @@ package com.rossotti.basketball.dao.repository;
 
 import java.util.List;
 
-import com.rossotti.basketball.app.config.PersistenceConfig;
-import org.hibernate.PropertyValueException;
 import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,7 +15,7 @@ import com.rossotti.basketball.dao.model.Standing;
 import com.rossotti.basketball.dao.model.Team;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:applicationContext.xml"})
+@ContextConfiguration(locations={"classpath:applicationContext_h2.xml"})
 public class StandingRepositoryTest {
 
 	@Autowired

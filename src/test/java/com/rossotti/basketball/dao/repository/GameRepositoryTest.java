@@ -2,7 +2,6 @@ package com.rossotti.basketball.dao.repository;
 
 import java.util.List;
 
-import com.rossotti.basketball.app.config.PersistenceConfig;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.junit.Assert;
@@ -27,7 +26,7 @@ import com.rossotti.basketball.dao.model.Position;
 import com.rossotti.basketball.dao.model.Game.SeasonType;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:applicationContext.xml"})
+@ContextConfiguration(locations={"classpath:applicationContext_h2.xml"})
 public class GameRepositoryTest {
 
 	@Autowired

@@ -1,10 +1,8 @@
 package com.rossotti.basketball.dao.repository;
 
-import com.rossotti.basketball.app.config.PersistenceConfig;
 import com.rossotti.basketball.dao.model.Team;
 import com.rossotti.basketball.dao.model.Team.Conference;
 import com.rossotti.basketball.dao.model.Team.Division;
-import org.hibernate.PropertyValueException;
 import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:applicationContext.xml"})
+@ContextConfiguration(locations={"classpath:applicationContext_h2.xml"})
 public class TeamRepositoryTest {
 
 	@Autowired

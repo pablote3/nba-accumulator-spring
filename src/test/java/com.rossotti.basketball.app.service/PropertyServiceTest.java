@@ -1,5 +1,6 @@
 package com.rossotti.basketball.app.service;
 
+import com.rossotti.basketball.app.config.PersistenceConfig;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

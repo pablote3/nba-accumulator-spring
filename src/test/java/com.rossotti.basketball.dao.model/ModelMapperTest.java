@@ -3,12 +3,12 @@ package com.rossotti.basketball.dao.model;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.rossotti.basketball.client.service.JsonProvider;
 import org.joda.time.LocalDateTime;
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rossotti.basketball.app.provider.JsonProvider;
 
 public class ModelMapperTest {
 	private ObjectMapper mapper = JsonProvider.buildObjectMapper();

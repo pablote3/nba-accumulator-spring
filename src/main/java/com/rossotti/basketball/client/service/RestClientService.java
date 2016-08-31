@@ -18,7 +18,6 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rossotti.basketball.app.exception.PropertyException;
-import com.rossotti.basketball.app.provider.JsonProvider;
 import com.rossotti.basketball.app.service.PropertyService;
 import com.rossotti.basketball.client.dto.StatsDTO;
 import com.rossotti.basketball.client.dto.StatusCodeDTO;

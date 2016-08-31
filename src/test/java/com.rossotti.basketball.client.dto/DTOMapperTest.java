@@ -3,11 +3,11 @@ package com.rosotti.basketball.client.dto;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.rossotti.basketball.client.service.JsonProvider;
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rossotti.basketball.app.provider.JsonProvider;
 import com.rossotti.basketball.client.dto.GameDTO;
 import com.rossotti.basketball.client.dto.RosterDTO;
 import com.rossotti.basketball.client.dto.StandingsDTO;

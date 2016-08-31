@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.rossotti.basketball.client.dto.ClientSource;
+import com.rossotti.basketball.client.service.JsonProvider;
 import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,7 +21,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rossotti.basketball.app.exception.PropertyException;
-import com.rossotti.basketball.app.provider.JsonProvider;
 import com.rossotti.basketball.app.service.GameService;
 import com.rossotti.basketball.app.service.OfficialService;
 import com.rossotti.basketball.app.service.PlayerService;

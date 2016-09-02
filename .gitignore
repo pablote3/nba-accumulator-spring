@@ -1,5 +1,12 @@
-# Created by .ignore support plugin (hsz.mobi)
+#IntelliJ
 /.idea/
 /nba-accumulator-spring.iml
+
+#Eclipse
+.classpath
+.project
+/.settings/
+
+#Ignore
 /target/
 /src/main/resources/service.properties

@@ -2,6 +2,7 @@ package com.rossotti.basketball.dao.repository;
 
 import java.util.List;
 
+import org.hibernate.PropertyValueException;
 import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
@@ -72,7 +73,7 @@ public class StandingRepositoryTest {
 		Assert.assertTrue(createStanding.isFound());
 	}
 
-	@Test(expected=DataIntegrityViolationException.class)
+	@Test(expected=PropertyValueException.class)
 	public void createStanding_MissingRequiredData() {
 		Standing standing = createMockStanding("salinas-cowboys", new LocalDate("2012-07-01"));
 		standing.setLastFive(null);

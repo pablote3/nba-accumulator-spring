@@ -2,6 +2,7 @@ package com.rossotti.basketball.dao.repository;
 
 import java.util.List;
 
+import org.hibernate.PropertyValueException;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.junit.Assert;
@@ -154,7 +155,7 @@ public class GameRepositoryTest {
 		Assert.assertTrue(game.isFound());
 	}
 
-	@Test(expected=DataIntegrityViolationException.class)
+	@Test(expected=PropertyValueException.class)
 	public void createGame_Exception_MissingRequiredData() {
 		Game game = createMockGame(new LocalDateTime("2015-10-11T21:00"), 1L, "chicago-zephyr's", 2L, "harlem-globetrotter's");
 		game.getBoxScores().get(0).setLocation(null);

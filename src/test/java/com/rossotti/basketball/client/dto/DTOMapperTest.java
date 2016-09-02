@@ -1,4 +1,4 @@
-package com.rosotti.basketball.client.dto;
+package com.rossotti.basketball.client.dto;
 
 import java.io.IOException;
 import java.io.InputStream;

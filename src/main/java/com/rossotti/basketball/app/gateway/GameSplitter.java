@@ -3,7 +3,6 @@ package com.rossotti.basketball.app.gateway;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +13,6 @@ import org.springframework.integration.support.MessageBuilder;
 import org.springframework.messaging.Message;
 
 import com.rossotti.basketball.dao.model.Game;
-import com.rossotti.basketball.dao.model.GameDay;
 
 public class GameSplitter extends AbstractMessageSplitter {
 	private final Logger logger = LoggerFactory.getLogger(GameSplitter.class);
@@ -23,17 +21,19 @@ public class GameSplitter extends AbstractMessageSplitter {
 	@Override
 	protected Object splitMessage(Message<?> message) { 
 		Collection<Message<?>> messages = new ArrayList<Message<?>>();
-		GameDay games = (GameDay) message.getPayload();
-		logger.info("begin gameSplitter: game count = " + games.getGames().size());
-		Iterator<?> iterator = games.getGames().iterator();
-		while (iterator.hasNext()) {
-			Game game = (Game) iterator.next();
-			Message<?> msg = MessageBuilder.withPayload(game)
-				.setHeaderIfAbsent(GameCorrelationStrategy.CORRELATION_KEY, games.getGameDate())
-				.setHeaderIfAbsent(GameCorrelationStrategy.LAST_KEY, !iterator.hasNext())
+		@SuppressWarnings("unchecked")
+		List<Game> games = (List<Game>) message.getPayload();
+		logger.info("begin gameSplitter: game count = " + games.size());
+		for (int i = 0; i < games.size(); i++) {
+			Game game = (Game)games.get(i);
+			Message<?> msg = MessageBuilder
+				.withPayload(game)
+				.setHeaderIfAbsent("correlationId", game.getGameDateTime()) 
+				.setHeaderIfAbsent("sequenceNumber", i)
+				.setHeaderIfAbsent("sequenceSize", games.size())
 				.build();
 			messages.add(msg);
-			addMessage(""+ games.getGameDate(), msg);
+			addMessage(""+ games.size(), msg);
 		}
 		logger.info("end gameSplitter");
 		return messages;

@@ -17,7 +17,7 @@
 	<int:gateway id="gatewayService" service-interface="com.rossotti.basketball.app.gateway.GatewayService" />
 	<int:channel id="gatewayRequestChannel" />
 
-	<int:service-activator ref="gameActivatorBean" input-channel="gatewayRequestChannel" output-channel="gameActivatorChannel" method="processGames" />
+	<int:service-activator ref="gameActivatorBean" input-channel="gatewayRequestChannel" output-channel="gameActivatorChannel" />
 	<bean id="gameActivatorBean" class="com.rossotti.basketball.app.gateway.GameActivator" />
 	<int:channel id="gameActivatorChannel" />
 
@@ -30,10 +30,13 @@
 	<int:channel id="scheduledRouteChannel">
 		<int:queue capacity="20" />
 	</int:channel>
-	<int:channel id="aggregatorChannel" />
 
 	<int:service-activator ref="scoreGameBean" input-channel="scheduledRouteChannel" output-channel="aggregatorChannel" method="scoreGame" />
 	<bean id="scoreGameBean" class="com.rossotti.basketball.app.business.GameBusiness" />
+	<int:channel id="aggregatorChannel" />
+	
+	<int:service-activator ref="completeGameBean" input-channel="completedRouteChannel" output-channel="aggregatorChannel" method="completeGame" />
+	<bean id="completeGameBean" class="com.rossotti.basketball.app.business.GameBusiness" />
 
 	<int:aggregator ref="aggregatorBean" input-channel="aggregatorChannel" output-channel="outboundChannel" />
 	<bean id="aggregatorBean" class="com.rossotti.basketball.app.gateway.GameAggregator" />

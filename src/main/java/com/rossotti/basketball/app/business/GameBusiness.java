@@ -147,4 +147,11 @@ public class GameBusiness {
 		}
 		return appGame;
 	}
+	
+	public AppGame completeGame(Game game) {
+		AppGame appGame = new AppGame();
+		appGame.setGame(game);
+		appGame.setAppStatus(AppStatus.Completed);
+		return appGame;
+	}
 }

@@ -8,6 +8,6 @@ public class GameRouter {
 	private final Logger logger = LoggerFactory.getLogger(GameRouter.class);
 	public String routeGame(Game game) {
 		logger.info("begin gameRouter: game status = " + game.getStatus());
-		return (game.isScheduled()) ? "scheduledRouteChannel" : "aggregatorChannel";
+		return (game.isScheduled()) ? "scheduledRouteChannel" : "completedRouteChannel";
 	}
 }

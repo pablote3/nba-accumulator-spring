@@ -30,6 +30,7 @@
 	<int:channel id="scheduledRouteChannel">
 		<int:queue capacity="20" />
 	</int:channel>
+	<int:channel id="completedRouteChannel" />
 
 	<int:service-activator ref="scoreGameBean" input-channel="scheduledRouteChannel" output-channel="aggregatorChannel" method="scoreGame" />
 	<bean id="scoreGameBean" class="com.rossotti.basketball.app.business.GameBusiness" />

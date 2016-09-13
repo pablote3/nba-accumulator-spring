@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.messaging.Message;
 
 import com.rossotti.basketball.dao.model.AppGame;
+import com.rossotti.basketball.dao.model.AppStatus;
 import com.rossotti.basketball.dao.model.Game;
 
 public class GameAggregator {
@@ -22,8 +23,13 @@ public class GameAggregator {
 			logger.info("msg.sequenceSize = " + msg.getHeaders().get("sequenceSize"));
 			
 			AppGame appGame = (AppGame)msg.getPayload();
-			logger.info("appgame  = " + appGame.getGame().getBoxScoreAway().getTeam().getAbbr() + " at " + appGame.getGame().getBoxScoreHome().getTeam().getAbbr());
-			gameList.add(appGame.getGame());
+			if (appGame.getAppStatus().equals(AppStatus.ServerError) || appGame.getAppStatus().equals(AppStatus.ClientError)) {
+				//need to handle
+			}
+			else {
+				logger.info("appgame  = " + appGame.getGame().getBoxScoreAway().getTeam().getAbbr() + " at " + appGame.getGame().getBoxScoreHome().getTeam().getAbbr());
+				gameList.add(appGame.getGame());
+			}
 		}
 		logger.info("gameList.size() = " + gameList.size());
 		logger.info("end gameAggregator");

@@ -27,16 +27,16 @@
 
 	<int:router ref="gameRouter" input-channel="splitGameChannel" method="routeGame" />
 	<bean id="gameRouter" class="com.rossotti.basketball.app.gateway.GameRouter" />
-	<int:channel id="scheduledRouteChannel">
+	<int:channel id="scheduledGameChannel">
 		<int:queue capacity="20" />
 	</int:channel>
-	<int:channel id="completedRouteChannel" />
+	<int:channel id="completedGameChannel" />
 
-	<int:service-activator ref="scoreGameBean" input-channel="scheduledRouteChannel" output-channel="aggregatorChannel" method="scoreGame" />
+	<int:service-activator ref="scoreGameBean" input-channel="scheduledGameChannel" output-channel="aggregatorChannel" method="scoreGame" />
 	<bean id="scoreGameBean" class="com.rossotti.basketball.app.business.GameBusiness" />
 	<int:channel id="aggregatorChannel" />
 	
-	<int:service-activator ref="completeGameBean" input-channel="completedRouteChannel" output-channel="aggregatorChannel" method="completeGame" />
+	<int:service-activator ref="completeGameBean" input-channel="completedGameChannel" output-channel="aggregatorChannel" method="completeGame" />
 	<bean id="completeGameBean" class="com.rossotti.basketball.app.business.GameBusiness" />
 
 	<int:aggregator ref="aggregatorBean" input-channel="aggregatorChannel" output-channel="outboundChannel" />

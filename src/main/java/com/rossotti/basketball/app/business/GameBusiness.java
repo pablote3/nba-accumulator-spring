@@ -26,6 +26,7 @@ import com.rossotti.basketball.dao.model.Game;
 import com.rossotti.basketball.dao.model.GameStatus;
 import com.rossotti.basketball.dao.model.Official;
 import com.rossotti.basketball.dao.model.RosterPlayer;
+import com.rossotti.basketball.dao.model.Team;
 import com.rossotti.basketball.util.DateTimeUtil;
 
 @Service
@@ -131,11 +132,16 @@ public class GameBusiness {
 		catch (NoSuchEntityException nse) {
 			if (nse.getEntityClass().equals(Official.class)) {
 				logger.info("Official not found - need to add official");
+				appGame.setAppStatus(AppStatus.ClientError);
+			}
+			else if (nse.getEntityClass().equals(Team.class)) {
+				logger.info("Team not found - need to add team");
+				appGame.setAppStatus(AppStatus.ClientError);
 			}
 			else if (nse.getEntityClass().equals(RosterPlayer.class)) {
 				logger.info("Roster Player not found - need to rebuild active roster");
+				appGame.setAppStatus(AppStatus.RosterError);
 			}
-			appGame.setAppStatus(AppStatus.ClientError);
 		}
 		catch (PropertyException pe) {
 			logger.info("property exception = " + pe);

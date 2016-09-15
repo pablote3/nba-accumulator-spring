@@ -17,6 +17,9 @@ public class AppGame {
 	public Boolean isAppServerError() {
 		return appStatus == AppStatus.ServerError;
 	}
+	public Boolean isAppRosterError() {
+		return appStatus == AppStatus.RosterError;
+	}
 	private Game game;
 	public Game getGame() {
 		return game;

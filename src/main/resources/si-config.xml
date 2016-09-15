@@ -21,11 +21,11 @@
 	<bean id="gameActivatorBean" class="com.rossotti.basketball.app.gateway.GameActivator" />
 	<int:channel id="gameActivatorChannel" />
 
-	<int:splitter ref="gameSplitter" input-channel="gameActivatorChannel" output-channel="splitGameChannel" />
+	<int:splitter ref="gameSplitter" input-channel="gameActivatorChannel" output-channel="routeGameChannel" />
 	<bean id="gameSplitter" class="com.rossotti.basketball.app.gateway.GameSplitter" />
-	<int:channel id="splitGameChannel" />
+	<int:channel id="routeGameChannel" />
 
-	<int:router ref="gameRouter" input-channel="splitGameChannel" method="routeGame" />
+	<int:router ref="gameRouter" input-channel="routeGameChannel" method="routeGame" />
 	<bean id="gameRouter" class="com.rossotti.basketball.app.gateway.GameRouter" />
 	<int:channel id="scheduledGameChannel">
 		<int:queue capacity="20" />
@@ -39,9 +39,19 @@
 	<int:service-activator ref="completeGameBean" input-channel="completedGameChannel" output-channel="aggregatorChannel" method="completeGame" />
 	<bean id="completeGameBean" class="com.rossotti.basketball.app.business.GameBusiness" />
 
-	<int:aggregator ref="aggregatorBean" input-channel="aggregatorChannel" output-channel="outboundChannel" />
+	<int:aggregator ref="aggregatorBean" input-channel="aggregatorChannel" output-channel="routeStandingsChannel" />
 	<bean id="aggregatorBean" class="com.rossotti.basketball.app.gateway.GameAggregator" />
+	<int:channel id="routeStandingsChannel" />
+	
+	<int:router ref="standingsRouter" input-channel="routeStandingsChannel" method="routeStandings" />
+	<bean id="standingsRouter" class="com.rossotti.basketball.app.gateway.StandingsRouter" />
+	<int:channel id="completedStandingsChannel">
+		<int:queue capacity="1" />
+	</int:channel>
 	<int:channel id="outboundChannel" />
+	
+	<int:service-activator ref="rankStandingsBean" input-channel="completedStandingsChannel" output-channel="outboundChannel" method="rankStandings" />
+	<bean id="rankStandingsBean" class="com.rossotti.basketball.app.business.StandingsBusiness" />
 	
 	<int-stream:stdout-channel-adapter channel="outboundChannel" append-newline="true"/>
 

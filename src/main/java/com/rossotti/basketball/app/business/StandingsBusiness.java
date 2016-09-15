@@ -21,6 +21,7 @@ import com.rossotti.basketball.client.service.RestStatsService;
 import com.rossotti.basketball.dao.exception.NoSuchEntityException;
 import com.rossotti.basketball.dao.model.AppStandings;
 import com.rossotti.basketball.dao.model.AppStatus;
+import com.rossotti.basketball.dao.model.Game;
 import com.rossotti.basketball.dao.model.Standing;
 import com.rossotti.basketball.dao.model.StandingRecord;
 import com.rossotti.basketball.dao.model.Team;
@@ -127,5 +128,14 @@ public class StandingsBusiness {
 			appStandings.setAppStatus(AppStatus.ServerError);
 		}
 		return appStandings;
+	}
+	
+	public AppStandings rankStandings(List<Game> games) {
+		if (games.size() > 0) {
+			return rankStandings(DateTimeUtil.getStringDate(games.get(0).getGameDateTime()));
+		}
+		else {
+			return null;
+		}
 	}
 }

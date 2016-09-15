@@ -24,7 +24,7 @@ public class GameAggregator {
 			
 			AppGame appGame = (AppGame)msg.getPayload();
 			if (appGame.getAppStatus().equals(AppStatus.ServerError) || appGame.getAppStatus().equals(AppStatus.ClientError)) {
-				//need to handle
+				gameList.add(null);
 			}
 			else {
 				logger.info("appgame  = " + appGame.getGame().getBoxScoreAway().getTeam().getAbbr() + " at " + appGame.getGame().getBoxScoreHome().getTeam().getAbbr());

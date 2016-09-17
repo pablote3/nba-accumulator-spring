@@ -156,6 +156,15 @@ public class GameBusiness {
 		return appGame;
 	}
 	
+	public AppGame scoreGame(AppGame appGame) {
+		if (appGame.isAppServerError()) {
+			return appGame;
+		}
+		else {
+			return scoreGame(appGame.getGame());
+		}
+	}
+	
 	public AppGame completeGame(Game game) {
 		AppGame appGame = new AppGame();
 		appGame.setGame(game);

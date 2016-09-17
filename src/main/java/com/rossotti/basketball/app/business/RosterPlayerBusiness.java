@@ -188,8 +188,12 @@ public class RosterPlayerBusiness {
 		return appRoster;
 	}
 	
-	public AppRoster loadRoster(AppGame game) {
-		return loadRoster(DateTimeUtil.getStringDate(game.getGame().getGameDateTime()), game.getRosterLastTeam());
+	public AppGame loadRoster(AppGame appGame) {
+		AppRoster roster = loadRoster(DateTimeUtil.getStringDate(appGame.getGame().getGameDateTime()), appGame.getRosterLastTeam());
+		if (roster.isAppClientError() || roster.isAppServerError()) {
+			appGame.setAppStatus(AppStatus.ServerError);
+		}
+		return appGame;
 	}
 
 	private String generateLogMessage(String messageType, RosterPlayer rosterPlayer) {

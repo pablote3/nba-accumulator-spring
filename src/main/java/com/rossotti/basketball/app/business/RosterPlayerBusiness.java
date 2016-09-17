@@ -2,7 +2,6 @@ package com.rossotti.basketball.app.business;
 
 import java.util.List;
 
-import com.rossotti.basketball.client.dto.ClientSource;
 import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,10 +12,12 @@ import com.rossotti.basketball.app.exception.PropertyException;
 import com.rossotti.basketball.app.service.PlayerService;
 import com.rossotti.basketball.app.service.PropertyService;
 import com.rossotti.basketball.app.service.RosterPlayerService;
+import com.rossotti.basketball.client.dto.ClientSource;
 import com.rossotti.basketball.client.dto.RosterDTO;
 import com.rossotti.basketball.client.service.FileStatsService;
 import com.rossotti.basketball.client.service.RestStatsService;
 import com.rossotti.basketball.dao.exception.NoSuchEntityException;
+import com.rossotti.basketball.dao.model.AppGame;
 import com.rossotti.basketball.dao.model.AppRoster;
 import com.rossotti.basketball.dao.model.AppStatus;
 import com.rossotti.basketball.dao.model.Player;
@@ -185,6 +186,10 @@ public class RosterPlayerBusiness {
 			appRoster.setAppStatus(AppStatus.ServerError);
 		}
 		return appRoster;
+	}
+	
+	public AppRoster loadRoster(AppGame game) {
+		return loadRoster(DateTimeUtil.getStringDate(game.getGame().getGameDateTime()), game.getRosterLastTeam());
 	}
 
 	private String generateLogMessage(String messageType, RosterPlayer rosterPlayer) {

@@ -32,8 +32,15 @@
 	</int:channel>
 	<int:channel id="completedGameChannel" />
 
-	<int:service-activator ref="scoreGameBean" input-channel="scheduledGameChannel" output-channel="aggregatorChannel" method="scoreGame" />
+	<int:service-activator ref="scoreGameBean" input-channel="scheduledGameChannel" output-channel="resultsGameChannel" method="scoreGame" />
 	<bean id="scoreGameBean" class="com.rossotti.basketball.app.business.GameBusiness" />
+	<int:channel id="resultsGameChannel" />
+	
+	<int:router ref="evaluateGameRouter" input-channel="resultsGameChannel" method="routeGame" />
+	<bean id="evaluateGameRouter" class="com.rossotti.basketball.app.gateway.ResultsGameRouter" />
+	<int:channel id="noSuchEntityChannel">
+		<int:queue capacity="1" />
+	</int:channel>
 	<int:channel id="aggregatorChannel" />
 	
 	<int:service-activator ref="completeGameBean" input-channel="completedGameChannel" output-channel="aggregatorChannel" method="completeGame" />

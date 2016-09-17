@@ -86,7 +86,9 @@ public class GameBusiness {
 					homeBoxScore.updateTotals(gameDTO.home_totals);
 					awayBoxScore.updatePeriodScores(gameDTO.away_period_scores);
 					homeBoxScore.updatePeriodScores(gameDTO.home_period_scores);
+					appGame.setRosterLastTeam(awayTeamKey);
 					awayBoxScore.setBoxScorePlayers(rosterPlayerService.getBoxScorePlayers(gameDTO.away_stats, gameDate, awayTeamKey));
+					appGame.setRosterLastTeam(homeTeamKey);
 					homeBoxScore.setBoxScorePlayers(rosterPlayerService.getBoxScorePlayers(gameDTO.home_stats, gameDate, homeTeamKey));
 					game.setGameOfficials(officialService.getGameOfficials(gameDTO.officials, gameDate));
 					awayBoxScore.setTeam(teamService.findTeam(awayTeamKey, gameDate));

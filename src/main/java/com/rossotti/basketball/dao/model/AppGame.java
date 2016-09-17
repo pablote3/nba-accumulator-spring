@@ -27,4 +27,11 @@ public class AppGame {
 	public void setGame(Game game) {
 		this.game = game;
 	}
+	private String rosterLastTeam;
+	public String getRosterLastTeam() {
+		return rosterLastTeam;
+	}
+	public void setRosterLastTeam(String rosterLastTeam) {
+		this.rosterLastTeam = rosterLastTeam;
+	}	
 }

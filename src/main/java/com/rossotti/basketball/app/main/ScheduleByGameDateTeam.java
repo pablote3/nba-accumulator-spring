@@ -18,7 +18,7 @@ public class ScheduleByGameDateTeam {
 		GatewayService gatewayService = (GatewayService) context.getBean("gatewayService");
 		ServiceProperties properties = new ServiceProperties();
 		properties.setGameDate("2015-11-06");
-		properties.setGameTeam("orlando-magic");
+		properties.setGameTeam("new-york-knicks");
 		List<Game> games = gatewayService.processGames(properties);
 		System.out.println("end gatewayService, processed " + games.size() + " games");
 		context.close();

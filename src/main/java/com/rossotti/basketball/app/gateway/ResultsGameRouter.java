@@ -8,7 +8,7 @@ import com.rossotti.basketball.dao.model.AppGame;
 public class ResultsGameRouter {
 	private final Logger logger = LoggerFactory.getLogger(ResultsGameRouter.class);
 	public String routeGame(AppGame game) {
-		logger.info("begin evaluateGameRouter: game status = " + game.getAppStatus());
+		logger.info("begin resultsGameRouter: game status = " + game.getAppStatus());
 		return (game.isAppRosterError()) ? "rosterUpdateChannel" : "aggregatorChannel";
 	}
 }

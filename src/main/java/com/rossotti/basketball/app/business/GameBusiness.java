@@ -153,6 +153,9 @@ public class GameBusiness {
 			logger.info("unexpected exception = " + e);
 			appGame.setAppStatus(AppStatus.ServerError);
 		}
+		finally {
+			appGame.setGame(game);
+		}
 		return appGame;
 	}
 	

@@ -36,16 +36,23 @@
 	<bean id="scoreGameBean" class="com.rossotti.basketball.app.business.GameBusiness" />
 	<int:channel id="resultsGameChannel" />
 	
-	<int:router ref="evaluateGameRouter" input-channel="resultsGameChannel" method="routeGame" />
-	<bean id="evaluateGameRouter" class="com.rossotti.basketball.app.gateway.ResultsGameRouter" />
-	<int:channel id="noSuchEntityChannel">
-		<int:queue capacity="1" />
-	</int:channel>
-	<int:channel id="aggregatorChannel" />
-	
 	<int:service-activator ref="completeGameBean" input-channel="completedGameChannel" output-channel="aggregatorChannel" method="completeGame" />
 	<bean id="completeGameBean" class="com.rossotti.basketball.app.business.GameBusiness" />
+	<int:channel id="aggregatorChannel" />
 
+	<int:router ref="evaluateGameRouter" input-channel="resultsGameChannel" method="routeGame" />
+	<bean id="evaluateGameRouter" class="com.rossotti.basketball.app.gateway.ResultsGameRouter" />
+	<int:channel id="rosterUpdateChannel">
+		<int:queue capacity="1" />
+	</int:channel>
+	
+	<int:service-activator ref="loadRosterBean" input-channel="rosterUpdateChannel" output-channel="rosterCompleteChannel" method="loadRoster" />
+	<bean id="loadRosterBean" class="com.rossotti.basketball.app.business.RosterPlayerBusiness" />
+	<int:channel id="rosterCompleteChannel" />
+	
+	<int:router ref="ratingsRouter" input-channel="rosterCompleteChannel" method="routeRatings" />
+	<bean id="ratingsRouter" class="com.rossotti.basketball.app.gateway.RatingsRouter" />
+	
 	<int:aggregator ref="aggregatorBean" input-channel="aggregatorChannel" output-channel="routeStandingsChannel" />
 	<bean id="aggregatorBean" class="com.rossotti.basketball.app.gateway.GameAggregator" />
 	<int:channel id="routeStandingsChannel" />

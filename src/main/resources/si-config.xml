@@ -69,5 +69,5 @@
 	
 	<int-stream:stdout-channel-adapter channel="outboundChannel" append-newline="true"/>
 
-	<int:poller id="defaultPoller" default="true" max-messages-per-poll="1" fixed-rate="200" />
+	<int:poller id="defaultPoller" default="true" max-messages-per-poll="1" fixed-delay="10000" />
 </beans>

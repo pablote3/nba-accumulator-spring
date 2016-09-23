@@ -4,6 +4,7 @@ import static org.mockito.Matchers.anyObject;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
+import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,37 +35,37 @@ public class RestStatsServiceTest {
 	public void retrieveBoxScore_propertyException() {
 		when(propertyService.getProperty_Http(anyString()))
 			.thenThrow(new PropertyException("propertyName"));
-		GameDTO game = restStatsService.retrieveBoxScore("20160311-houston-rockets-at-boston-celtics");
+		GameDTO game = restStatsService.retrieveBoxScore("20160311-houston-rockets-at-boston-celtics", new LocalDate("20150415"));
 		Assert.assertTrue(game.isServerException());
 	}
 
 	@Test
 	public void retrieveBoxScore_notFound() {
-		when(restClientService.retrieveStats(anyString(), (StatsDTO) anyObject()))
+		when(restClientService.retrieveStats(anyString(), anyString(), (StatsDTO) anyObject(), (LocalDate) anyObject()))
 			.thenReturn(createMockGameDTO(new GameDTO(), StatusCodeDTO.NotFound));
 		when(propertyService.getProperty_Http(anyString()))
 			.thenReturn("https://");
-		GameDTO game = restStatsService.retrieveBoxScore("20160311-houston-rockets-at-boston-celtics");
+		GameDTO game = restStatsService.retrieveBoxScore("20160311-houston-rockets-at-boston-celtics", new LocalDate("20150415"));
 		Assert.assertTrue(game.isNotFound());
 	}
 
 	@Test
 	public void retrieveBoxScore_clientException() {
-		when(restClientService.retrieveStats(anyString(), (StatsDTO) anyObject()))
+		when(restClientService.retrieveStats(anyString(), anyString(), (StatsDTO) anyObject(), (LocalDate) anyObject()))
 			.thenReturn(createMockGameDTO(new GameDTO(), StatusCodeDTO.ClientException));
 		when(propertyService.getProperty_Http(anyString()))
 			.thenReturn("https://");
-		GameDTO game = restStatsService.retrieveBoxScore("20160311-houston-rockets-at-boston-celtics");
+		GameDTO game = restStatsService.retrieveBoxScore("20160311-houston-rockets-at-boston-celtics", new LocalDate("20150415"));
 		Assert.assertTrue(game.isClientException());
 	}
 
 	@Test
 	public void retrieveBoxScore_found() {
-		when(restClientService.retrieveStats(anyString(), (StatsDTO) anyObject()))
+		when(restClientService.retrieveStats(anyString(), anyString(), (StatsDTO) anyObject(), (LocalDate) anyObject()))
 			.thenReturn(createMockGameDTO(new GameDTO(), StatusCodeDTO.Found));
 		when(propertyService.getProperty_Http(anyString()))
 			.thenReturn("https://");
-		GameDTO game = restStatsService.retrieveBoxScore("20160311-houston-rockets-at-boston-celtics");
+		GameDTO game = restStatsService.retrieveBoxScore("20160311-houston-rockets-at-boston-celtics", new LocalDate("20150415"));
 		Assert.assertTrue(game.isFound());
 	}
 
@@ -72,37 +73,37 @@ public class RestStatsServiceTest {
 	public void retrieveRoster_propertyException() {
 		when(propertyService.getProperty_Http(anyString()))
 			.thenThrow(new PropertyException("propertyName"));
-		RosterDTO roster = restStatsService.retrieveRoster("toronto-raptors");
+		RosterDTO roster = restStatsService.retrieveRoster("toronto-raptors", new LocalDate("20150415"));
 		Assert.assertTrue(roster.isServerException());
 	}
 
 	@Test
 	public void retrieveRoster_notFound() {
-		when(restClientService.retrieveStats(anyString(), (StatsDTO) anyObject()))
+		when(restClientService.retrieveStats(anyString(), anyString(), (StatsDTO) anyObject(), (LocalDate) anyObject()))
 			.thenReturn(createMockGameDTO(new RosterDTO(), StatusCodeDTO.NotFound));
 		when(propertyService.getProperty_Http(anyString()))
 			.thenReturn("https://");
-		RosterDTO roster = restStatsService.retrieveRoster("toronto-raptors");
+		RosterDTO roster = restStatsService.retrieveRoster("toronto-raptors", new LocalDate("20150415"));
 		Assert.assertTrue(roster.isNotFound());
 	}
 
 	@Test
 	public void retrieveRoster_clientException() {
-		when(restClientService.retrieveStats(anyString(), (StatsDTO) anyObject()))
+		when(restClientService.retrieveStats(anyString(), anyString(), (StatsDTO) anyObject(), (LocalDate) anyObject()))
 			.thenReturn(createMockGameDTO(new RosterDTO(), StatusCodeDTO.ClientException));
 		when(propertyService.getProperty_Http(anyString()))
 			.thenReturn("https://");
-		RosterDTO roster = restStatsService.retrieveRoster("toronto-raptors");
+		RosterDTO roster = restStatsService.retrieveRoster("toronto-raptors", new LocalDate("20150415"));
 		Assert.assertTrue(roster.isClientException());
 	}
 
 	@Test
 	public void retrieveRoster_found() {
-		when(restClientService.retrieveStats(anyString(), (StatsDTO) anyObject()))
+		when(restClientService.retrieveStats(anyString(), anyString(), (StatsDTO) anyObject(), (LocalDate) anyObject()))
 			.thenReturn(createMockGameDTO(new RosterDTO(), StatusCodeDTO.Found));
 		when(propertyService.getProperty_Http(anyString()))
 			.thenReturn("https://");
-		RosterDTO roster = restStatsService.retrieveRoster("toronto-raptors");
+		RosterDTO roster = restStatsService.retrieveRoster("toronto-raptors", new LocalDate("20150415"));
 		Assert.assertTrue(roster.isFound());
 	}
 
@@ -110,27 +111,27 @@ public class RestStatsServiceTest {
 	public void retrieveStandings_propertyException() {
 		when(propertyService.getProperty_Http(anyString()))
 			.thenThrow(new PropertyException("propertyName"));
-		StandingsDTO standings = restStatsService.retrieveStandings("20141108");
+		StandingsDTO standings = restStatsService.retrieveStandings("20141108", new LocalDate("20150415"));
 		Assert.assertTrue(standings.isServerException());
 	}
 
 	@Test
 	public void retrieveStandings_notFound() {
-		when(restClientService.retrieveStats(anyString(), (StatsDTO) anyObject()))
+		when(restClientService.retrieveStats(anyString(), anyString(), (StatsDTO) anyObject(), (LocalDate) anyObject()))
 			.thenReturn(createMockGameDTO(new RosterDTO(), StatusCodeDTO.NotFound));
 		when(propertyService.getProperty_Http(anyString()))
 			.thenReturn("https://");
-		StandingsDTO standings = restStatsService.retrieveStandings("20141108");
+		StandingsDTO standings = restStatsService.retrieveStandings("20141108", new LocalDate("20150415"));
 		Assert.assertTrue(standings.isNotFound());
 	}
 
 	@Test
 	public void retrieveStandings_clientException() {
-		when(restClientService.retrieveStats(anyString(), (StatsDTO) anyObject()))
+		when(restClientService.retrieveStats(anyString(), anyString(), (StatsDTO) anyObject(), (LocalDate) anyObject()))
 			.thenReturn(createMockGameDTO(new RosterDTO(), StatusCodeDTO.ClientException));
 		when(propertyService.getProperty_Http(anyString()))
 			.thenReturn("https://");
-		StandingsDTO standings = restStatsService.retrieveStandings("20141108");
+		StandingsDTO standings = restStatsService.retrieveStandings("20141108", new LocalDate("20150415"));
 		Assert.assertTrue(standings.isClientException());
 	}
 
@@ -138,9 +139,9 @@ public class RestStatsServiceTest {
 	public void retrieveStandings_found() {
 		when(propertyService.getProperty_Http(anyString()))
 			.thenReturn("https://");
-		when(restClientService.retrieveStats(anyString(), (StatsDTO) anyObject()))
+		when(restClientService.retrieveStats(anyString(), anyString(), (StatsDTO) anyObject(), (LocalDate) anyObject()))
 			.thenReturn(createMockGameDTO(new RosterDTO(), StatusCodeDTO.Found));
-		StandingsDTO standings = restStatsService.retrieveStandings("20141108");
+		StandingsDTO standings = restStatsService.retrieveStandings("20141108", new LocalDate("20150415"));
 		Assert.assertTrue(standings.isFound());
 	}
 	private StatsDTO createMockGameDTO(StatsDTO stats, StatusCodeDTO statusCode) {

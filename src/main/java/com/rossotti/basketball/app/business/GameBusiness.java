@@ -72,10 +72,10 @@ public class GameBusiness {
 				GameDTO gameDTO;
 				ClientSource clientSource = propertyService.getProperty_ClientSource("accumulator.source.boxScore");
 				if (clientSource == ClientSource.File) {
-					gameDTO = fileStatsService.retrieveBoxScore(event);
+					gameDTO = fileStatsService.retrieveBoxScore(event, gameDate);
 				}
 				else if (clientSource == ClientSource.Api) {
-					gameDTO = restStatsService.retrieveBoxScore(event);
+					gameDTO = restStatsService.retrieveBoxScore(event, gameDate);
 				}
 				else {
 					throw new PropertyException("Unknown");

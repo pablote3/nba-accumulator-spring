@@ -49,12 +49,14 @@ public class RosterPlayerBusiness {
 		AppRoster appRoster = new AppRoster();
 		try {
 			RosterDTO rosterDTO = null;
+			LocalDate fromDate = DateTimeUtil.getLocalDate(asOfDateString);
+			LocalDate toDate = DateTimeUtil.getLocalDateSeasonMax(fromDate);
 			ClientSource clientSource = propertyService.getProperty_ClientSource("accumulator.source.roster");
 			if (clientSource == ClientSource.File) {
-				rosterDTO = fileStatsService.retrieveRoster(teamKey);
+				rosterDTO = fileStatsService.retrieveRoster(teamKey, fromDate);
 			}
 			else if (clientSource == ClientSource.Api) {
-				rosterDTO = restStatsService.retrieveRoster(teamKey);
+				rosterDTO = restStatsService.retrieveRoster(teamKey, fromDate);
 			}
 			else {
 				throw new PropertyException("Unknown");
@@ -62,8 +64,6 @@ public class RosterPlayerBusiness {
 	
 			if (rosterDTO.isFound()) {
 				if (rosterDTO.players.length > 0) {
-					LocalDate fromDate = DateTimeUtil.getLocalDate(asOfDateString);
-					LocalDate toDate = DateTimeUtil.getLocalDateSeasonMax(fromDate);
 					//activate new roster players
 					logger.info("Activate new roster players");
 					List<RosterPlayer> activeRosterPlayers = rosterPlayerService.getRosterPlayers(rosterDTO.players, fromDate, teamKey);

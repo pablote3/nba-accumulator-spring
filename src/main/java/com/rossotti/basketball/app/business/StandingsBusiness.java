@@ -51,10 +51,10 @@ public class StandingsBusiness {
 			LocalDate asOfDate = DateTimeUtil.getLocalDate(asOfDateString);
 			String nakedAsOfDate = DateTimeUtil.getStringDateNaked(asOfDate);
 			if (clientSource == ClientSource.File) {
-				standingsDTO = fileStatsService.retrieveStandings(nakedAsOfDate);
+				standingsDTO = fileStatsService.retrieveStandings(nakedAsOfDate, asOfDate);
 			}
 			else if (clientSource == ClientSource.Api) {
-				standingsDTO = (StandingsDTO)restStatsService.retrieveStandings(nakedAsOfDate);
+				standingsDTO = (StandingsDTO)restStatsService.retrieveStandings(nakedAsOfDate, asOfDate);
 			}
 			else {
 				throw new PropertyException("Unknown");

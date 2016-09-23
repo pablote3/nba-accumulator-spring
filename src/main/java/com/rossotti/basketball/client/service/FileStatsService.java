@@ -1,5 +1,6 @@
 package com.rossotti.basketball.client.service;
 
+import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,11 @@ public class FileStatsService {
 
 	private final Logger logger = LoggerFactory.getLogger(FileStatsService.class);
 
-	public GameDTO retrieveBoxScore(String event) {
+	public GameDTO retrieveBoxScore(String event, LocalDate asOfDate) {
 		GameDTO gameDTO = new GameDTO();
 		try {
 			String path = propertyService.getProperty_Path("xmlstats.fileBoxScore");
-			gameDTO = (GameDTO)fileClientService.retrieveStats(path, event, gameDTO);
+			gameDTO = (GameDTO)fileClientService.retrieveStats(path, event, gameDTO, asOfDate);
 		}
 		catch (PropertyException pe) {
 			logger.info("property exception = " + pe);
@@ -35,11 +36,11 @@ public class FileStatsService {
 		return gameDTO;
 	}
 
-	public RosterDTO retrieveRoster(String event) {
+	public RosterDTO retrieveRoster(String event, LocalDate asOfDate) {
 		RosterDTO rosterDTO = new RosterDTO();
 		try {
 			String path = propertyService.getProperty_Path("xmlstats.fileRoster");
-			rosterDTO = (RosterDTO)fileClientService.retrieveStats(path, event, rosterDTO);
+			rosterDTO = (RosterDTO)fileClientService.retrieveStats(path, event, rosterDTO, asOfDate);
 		}
 		catch (PropertyException pe) {
 			logger.info("property exception = " + pe);
@@ -48,11 +49,11 @@ public class FileStatsService {
 		return rosterDTO;
 	}
 
-	public StandingsDTO retrieveStandings(String event) {
+	public StandingsDTO retrieveStandings(String event, LocalDate asOfDate) {
 		StandingsDTO standingsDTO = new StandingsDTO();
 		try {
 			String path = propertyService.getProperty_Path("xmlstats.fileStandings");
-			standingsDTO = (StandingsDTO)fileClientService.retrieveStats(path, event, standingsDTO);
+			standingsDTO = (StandingsDTO)fileClientService.retrieveStats(path, event, standingsDTO, asOfDate);
 		}
 		catch (PropertyException pe) {
 			logger.info("property exception = " + pe);

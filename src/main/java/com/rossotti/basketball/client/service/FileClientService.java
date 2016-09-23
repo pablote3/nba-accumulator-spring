@@ -10,21 +10,30 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.joda.time.LocalDate;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rossotti.basketball.client.dto.RosterDTO;
 import com.rossotti.basketball.client.dto.StatsDTO;
 import com.rossotti.basketball.client.dto.StatusCodeDTO;
+import com.rossotti.basketball.util.DateTimeUtil;
 
 @Service
 public class FileClientService {
 
 	private static ObjectMapper mapper = JsonProvider.buildObjectMapper();
 
-	public StatsDTO retrieveStats(String stringPath, String event, StatsDTO statsDTO) {
-		String stringFile = event + ".json";
+	public StatsDTO retrieveStats(String stringPath, String event, StatsDTO statsDTO, LocalDate asOfDate) {
+		String stringFile;
+		if (statsDTO instanceof RosterDTO) {
+			stringFile = event + "-" + DateTimeUtil.getStringDateNaked(asOfDate) + ".json";
+		}
+		else {
+			stringFile = event + ".json";
+		}
 		Path path = Paths.get(stringPath).resolve(stringFile);
 		InputStreamReader baseJson = null;
 		try {

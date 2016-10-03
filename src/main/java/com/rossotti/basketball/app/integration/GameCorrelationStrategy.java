@@ -1,4 +1,4 @@
-package com.rossotti.basketball.app.gateway;
+package com.rossotti.basketball.app.integration;
 
 import org.springframework.integration.aggregator.CorrelationStrategy;
 import org.springframework.messaging.Message;

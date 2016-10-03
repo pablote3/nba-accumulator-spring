@@ -12,23 +12,23 @@
 	http://www.springframework.org/schema/integration/stream http://www.springframework.org/schema/integration/stream/spring-integration-stream.xsd
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:component-scan base-package="com.rossotti.basketball.app.gateway" />
+	<context:component-scan base-package="com.rossotti.basketball.app.integration" />
 
-	<int:gateway id="gatewayService" service-interface="com.rossotti.basketball.app.gateway.GatewayService" />
+	<int:gateway id="gatewayService" service-interface="com.rossotti.basketball.app.integration.GatewayService" />
 	<int:channel id="gatewayRequestChannel" />
 
 	<int:service-activator ref="gameActivatorBean" input-channel="gatewayRequestChannel" output-channel="gameActivatorChannel" />
-	<bean id="gameActivatorBean" class="com.rossotti.basketball.app.gateway.GameActivator" />
+	<bean id="gameActivatorBean" class="com.rossotti.basketball.app.integration.GameActivator" />
 	<int:channel id="gameActivatorChannel" />
 
-	<int:splitter ref="gameSplitter" input-channel="gameActivatorChannel" output-channel="gameRouteChannel" />
-	<bean id="gameSplitter" class="com.rossotti.basketball.app.gateway.GameSplitter" />
-	<int:channel id="gameRouteChannel">
+	<int:splitter ref="gameSplitter" input-channel="gameActivatorChannel" output-channel="gameRouterChannel" />
+	<bean id="gameSplitter" class="com.rossotti.basketball.app.integration.GameSplitter" />
+	<int:channel id="gameRouterChannel">
 		<int:queue capacity="20" />
 	</int:channel>
 
-	<int:router ref="gameRouter" input-channel="gameRouteChannel" method="routeGame" />
-	<bean id="gameRouter" class="com.rossotti.basketball.app.gateway.GameRouter" />
+	<int:router ref="gameRouter" input-channel="gameRouterChannel" method="routeGame" />
+	<bean id="gameRouter" class="com.rossotti.basketball.app.integration.GameRouter" />
 	<int:channel id="gameScheduledChannel" />
 	<int:channel id="gameCompletedChannel" />
 	<int:channel id="gameRosterChannel" />
@@ -46,20 +46,20 @@
 	<int:channel id="rosterCompleteChannel" />
 
 	<int:router ref="gameResultsRouter" input-channel="gameResultsChannel" method="routeGame" />
-	<bean id="gameResultsRouter" class="com.rossotti.basketball.app.gateway.GameResultsRouter" />
+	<bean id="gameResultsRouter" class="com.rossotti.basketball.app.integration.GameResultsRouter" />
 	<int:channel id="rosterUpdateChannel">
 		<int:queue capacity="1" />
 	</int:channel>
 	
 	<int:router ref="rosterResultsRouter" input-channel="rosterResultsChannel" method="routeResults" />
-	<bean id="rosterResultsRouter" class="com.rossotti.basketball.app.gateway.RosterResultsRouter" />
+	<bean id="rosterResultsRouter" class="com.rossotti.basketball.app.integration.RosterResultsRouter" />
 	
-	<int:aggregator ref="aggregatorBean" input-channel="gameAggregatorChannel" output-channel="standingsRouteChannel" />
-	<bean id="aggregatorBean" class="com.rossotti.basketball.app.gateway.GameAggregator" />
+	<int:aggregator ref="aggregatorBean" input-channel="gameAggregatorChannel" output-channel="standingsRouterChannel" />
+	<bean id="aggregatorBean" class="com.rossotti.basketball.app.integration.GameAggregator" />
 	<int:channel id="standingsRouteChannel" />
 	
-	<int:router ref="standingsRouter" input-channel="standingsRouteChannel" method="routeStandings" />
-	<bean id="standingsRouter" class="com.rossotti.basketball.app.gateway.StandingsRouter" />
+	<int:router ref="standingsRouter" input-channel="standingsRouterChannel" method="routeStandings" />
+	<bean id="standingsRouter" class="com.rossotti.basketball.app.integration.StandingsRouter" />
 	<int:channel id="standingsCompletedChannel">
 		<int:queue capacity="1" />
 	</int:channel>

@@ -1,4 +1,4 @@
-package com.rossotti.basketball.app.gateway;
+package com.rossotti.basketball.app.integration;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

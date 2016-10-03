@@ -1,4 +1,4 @@
-package com.rossotti.basketball.app.gateway;
+package com.rossotti.basketball.app.integration;
 
 import java.util.List;
 import java.util.ArrayList;

@@ -29,7 +29,7 @@ public class StandingsRouter {
 			logger.info("end standingsRouter - outboundChannel - no games routed");
 			return "outboundChannel";
 		}
-		logger.info("end standingsRouter - completedStandingsChannel");
-		return "completedStandingsChannel";
+		logger.info("end standingsRouter - standingsCompletedChannel");
+		return "standingsCompletedChannel";
 	}
 }

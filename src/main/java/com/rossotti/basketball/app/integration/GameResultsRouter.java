@@ -9,6 +9,6 @@ public class GameResultsRouter {
 	private final Logger logger = LoggerFactory.getLogger(GameResultsRouter.class);
 	public String routeGame(AppGame game) {
 		logger.info("begin gameResultsRouter: game status = " + game.getAppStatus());
-		return (game.isAppRosterError()) ? "gameRouteChannel" : "gameAggregatorChannel";
+		return (game.isAppRosterError()) ? "gameRouterChannel" : "gameAggregatorChannel";
 	}
 }

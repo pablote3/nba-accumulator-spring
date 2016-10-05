@@ -20,6 +20,12 @@ public class AppGame {
 	public Boolean isAppRosterError() {
 		return appStatus == AppStatus.RosterError;
 	}
+	public Boolean isAppOfficialError() {
+		return appStatus == AppStatus.OfficialError;
+	}
+	public Boolean isAppTeamError() {
+		return appStatus == AppStatus.TeamError;
+	}
 	private Game game;
 	public Game getGame() {
 		return game;

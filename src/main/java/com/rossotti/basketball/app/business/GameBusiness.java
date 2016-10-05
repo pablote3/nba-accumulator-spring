@@ -134,11 +134,11 @@ public class GameBusiness {
 		catch (NoSuchEntityException nse) {
 			if (nse.getEntityClass().equals(Official.class)) {
 				logger.info("Official not found - need to add official");
-				appGame.setAppStatus(AppStatus.ClientError);
+				appGame.setAppStatus(AppStatus.OfficialError);
 			}
 			else if (nse.getEntityClass().equals(Team.class)) {
 				logger.info("Team not found - need to add team");
-				appGame.setAppStatus(AppStatus.ClientError);
+				appGame.setAppStatus(AppStatus.TeamError);
 			}
 			else if (nse.getEntityClass().equals(RosterPlayer.class)) {
 				logger.info("Roster Player not found - need to rebuild active roster");

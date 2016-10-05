@@ -87,7 +87,7 @@ public class StandingsBusiness {
 //							logger.error("    OpptOppt Games Won/Played = " + standingRecord.getOpptGamesWon() + "-" + standingRecord.getOpptGamesPlayed());
 //							logger.error("    Opponent Record = " + opponentRecord);
 //							logger.error("    OpptOppt Record = " + opponentOpponentRecord);
-							logger.info("  Strenghth Of Schedule  " + teamKey + " " + opponentRecord.multiply(new BigDecimal(2)).add(opponentOpponentRecord).divide(new BigDecimal(3), 4, RoundingMode.HALF_UP));
+							logger.info("  Strenghth Of Schedule  " + standing.getTeam().getAbbr() + ": " + opponentRecord.multiply(new BigDecimal(2)).add(opponentOpponentRecord).divide(new BigDecimal(3), 4, RoundingMode.HALF_UP));
 						}
 						else {
 							logger.info("Unable to create standing");

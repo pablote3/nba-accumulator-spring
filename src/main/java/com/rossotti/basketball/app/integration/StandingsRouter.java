@@ -15,19 +15,19 @@ public class StandingsRouter {
 				Game game = games.get(i);
 				if (game != null) {
 					if (!game.isCompleted()) {
-						logger.info("end standingsRouter - outboundChannel - incomplete game");
-						return "outboundChannel";
+						logger.info("end standingsRouter - gatewayRequestChannel - incomplete game");
+						return "gatewayRequestChannel";
 					}
 				}
 				else {
-					logger.info("end standingsRouter - outboundChannel - null game");
-					return "outboundChannel";
+					logger.info("end standingsRouter - gatewayRequestChannel - null game");
+					return "gatewayRequestChannel";
 				}
 			}
 		}
 		else {
-			logger.info("end standingsRouter - outboundChannel - no games routed");
-			return "outboundChannel";
+			logger.info("end standingsRouter - gatewayRequestChannel - no games routed");
+			return "gatewayRequestChannel";
 		}
 		logger.info("end standingsRouter - standingsCompletedChannel");
 		return "standingsCompletedChannel";

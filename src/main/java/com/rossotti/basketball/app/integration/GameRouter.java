@@ -9,24 +9,38 @@ import com.rossotti.basketball.dao.model.Game;
 public class GameRouter {
 	private final Logger logger = LoggerFactory.getLogger(GameRouter.class);
 	public String routeGame(Game game) {
-		logger.info("begin gameRouter for game: gameStatus = " + game.getStatus());
 		if (game.isScheduled()) {
-			logger.info("end gameRouter: route to gameScheduledChannel");
+			logger.info("Game " + game.getBoxScoreAway().getTeam().getAbbr() + " at " + 
+						game.getBoxScoreHome().getTeam().getAbbr() + ": " + 
+						game.getStatus() + 
+						" route to gameScheduledChannel"
+			);
 			return "gameScheduledChannel";
 		}
 		else {
-			logger.info("end gameRouter: route to gameCompletedChannel");
+			logger.info("Game " + game.getBoxScoreAway().getTeam().getAbbr() + " at " + 
+						game.getBoxScoreHome().getTeam().getAbbr() + ": " + 
+						game.getStatus() + 
+						" route to gameCompletedChannel"
+			);
 			return "gameCompletedChannel";
 		}
 	}
 	public String routeGame(AppGame appGame) {
-		logger.info("begin gameRouter for appGame: appStatus = " + appGame.getAppStatus());
 		if (appGame.isAppRosterError()) {
-			logger.info("end gameRouter: route to gameRosterChannel");
+			logger.info("AppGame " + appGame.getGame().getBoxScoreAway().getTeam().getAbbr() + " at " + 
+						appGame.getGame().getBoxScoreHome().getTeam().getAbbr() + 
+						appGame.getAppStatus() + 
+						" route to gameRosterChannel"
+			);
 			return "gameRosterChannel";
 		}
 		else {
-			logger.info("end gameRouter: route to gameAggregatorChannel");
+			logger.info("AppGame " + appGame.getGame().getBoxScoreAway().getTeam().getAbbr() + " at " + 
+						appGame.getGame().getBoxScoreHome().getTeam().getAbbr() + 
+						appGame.getAppStatus() + 
+						" route to gameAggregatorChannel"
+			);
 			return "gameAggregatorChannel";
 		}
 	}

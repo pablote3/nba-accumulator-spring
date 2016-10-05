@@ -9,27 +9,26 @@ import com.rossotti.basketball.dao.model.Game;
 public class StandingsRouter {
 	private final Logger logger = LoggerFactory.getLogger(StandingsRouter.class);
 	public String routeStandings(List<Game> games) {
-		logger.info("begin standingsRouter: game count = " + games.size());
 		if (games.size() > 0) {
 			for (int i = 0; i < games.size(); i++) {
 				Game game = games.get(i);
 				if (game != null) {
 					if (!game.isCompleted()) {
-						logger.info("end standingsRouter - gatewayRequestChannel - incomplete game");
+						logger.info("game " + i + " " + game.getStatus() + ": route to gatewayRequestChannel");
 						return "gatewayRequestChannel";
 					}
 				}
 				else {
-					logger.info("end standingsRouter - gatewayRequestChannel - null game");
+					logger.info("game " + i + " null: route to gatewayRequestChannel");
 					return "gatewayRequestChannel";
 				}
 			}
 		}
 		else {
-			logger.info("end standingsRouter - gatewayRequestChannel - no games routed");
+			logger.info("no games completed: route to gatewayRequestChannel");
 			return "gatewayRequestChannel";
 		}
-		logger.info("end standingsRouter - standingsCompletedChannel");
+		logger.info("gameCount = " + games.size() + " Completed: route to standingsCompletedChannel");
 		return "standingsCompletedChannel";
 	}
 }

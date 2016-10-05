@@ -15,7 +15,7 @@ import com.rossotti.basketball.dao.model.Game;
 public class GameAggregator {
 	private final Logger logger = LoggerFactory.getLogger(GameAggregator.class);
 	public List<Game> aggregate(Collection<Message<?>> games) {
-		logger.info("begin gameAggregator");
+		logger.debug("begin gameAggregator");
 		List<Game> gameList = new ArrayList<Game>();
 		for (Message<?> msg : games) {
 //			logger.info("msg.correlationId = " + msg.getHeaders().get("correlationId"));
@@ -35,7 +35,7 @@ public class GameAggregator {
 				gameList.add(appGame.getGame());
 			}
 		}
-		logger.info("end gameAggregator");
+		logger.debug("end gameAggregator");
 		return gameList;
 	}
 }

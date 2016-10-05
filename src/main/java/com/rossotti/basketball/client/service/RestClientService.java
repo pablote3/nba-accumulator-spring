@@ -49,7 +49,7 @@ public class RestClientService {
 	private Client getClient() {
 		client = ClientBuilder.newBuilder().build();
 		client.register(clientFilter);
-		logger.info('\n' + "Client service initialized");
+		logger.debug("Client service initialized");
 		return client;
 	}
 

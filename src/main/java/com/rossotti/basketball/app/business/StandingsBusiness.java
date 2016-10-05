@@ -62,7 +62,7 @@ public class StandingsBusiness {
 
 			if (standingsDTO.isFound()) {
 				if (standingsDTO.standing.length > 0) {
-					logger.info("Rank standings");
+					logger.debug("Rank standings");
 
 					//clear existing standings
 					standingsService.deleteStandings(asOfDate);
@@ -95,7 +95,7 @@ public class StandingsBusiness {
 						}
 					}
 					
-					logger.info("Standings Ranked " + asOfDateString);
+					logger.debug("gameCount = " + standings.size() + " standings completed " + asOfDateString);
 					appStandings.setStandings(standingsService.findStandings(asOfDate));
 					appStandings.setAppStatus(AppStatus.Completed);
 				}

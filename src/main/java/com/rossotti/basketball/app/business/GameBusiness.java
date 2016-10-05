@@ -67,7 +67,7 @@ public class GameBusiness {
 			String event = DateTimeUtil.getStringDateNaked(gameDateTime) + "-" + awayTeamKey + "-at-" + homeTeamKey;
 
 			if (game.isScheduled()) {
-				logger.info('\n' + "Scheduled game ready to be scored: " + event);
+				logger.debug("Scheduled game ready to be scored: " + event);
 
 				GameDTO gameDTO;
 				ClientSource clientSource = propertyService.getProperty_ClientSource("accumulator.source.boxScore");
@@ -108,7 +108,7 @@ public class GameBusiness {
 					game.setStatus(GameStatus.Completed);
 					Game updatedGame = gameService.updateGame(game);
 					if (updatedGame.isUpdated()) {
-						logger.info("Game Scored " + awayTeamKey +  " " + awayBoxScore.getPoints() + " " + homeTeamKey +  " " + homeBoxScore.getPoints());
+						logger.info("Game " + game.getStatus() + ": " + awayBoxScore.getTeam().getAbbr() +  " " + awayBoxScore.getPoints() + " at " + homeBoxScore.getTeam().getAbbr() +  " " + homeBoxScore.getPoints());
 						appGame.setGame(gameService.findByDateTeam(gameDate, awayTeamKey));
 						appGame.setAppStatus(AppStatus.Completed);
 					}
@@ -118,16 +118,16 @@ public class GameBusiness {
 					}
 				}
 				else if (gameDTO.isNotFound()) {
-					logger.info('\n' + "" + " unable to find game");
+					logger.info("Unable to find game");
 					appGame.setAppStatus(AppStatus.ClientError);
 				}
 				else if (gameDTO.isClientException()) {
-					logger.info('\n' + "" + " client exception");
+					logger.info("Client exception");
 					appGame.setAppStatus(AppStatus.ClientError);
 				}
 			}
 			else {
-				logger.info('\n' + "" + game.getStatus() + " game not eligible to be scored: " + event.toString());
+				logger.info(game.getStatus() + " game not eligible to be scored: " + event.toString());
 				appGame.setAppStatus(AppStatus.ServerError);
 			}
 		}

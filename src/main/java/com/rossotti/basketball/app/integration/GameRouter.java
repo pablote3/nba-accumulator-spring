@@ -11,17 +11,17 @@ public class GameRouter {
 	public String routeGame(Game game) {
 		if (game.isScheduled()) {
 			logger.info("Game " + game.getBoxScoreAway().getTeam().getAbbr() + " at " + 
-						game.getBoxScoreHome().getTeam().getAbbr() + ": " + 
+						game.getBoxScoreHome().getTeam().getAbbr() + " " + 
 						game.getStatus() + 
-						" route to gameScheduledChannel"
+						": route to gameScheduledChannel"
 			);
 			return "gameScheduledChannel";
 		}
 		else {
 			logger.info("Game " + game.getBoxScoreAway().getTeam().getAbbr() + " at " + 
-						game.getBoxScoreHome().getTeam().getAbbr() + ": " + 
+						game.getBoxScoreHome().getTeam().getAbbr() + " " + 
 						game.getStatus() + 
-						" route to gameCompletedChannel"
+						": route to gameCompletedChannel"
 			);
 			return "gameCompletedChannel";
 		}
@@ -29,17 +29,17 @@ public class GameRouter {
 	public String routeGame(AppGame appGame) {
 		if (appGame.isAppRosterError()) {
 			logger.info("AppGame " + appGame.getGame().getBoxScoreAway().getTeam().getAbbr() + " at " + 
-						appGame.getGame().getBoxScoreHome().getTeam().getAbbr() + 
+						appGame.getGame().getBoxScoreHome().getTeam().getAbbr() + " " +  
 						appGame.getAppStatus() + 
-						" route to gameRosterChannel"
+						": route to gameRosterChannel"
 			);
 			return "gameRosterChannel";
 		}
 		else {
 			logger.info("AppGame " + appGame.getGame().getBoxScoreAway().getTeam().getAbbr() + " at " + 
-						appGame.getGame().getBoxScoreHome().getTeam().getAbbr() + 
+						appGame.getGame().getBoxScoreHome().getTeam().getAbbr() + " " +  
 						appGame.getAppStatus() + 
-						" route to gameAggregatorChannel"
+						": route to gameAggregatorChannel"
 			);
 			return "gameAggregatorChannel";
 		}

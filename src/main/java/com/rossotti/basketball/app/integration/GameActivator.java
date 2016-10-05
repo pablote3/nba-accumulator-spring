@@ -17,17 +17,17 @@ public class GameActivator {
 	private GameService gameService;
 	private final Logger logger = LoggerFactory.getLogger(GameActivator.class);
 	public List<Game> processGames(ServiceProperties properties) {
-		logger.info("begin processGames");
 		List<Game> games = new ArrayList<Game>();
 		LocalDate gameDate = DateTimeUtil.getLocalDate(properties.getGameDate());
 		if (properties.getGameTeam() == null || properties.getGameTeam().isEmpty()) {
 			games = gameService.findByDate(gameDate);
+			logger.info("findByDate: gameCount = " + games.size());
 		}
 		else {
 			Game game = gameService.findByDateTeam(gameDate, properties.getGameTeam());
 			games.add(game);
+			logger.info("findByDateTeam: gameCount = " + games.size());
 		}
-		logger.info("end processGames");
 		return games;
 	}
 }

@@ -23,7 +23,6 @@ public class GameSplitter extends AbstractMessageSplitter {
 		Collection<Message<?>> messages = new ArrayList<Message<?>>();
 		@SuppressWarnings("unchecked")
 		List<Game> games = (List<Game>) message.getPayload();
-		logger.info("begin gameSplitter: game count = " + games.size());
 		for (int i = 0; i < games.size(); i++) {
 			Game game = (Game)games.get(i);
 			Message<?> msg = MessageBuilder
@@ -35,7 +34,7 @@ public class GameSplitter extends AbstractMessageSplitter {
 			messages.add(msg);
 			addMessage(""+ games.size(), msg);
 		}
-		logger.info("end gameSplitter");
+		logger.info("gameCount = " + games.size());
 		return messages;
 	}
 

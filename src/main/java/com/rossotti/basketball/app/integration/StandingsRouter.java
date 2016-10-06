@@ -14,19 +14,19 @@ public class StandingsRouter {
 				Game game = games.get(i);
 				if (game != null) {
 					if (!game.isCompleted()) {
-						logger.info("game " + i + " " + game.getStatus() + ": route to gatewayRequestChannel");
-						return "gatewayRequestChannel";
+						logger.info("game " + i + " " + game.getStatus() + ": route to gameActivatorChannel");
+						return "gameActivatorChannel";
 					}
 				}
 				else {
-					logger.info("game " + i + " null: route to gatewayRequestChannel");
-					return "gatewayRequestChannel";
+					logger.info("game " + i + " null: route to gameActivatorChannel");
+					return "gameActivatorChannel";
 				}
 			}
 		}
 		else {
-			logger.info("no games completed: route to gatewayRequestChannel");
-			return "gatewayRequestChannel";
+			logger.info("no games completed: route to gameActivatorChannel");
+			return "gameActivatorChannel";
 		}
 		logger.info("gameCount: " + games.size() + " Completed: route to standingsCompletedChannel");
 		return "standingsCompletedChannel";

@@ -112,7 +112,7 @@ public class RosterPlayerBusiness {
 								//player is on current team roster
 								activeRosterPlayer.setFromDate(finderRosterPlayer.getFromDate());
 								activeRosterPlayer.setToDate(finderRosterPlayer.getToDate());
-								logger.info(generateLogMessage("Player on current team roster", activeRosterPlayer));
+								logger.debug(generateLogMessage("Player on current team roster", activeRosterPlayer));
 							}
 						}
 
@@ -132,7 +132,7 @@ public class RosterPlayerBusiness {
 											priorPlayer.getFirstName().equals(activePlayer.getFirstName()) &&
 											priorPlayer.getBirthdate().equals(activePlayer.getBirthdate())) {
 										//player is on current team roster
-										logger.info(generateLogMessage("Player on current team roster", priorRosterPlayer));
+										logger.debug(generateLogMessage("Player on current team roster", priorRosterPlayer));
 										foundPlayerOnRoster = true;
 										break;
 									}
@@ -189,7 +189,7 @@ public class RosterPlayerBusiness {
 	}
 	
 	public AppGame loadRoster(AppGame appGame) {
-		logger.info("begin rosterPlayerBusiness.loadRoster: gameDate = " + DateTimeUtil.getStringDate(appGame.getGame().getGameDateTime()) + " rosterLastTeam = " + appGame.getRosterLastTeam());
+		logger.info("Load Roster for team = " + appGame.getRosterLastTeam() + " gameDate = " + DateTimeUtil.getStringDate(appGame.getGame().getGameDateTime()));
 		AppRoster roster = loadRoster(DateTimeUtil.getStringDate(appGame.getGame().getGameDateTime()), appGame.getRosterLastTeam());
 		if (roster.isAppClientError() || roster.isAppServerError()) {
 			appGame.setAppStatus(AppStatus.ServerError);
@@ -200,11 +200,10 @@ public class RosterPlayerBusiness {
 	private String generateLogMessage(String messageType, RosterPlayer rosterPlayer) {
 		StringBuilder sb = new StringBuilder();
 		sb	.append(FormatUtil.padString(messageType, 40))
-			.append(" name = " + FormatUtil.padString(rosterPlayer.getPlayer().getFirstName() + " " + rosterPlayer.getPlayer().getLastName(), 35))
-			.append(" dob = " + DateTimeUtil.getStringDate(rosterPlayer.getPlayer().getBirthdate()))
-			.append(" team = " + rosterPlayer.getTeam().getAbbr())
 			.append(" fromDate = " + DateTimeUtil.getStringDate(rosterPlayer.getFromDate()))
-			.append(" toDate = " + DateTimeUtil.getStringDate(rosterPlayer.getToDate()));
+			.append(" toDate = " + DateTimeUtil.getStringDate(rosterPlayer.getToDate()))
+			.append(" dob = " + DateTimeUtil.getStringDate(rosterPlayer.getPlayer().getBirthdate()))
+			.append(" name = " + FormatUtil.padString(rosterPlayer.getPlayer().getFirstName() + " " + rosterPlayer.getPlayer().getLastName(), 35));
 		return sb.toString();
 	}
 }

@@ -7,14 +7,21 @@ import com.rossotti.basketball.dao.model.AppGame;
 
 public class RosterResultsRouter {
 	private final Logger logger = LoggerFactory.getLogger(RosterResultsRouter.class);
-	public String routeResults(AppGame game) {
-		logger.info("begin rosterResultsRouter: game status = " + game.getAppStatus());
-		if (game.isAppServerError()) {
-			logger.info("end rosterResultsRouter: route to gameRouterChannel");
+	public String routeResults(AppGame appGame) {
+		if (appGame.isAppServerError()) {
+			logger.info("Game " + appGame.getGame().getBoxScoreAway().getTeam().getAbbr() + " at " + 
+					appGame.getGame().getBoxScoreHome().getTeam().getAbbr() + " " + 
+					appGame.getAppStatus() + 
+					": route to gameRouterChannel"
+			);
 			return "gameRouterChannel";
 		}
 		else {
-			logger.info("end rosterResultsRouter: route to gameScheduledChannel");
+			logger.info("Game " + appGame.getGame().getBoxScoreAway().getTeam().getAbbr() + " at " + 
+					appGame.getGame().getBoxScoreHome().getTeam().getAbbr() + " " + 
+					appGame.getAppStatus() + 
+					": route to gameScheduledChannel"
+			);
 			return "gameScheduledChannel";
 		}
 	}

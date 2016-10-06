@@ -21,12 +21,12 @@ public class GameActivator {
 		LocalDate gameDate = DateTimeUtil.getLocalDate(properties.getGameDate());
 		if (properties.getGameTeam() == null || properties.getGameTeam().isEmpty()) {
 			games = gameService.findByDate(gameDate);
-			logger.info("findByDate: gameCount = " + games.size());
+			logger.info("findByDate: " + DateTimeUtil.getStringDate(gameDate));
 		}
 		else {
 			Game game = gameService.findByDateTeam(gameDate, properties.getGameTeam());
 			games.add(game);
-			logger.info("findByDateTeam: gameCount = " + games.size());
+			logger.info("findByDateTeam: " + DateTimeUtil.getStringDate(gameDate) + " - " + properties.getGameTeam());
 		}
 		return games;
 	}

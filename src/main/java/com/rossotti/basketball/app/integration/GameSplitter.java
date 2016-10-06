@@ -34,7 +34,7 @@ public class GameSplitter extends AbstractMessageSplitter {
 			messages.add(msg);
 			addMessage(""+ games.size(), msg);
 		}
-		logger.info("gameCount = " + games.size());
+		logger.info("gameCount: " + games.size());
 		return messages;
 	}
 

@@ -28,7 +28,7 @@ public class StandingsRouter {
 			logger.info("no games completed: route to gatewayRequestChannel");
 			return "gatewayRequestChannel";
 		}
-		logger.info("gameCount = " + games.size() + " Completed: route to standingsCompletedChannel");
+		logger.info("gameCount: " + games.size() + " Completed: route to standingsCompletedChannel");
 		return "standingsCompletedChannel";
 	}
 }

@@ -25,7 +25,9 @@ public class GameActivator {
 		}
 		else {
 			Game game = gameService.findByDateTeam(gameDate, properties.getGameTeam());
-			games.add(game);
+			if (game.isFound()) {
+				games.add(game);
+			}
 			logger.info("findByDateTeam: " + DateTimeUtil.getStringDate(gameDate) + " - " + properties.getGameTeam());
 		}
 		return games;

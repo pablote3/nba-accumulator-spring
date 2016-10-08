@@ -27,7 +27,7 @@ public class GameRouter {
 		}
 	}
 	public String routeGame(AppGame appGame) {
-		if (appGame.isAppRosterError()) {
+		if (appGame.isAppRosterUpdate()) {
 			logger.info("AppGame " + appGame.getGame().getBoxScoreAway().getTeam().getAbbr() + " at " + 
 						appGame.getGame().getBoxScoreHome().getTeam().getAbbr() + " " +  
 						appGame.getAppStatus() + 

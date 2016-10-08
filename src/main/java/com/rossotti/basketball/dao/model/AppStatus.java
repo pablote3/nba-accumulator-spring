@@ -4,6 +4,7 @@ public enum AppStatus {
 	Completed,
 	ClientError,
 	ServerError,
+	RosterUpdate,
 	RosterError,
 	OfficialError,
 	TeamError

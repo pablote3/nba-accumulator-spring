@@ -18,9 +18,9 @@ public class GameAggregator {
 		logger.debug("begin gameAggregator");
 		List<Game> gameList = new ArrayList<Game>();
 		for (Message<?> msg : games) {
-//			logger.info("msg.correlationId = " + msg.getHeaders().get("correlationId"));
-//			logger.info("msg.sequenceNumber = " + msg.getHeaders().get("sequenceNumber"));
-//			logger.info("msg.sequenceSize = " + msg.getHeaders().get("sequenceSize"));			
+			logger.debug("msg.correlationId = " + msg.getHeaders().get("correlationId"));
+			logger.debug("msg.sequenceNumber = " + msg.getHeaders().get("sequenceNumber"));
+			logger.debug("msg.sequenceSize = " + msg.getHeaders().get("sequenceSize"));			
 			AppGame appGame = (AppGame)msg.getPayload();
 			if (appGame.getAppStatus().equals(AppStatus.ServerError) || appGame.getAppStatus().equals(AppStatus.ClientError)) {
 				gameList.add(null);

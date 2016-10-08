@@ -54,7 +54,7 @@ public class GameBusiness {
 	
 	private final Logger logger = LoggerFactory.getLogger(GameBusiness.class);
 	
-	public AppGame scoreGame(Game game) {
+	public AppGame scoreGame(Game game, boolean initial) {
 		AppGame appGame = new AppGame();
 		try {
 			BoxScore awayBoxScore = game.getBoxScoreAway();
@@ -141,8 +141,14 @@ public class GameBusiness {
 				appGame.setAppStatus(AppStatus.TeamError);
 			}
 			else if (nse.getEntityClass().equals(RosterPlayer.class)) {
-				logger.info("Roster Player not found - need to rebuild active roster");
-				appGame.setAppStatus(AppStatus.RosterError);
+				if (initial) {
+					logger.info("Roster Player not found - need to rebuild active roster");
+					appGame.setAppStatus(AppStatus.RosterUpdate);
+				}
+				else {
+					logger.info("Roster Player not found - problem between box score and roster");
+					appGame.setAppStatus(AppStatus.RosterError);					
+				}
 			}
 		}
 		catch (PropertyException pe) {
@@ -159,9 +165,16 @@ public class GameBusiness {
 		return appGame;
 	}
 	
+	public AppGame scoreGame(Game game) {
+		return scoreGame(game, true);
+	}
+	
 	public AppGame scoreGame(AppGame appGame) {
 		if (appGame.isAppServerError()) {
 			return appGame;
+		}
+		else if(appGame.isAppRosterUpdate()) {
+			return scoreGame(appGame.getGame(), false);
 		}
 		else {
 			return scoreGame(appGame.getGame());

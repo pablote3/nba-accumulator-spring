@@ -17,6 +17,9 @@ public class AppGame {
 	public Boolean isAppServerError() {
 		return appStatus == AppStatus.ServerError;
 	}
+	public Boolean isAppRosterUpdate() {
+		return appStatus == AppStatus.RosterUpdate;
+	}
 	public Boolean isAppRosterError() {
 		return appStatus == AppStatus.RosterError;
 	}

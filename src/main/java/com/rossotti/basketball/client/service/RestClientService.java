@@ -56,7 +56,13 @@ public class RestClientService {
 	public StatsDTO retrieveStats(String baseUrl, String event, StatsDTO statsDTO, LocalDate asOfDate) {
 		String eventUrl = baseUrl + event + ".json";
 		Response response = getClient().target(eventUrl).request().get();
-		if (response.getStatus() != 200) {
+		if (response.getStatus() == 401) {
+			logger.info("invalid token supplied on client request - returning http status = 401");
+			statsDTO.setStatusCode(StatusCodeDTO.NotFound);
+			response.readEntity(String.class);
+		}
+		else if (response.getStatus() != 200) {
+			logger.info("unable to retrieve client request - returning http status = " + response.getStatus());
 			statsDTO.setStatusCode(StatusCodeDTO.NotFound);
 			response.readEntity(String.class);
 		}

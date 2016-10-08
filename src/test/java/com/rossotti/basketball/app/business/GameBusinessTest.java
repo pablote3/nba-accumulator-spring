@@ -126,7 +126,7 @@ public class GameBusinessTest {
 	}
 
 	@Test
-	public void rosterPlayerService_getBoxScorePlayers_noSuchEntityException() {
+	public void rosterPlayerService_getBoxScorePlayers_appRosterUpdate() {
 		when(propertyService.getProperty_ClientSource(anyString()))
 			.thenReturn(ClientSource.File);
 		when(fileStatsService.retrieveBoxScore(anyString(), (LocalDate) anyObject()))
@@ -136,9 +136,21 @@ public class GameBusinessTest {
 		AppGame game = gameBusiness.scoreGame(createMockGame_Scheduled());
 		Assert.assertTrue(game.isAppRosterUpdate());
 	}
+	
+	@Test
+	public void rosterPlayerService_getBoxScorePlayers_appRosterError() {
+		when(propertyService.getProperty_ClientSource(anyString()))
+			.thenReturn(ClientSource.File);
+		when(fileStatsService.retrieveBoxScore(anyString(), (LocalDate) anyObject()))
+			.thenReturn(createMockGameDTO_Found());
+		when(rosterPlayerService.getBoxScorePlayers((BoxScorePlayerDTO[]) anyObject(), (LocalDate) anyObject(), anyString()))
+			.thenThrow(new NoSuchEntityException(RosterPlayer.class));
+		AppGame game = gameBusiness.scoreGame(createMockGame_Scheduled(), false);
+		Assert.assertTrue(game.isAppRosterError());
+	}
 
 	@Test
-	public void officialService_getGameOfficials_noSuchEntityException() {
+	public void officialService_getGameOfficials_appOfficialError() {
 		when(propertyService.getProperty_ClientSource(anyString()))
 			.thenReturn(ClientSource.File);
 		when(fileStatsService.retrieveBoxScore(anyString(), (LocalDate) anyObject()))
@@ -152,7 +164,7 @@ public class GameBusinessTest {
 	}
 
 	@Test
-	public void teamService_findTeam_noSuchEntityException() {
+	public void teamService_findTeam_appTeamError() {
 		when(propertyService.getProperty_ClientSource(anyString()))
 			.thenReturn(ClientSource.File);
 		when(fileStatsService.retrieveBoxScore(anyString(), (LocalDate) anyObject()))

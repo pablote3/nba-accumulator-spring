@@ -17,7 +17,7 @@
 	<int:gateway id="gatewayService" service-interface="com.rossotti.basketball.app.integration.GatewayService" />
 	<int:channel id="gameActivatorChannel" />
 
-	<int:service-activator ref="gameActivatorBean" input-channel="gameActivatorChannel" output-channel="gameFinderChannel" />
+	<int:service-activator ref="gameActivatorBean" input-channel="inputChannel" output-channel="gameFinderChannel" />
 	<bean id="gameActivatorBean" class="com.rossotti.basketball.app.integration.GameActivator" />
 	<int:channel id="gameFinderChannel" />
 

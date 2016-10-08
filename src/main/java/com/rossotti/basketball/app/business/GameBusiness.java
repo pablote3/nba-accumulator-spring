@@ -128,7 +128,7 @@ public class GameBusiness {
 			}
 			else {
 				logger.info(game.getStatus() + " game not eligible to be scored: " + event.toString());
-				appGame.setAppStatus(AppStatus.ServerError);
+				appGame.setAppStatus(AppStatus.Completed);
 			}
 		}
 		catch (NoSuchEntityException nse) {
@@ -179,12 +179,5 @@ public class GameBusiness {
 		else {
 			return scoreGame(appGame.getGame());
 		}
-	}
-	
-	public AppGame completeGame(Game game) {
-		AppGame appGame = new AppGame();
-		appGame.setGame(game);
-		appGame.setAppStatus(AppStatus.Completed);
-		return appGame;
 	}
 }

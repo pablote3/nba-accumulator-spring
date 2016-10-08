@@ -16,7 +16,7 @@ public class GameFinderRouter {
 		}
 		else {
 			logger.info("gameCount: " + games.size() + ": route to gameActivatorChannel");			
-			return "gameAggregatorChannel";
+			return "gameActivatorChannel";
 		}
 	}
 }

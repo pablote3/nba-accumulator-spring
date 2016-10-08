@@ -134,7 +134,7 @@ public class GameBusinessTest {
 		when(rosterPlayerService.getBoxScorePlayers((BoxScorePlayerDTO[]) anyObject(), (LocalDate) anyObject(), anyString()))
 			.thenThrow(new NoSuchEntityException(RosterPlayer.class));
 		AppGame game = gameBusiness.scoreGame(createMockGame_Scheduled());
-		Assert.assertTrue(game.isAppRosterError());
+		Assert.assertTrue(game.isAppRosterUpdate());
 	}
 
 	@Test
@@ -148,7 +148,7 @@ public class GameBusinessTest {
 		when(officialService.getGameOfficials((OfficialDTO[]) anyObject(), (LocalDate) anyObject()))
 			.thenThrow(new NoSuchEntityException(Official.class));
 		AppGame game = gameBusiness.scoreGame(createMockGame_Scheduled());
-		Assert.assertTrue(game.isAppClientError());
+		Assert.assertTrue(game.isAppOfficialError());
 	}
 
 	@Test
@@ -164,7 +164,7 @@ public class GameBusinessTest {
 		when(teamService.findTeam(anyString(), (LocalDate) anyObject()))
 			.thenThrow(new NoSuchEntityException(Team.class));
 		AppGame game = gameBusiness.scoreGame(createMockGame_Scheduled());
-		Assert.assertTrue(game.isAppClientError());
+		Assert.assertTrue(game.isAppTeamError());
 	}
 	
 	@Test

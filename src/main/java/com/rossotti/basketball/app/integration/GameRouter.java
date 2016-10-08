@@ -13,9 +13,9 @@ public class GameRouter {
 			logger.info("Game " + game.getBoxScoreAway().getTeam().getAbbr() + " at " + 
 						game.getBoxScoreHome().getTeam().getAbbr() + " " + 
 						game.getStatus() + 
-						": route to gameScheduledChannel"
+						": route to gameScoreChannel"
 			);
-			return "gameScheduledChannel";
+			return "gameScoreChannel";
 		}
 		else {
 			logger.info("Game " + game.getBoxScoreAway().getTeam().getAbbr() + " at " + 
@@ -31,9 +31,9 @@ public class GameRouter {
 			logger.info("AppGame " + appGame.getGame().getBoxScoreAway().getTeam().getAbbr() + " at " + 
 						appGame.getGame().getBoxScoreHome().getTeam().getAbbr() + " " +  
 						appGame.getAppStatus() + 
-						": route to gameRosterChannel"
+						": route to rosterLoadChannel"
 			);
-			return "gameRosterChannel";
+			return "rosterLoadChannel";
 		}
 		else {
 			logger.info("AppGame " + appGame.getGame().getBoxScoreAway().getTeam().getAbbr() + " at " + 

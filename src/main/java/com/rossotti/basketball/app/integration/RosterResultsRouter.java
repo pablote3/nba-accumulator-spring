@@ -20,9 +20,9 @@ public class RosterResultsRouter {
 			logger.info("Game " + appGame.getGame().getBoxScoreAway().getTeam().getAbbr() + " at " + 
 					appGame.getGame().getBoxScoreHome().getTeam().getAbbr() + " " + 
 					appGame.getAppStatus() + 
-					": route to gameScheduledChannel"
+					": route to gameScoreChannel"
 			);
-			return "gameScheduledChannel";
+			return "gameScoreChannel";
 		}
 	}
 }

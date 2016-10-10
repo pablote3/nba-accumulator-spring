@@ -47,9 +47,6 @@
 
 	<int:router ref="gameResultsRouter" input-channel="gameResultsChannel" method="routeGame" />
 	<bean id="gameResultsRouter" class="com.rossotti.basketball.app.integration.GameResultsRouter" />
-	<int:channel id="rosterUpdateChannel">
-		<int:queue capacity="1" />
-	</int:channel>
 	
 	<int:router ref="rosterResultsRouter" input-channel="rosterResultsChannel" method="routeResults" />
 	<bean id="rosterResultsRouter" class="com.rossotti.basketball.app.integration.RosterResultsRouter" />

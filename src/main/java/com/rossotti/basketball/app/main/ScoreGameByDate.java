@@ -1,12 +1,10 @@
 package com.rossotti.basketball.app.main;
 
-import java.util.List;
-
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.rossotti.basketball.app.integration.GatewayService;
 import com.rossotti.basketball.app.integration.ServiceProperties;
-import com.rossotti.basketball.dao.model.Game;
+import com.rossotti.basketball.dao.model.AppStandings;
 
 public class ScoreGameByDate {
 	public static void main(String[] args) {
@@ -17,12 +15,12 @@ public class ScoreGameByDate {
 				"classpath:si-config.xml",
 				"classpath:applicationContext_MySql.xml"
 		});
-		System.out.println("begin gatewayService");
+		System.out.println("\n" + "begin gatewayService");
 		GatewayService gatewayService = (GatewayService) context.getBean("gatewayService");
 		ServiceProperties properties = new ServiceProperties();
-		properties.setGameDate("2012-12-01");
-		List<Game> games = gatewayService.processGames(properties);
-		System.out.println("end gatewayService, processed " + games.size() + " games");
+		properties.setGameDate("2012-12-11");
+		AppStandings appStandings = gatewayService.processGames(properties);
+		System.out.println("end gatewayService, processed " + appStandings.getStandings().size() + " standings" + "\n");
 		context.close();
 	}
 }

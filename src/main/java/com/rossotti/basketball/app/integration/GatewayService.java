@@ -1,9 +1,7 @@
 package com.rossotti.basketball.app.integration;
 
-import java.util.List;
-
-import com.rossotti.basketball.dao.model.Game;
+import com.rossotti.basketball.dao.model.AppStandings;
 
 public interface GatewayService {
-	List<Game> processGames(ServiceProperties serviceProperties);
+	AppStandings processGames(ServiceProperties serviceProperties);
 }

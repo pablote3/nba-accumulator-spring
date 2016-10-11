@@ -15,8 +15,8 @@ public class GameFinderRouter {
 			return "gameSplitterChannel";
 		}
 		else {
-			logger.info("gameCount: " + games.size() + ": route to gameActivatorChannel");			
-			return "gameActivatorChannel";
+			logger.info("gameCount: " + games.size() + ": route to outputChannel");			
+			return "outputChannel";
 		}
 	}
 }

@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.integration.splitter.AbstractMessageSplitter;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.messaging.Message;
+import org.springframework.messaging.MessageChannel;
 
 import com.rossotti.basketball.dao.model.Game;
 
@@ -27,9 +28,10 @@ public class GameSplitter extends AbstractMessageSplitter {
 			Game game = (Game)games.get(i);
 			Message<?> msg = MessageBuilder
 				.withPayload(game)
-				.setHeaderIfAbsent("correlationId", game.getGameDateTime()) 
-				.setHeaderIfAbsent("sequenceNumber", i)
-				.setHeaderIfAbsent("sequenceSize", games.size())
+				.setReplyChannel((MessageChannel)message.getHeaders().getReplyChannel())
+				.setCorrelationId(game.getGameDateTime())
+				.setSequenceNumber(i)
+				.setSequenceSize(games.size())
 				.build();
 			messages.add(msg);
 			addMessage(""+ games.size(), msg);

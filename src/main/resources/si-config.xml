@@ -14,8 +14,7 @@
 
 	<context:component-scan base-package="com.rossotti.basketball.app.integration" />
 
-	<int:gateway id="gatewayService" service-interface="com.rossotti.basketball.app.integration.GatewayService" />
-	<int:channel id="gameActivatorChannel" />
+	<int:gateway id="gatewayService" service-interface="com.rossotti.basketball.app.integration.GatewayService" default-request-channel="inputChannel" default-reply-channel="outputChannel" />
 
 	<int:service-activator ref="gameActivatorBean" input-channel="inputChannel" output-channel="gameFinderChannel" />
 	<bean id="gameActivatorBean" class="com.rossotti.basketball.app.integration.GameActivator" />
@@ -61,10 +60,9 @@
 		<int:queue capacity="1" />
 	</int:channel>
 	
-	<int:service-activator ref="rankStandingsBean" input-channel="standingsRankChannel" output-channel="gameActivatorChannel" method="rankStandings" />
+	<int:service-activator ref="rankStandingsBean" input-channel="standingsRankChannel" output-channel="outputChannel" method="rankStandings" />
 	<bean id="rankStandingsBean" class="com.rossotti.basketball.app.business.StandingsBusiness" />
+	<int:channel id="outputChannel" />
 	
-	<int-stream:stdout-channel-adapter channel="gameActivatorChannel" append-newline="true"/>
-
 	<int:poller id="defaultPoller" default="true" max-messages-per-poll="1" fixed-delay="10000" />
 </beans>

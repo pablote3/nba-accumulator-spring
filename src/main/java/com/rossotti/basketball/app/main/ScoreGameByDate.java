@@ -20,7 +20,7 @@ public class ScoreGameByDate {
 		System.out.println("\n" + "begin gatewayService");
 		GatewayService gatewayService = (GatewayService) context.getBean("gatewayService");
 		ServiceProperties properties = new ServiceProperties();
-		properties.setGameDate("2012-12-15");
+		properties.setGameDate("2012-12-16");
 		AppStandings appStandings = gatewayService.processGames(properties);
 		System.out.println("end gatewayService, processed " + appStandings.getStandings().size() + " standings" + "\n");
 		((ConfigurableApplicationContext)context).close();

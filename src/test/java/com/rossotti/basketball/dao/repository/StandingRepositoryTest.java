@@ -16,7 +16,7 @@ import com.rossotti.basketball.dao.model.Standing;
 import com.rossotti.basketball.dao.model.Team;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:applicationContext_h2.xml"})
+@ContextConfiguration(locations={"classpath:applicationContext.xml"})
 public class StandingRepositoryTest {
 
 	@Autowired

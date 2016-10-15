@@ -11,7 +11,7 @@ import com.rossotti.basketball.app.exception.PropertyException;
 import com.rossotti.basketball.client.dto.ClientSource;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:applicationContext_h2.xml"})
+@ContextConfiguration(locations={"classpath:applicationContext.xml"})
 public class PropertyServiceTest {
 	@Autowired
 	private PropertyService propertyService;

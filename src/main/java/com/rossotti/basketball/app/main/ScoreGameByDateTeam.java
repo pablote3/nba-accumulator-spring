@@ -1,5 +1,7 @@
 package com.rossotti.basketball.app.main;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.rossotti.basketball.app.integration.GatewayService;
@@ -11,9 +13,9 @@ public class ScoreGameByDateTeam {
 		System.setProperty(org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "INFO");
 		System.setProperty(org.slf4j.impl.SimpleLogger.SHOW_DATE_TIME_KEY, "TRUE");
 		System.setProperty(org.slf4j.impl.SimpleLogger.DATE_TIME_FORMAT_KEY, "yyyy-MM-dd HH:mm:ss");
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {
-				"classpath:si-config.xml",
-				"classpath:applicationContext_MySql.xml"
+		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {
+				"si-config.xml",
+				"applicationContext_MySql.xml"
 		});
 		System.out.println("\n" + "begin gatewayService");
 		GatewayService gatewayService = (GatewayService) context.getBean("gatewayService");
@@ -22,6 +24,6 @@ public class ScoreGameByDateTeam {
 		properties.setGameTeam("san-antonio-spurs");
 		AppStandings appStandings = gatewayService.processGames(properties);
 		System.out.println("end gatewayService, processed " + appStandings.getStandings().size() + " standings" + "\n");
-		context.close();
+		((ConfigurableApplicationContext)context).close();
 	}
 }

@@ -204,5 +204,49 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
+    
+	<build>
+		<finalName>nba-accumulator</finalName>
+		<plugins>
+		    <plugin>
+        		<artifactId>maven-compiler-plugin</artifactId>
+        		<version>3.2</version>
+        		<configuration>
+            		<source>1.7</source>
+            		<target>1.7</target>
+        		</configuration>
+    		</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.0.2</version>
+			</plugin>			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<descriptorRefs>
+        				<descriptorRef>jar-with-dependencies</descriptorRef>
+      				</descriptorRefs>
+				  	<excludes>
+						<exclude>**/service.properties</exclude>
+				  	</excludes>
+				  	<archive>
+						<manifest>
+							<mainClass>com.rossotti.basketball.app.main.ScoreGameByDate</mainClass>
+						</manifest>
+				  	</archive>
+				</configuration>					
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>	
+			</plugin>			
+		</plugins>
+	</build>
 </project>

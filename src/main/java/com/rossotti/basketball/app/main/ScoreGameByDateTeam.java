@@ -15,7 +15,7 @@ public class ScoreGameByDateTeam {
 		System.setProperty(org.slf4j.impl.SimpleLogger.DATE_TIME_FORMAT_KEY, "yyyy-MM-dd HH:mm:ss");
 		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {
 				"si-config.xml",
-				"applicationContext_MySql.xml"
+				"applicationContext.xml"
 		});
 		System.out.println("\n" + "begin gatewayService");
 		GatewayService gatewayService = (GatewayService) context.getBean("gatewayService");

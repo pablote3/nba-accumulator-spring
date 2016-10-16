@@ -63,14 +63,12 @@
             <artifactId>spring-jdbc</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
-        <!-- Spring Integration -->
         <dependency>
             <groupId>org.springframework.integration</groupId>
             <artifactId>spring-integration-core</artifactId>
             <version>${spring.version}</version>
         </dependency>
-        <dependency>
+        <!--  dependency>
             <groupId>org.springframework.integration</groupId>
             <artifactId>spring-integration-stream</artifactId>
             <version>${spring.version}</version>
@@ -79,7 +77,7 @@
             <groupId>org.springframework.integration</groupId>
             <artifactId>spring-integration-file</artifactId>
             <version>${spring.version}</version>
-        </dependency>
+        </dependency -->
 
         <!-- Jackson -->
         <dependency>

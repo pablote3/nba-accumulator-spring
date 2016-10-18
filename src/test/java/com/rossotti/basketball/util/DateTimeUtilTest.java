@@ -195,10 +195,22 @@ public class DateTimeUtilTest {
 		LocalDate date = DateTimeUtil.getDateMinusOneDay(new LocalDate("2013-06-30"));
 		Assert.assertEquals(new LocalDate(2013, 6, 29), date);
 	}
-
 	@Test
 	public void createDateMinusOneDay_BeginingOfMonth() {
 		LocalDate date = DateTimeUtil.getDateMinusOneDay(new LocalDate("2013-07-01"));
 		Assert.assertEquals(new LocalDate(2013, 6, 30), date);
+	}
+
+	@Test
+	public void isDate_PastDate() {
+		Assert.assertTrue(DateTimeUtil.isDate("1969-12-31"));
+	}
+	@Test
+	public void isDate_FutureDate() {
+		Assert.assertTrue(DateTimeUtil.isDate("2069-12-31"));
+	}
+	@Test
+	public void isDate_InvalidDate() {
+		Assert.assertFalse(DateTimeUtil.isDate("2069-12"));
 	}
 }

@@ -104,16 +104,16 @@ public class DateTimeUtil {
 //		
 //		return minYear + "-" + maxYear; 
 //	}
-//	
-//	static public boolean isDate(String strDate)  {
-//		try {
-//			DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd");
-//			dateTimeFormatter.parseDateTime(strDate);
-//			return true;
-//		} catch (Exception e) {
-//			return false;
-//		}
-//	}
+
+	static public boolean isDate(String strDate)  {
+		try {
+			DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd");
+			dateTimeFormatter.parseDateTime(strDate);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 
 	static public LocalDate getDateMinusOneDay(LocalDate date) {
 		return date.minusDays(1);

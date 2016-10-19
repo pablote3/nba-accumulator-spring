@@ -14,7 +14,7 @@ import com.rossotti.basketball.app.exception.PropertyException;
 
 @Service
 @Configuration
-@PropertySource("service.properties")
+@PropertySource("classpath:/service.properties")
 public class PropertyService {
 	@Autowired
 	private Environment env;
@@ -45,7 +45,7 @@ public class PropertyService {
 
 	public ClientSource getProperty_ClientSource(String propertyName) {
 		String property = getProperty_String(propertyName);
-		ClientSource clientSource = null;
+		ClientSource clientSource;
 		try {
 			clientSource = ClientSource.valueOf(property);
 		} catch (IllegalArgumentException e) {

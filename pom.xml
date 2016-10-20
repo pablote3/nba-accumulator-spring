@@ -6,7 +6,7 @@
 
     <groupId>com.rossotti.basketball</groupId>
     <artifactId>nba-accumulator-spring</artifactId>
-    <version>3.0</version>
+    <version>3.1-SNAPSHOT</version>
 
     <properties>
         <h2.version>1.4.190</h2.version>

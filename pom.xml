@@ -213,6 +213,11 @@
                     <excludes>
                         <exclude>*.properties</exclude>
                     </excludes>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
 			<plugin>

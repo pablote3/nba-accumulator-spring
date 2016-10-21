@@ -202,11 +202,10 @@ public class RosterPlayerBusiness {
 	}
 
 	private String generateLogMessage(String messageType, RosterPlayer rosterPlayer) {
-		String sb = FormatUtil.padString(messageType, 40) +
+		return FormatUtil.padString(messageType, 40) +
 				" fromDate = " + DateTimeUtil.getStringDate(rosterPlayer.getFromDate()) +
 				" toDate = " + DateTimeUtil.getStringDate(rosterPlayer.getToDate()) +
 				" dob = " + DateTimeUtil.getStringDate(rosterPlayer.getPlayer().getBirthdate()) +
 				" name = " + FormatUtil.padString(rosterPlayer.getPlayer().getFirstName() + " " + rosterPlayer.getPlayer().getLastName(), 35);
-		return sb;
 	}
 }

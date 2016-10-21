@@ -58,7 +58,7 @@ public class StandingsBusiness {
 				standingsDTO = fileStatsService.retrieveStandings(nakedAsOfDate, asOfDate);
 			}
 			else if (clientSource == ClientSource.Api) {
-				standingsDTO = (StandingsDTO)restStatsService.retrieveStandings(nakedAsOfDate, asOfDate);
+				standingsDTO = restStatsService.retrieveStandings(nakedAsOfDate, asOfDate);
 			}
 			else {
 				throw new PropertyException("Unknown");

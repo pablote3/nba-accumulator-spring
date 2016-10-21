@@ -25,7 +25,7 @@ public class GameSplitter extends AbstractMessageSplitter {
 		@SuppressWarnings("unchecked")
 		List<Game> games = (List<Game>) message.getPayload();
 		for (int i = 0; i < games.size(); i++) {
-			Game game = (Game)games.get(i);
+			Game game = games.get(i);
 			Message<?> msg = MessageBuilder
 				.withPayload(game)
 				.setReplyChannel((MessageChannel)message.getHeaders().getReplyChannel())

@@ -34,6 +34,7 @@ import com.rossotti.basketball.dao.repository.GameRepository;
 import com.rossotti.basketball.dao.repository.StandingRepository;
 import com.rossotti.basketball.dao.repository.TeamRepository;
 
+@SuppressWarnings("CanBeFinal")
 @RunWith(MockitoJUnitRunner.class)
 public class StandingsServiceTest {
 	@Mock

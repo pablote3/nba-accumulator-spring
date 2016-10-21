@@ -34,6 +34,7 @@ import com.rossotti.basketball.dao.model.StandingRecord;
 import com.rossotti.basketball.dao.model.StatusCodeDAO;
 import com.rossotti.basketball.dao.model.Team;
 
+@SuppressWarnings("CanBeFinal")
 @RunWith(MockitoJUnitRunner.class)
 public class StandingsBusinessTest {
 	@Mock

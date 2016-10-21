@@ -29,6 +29,7 @@ import com.rossotti.basketball.dao.model.Team;
 import com.rossotti.basketball.dao.repository.RosterPlayerRepository;
 import com.rossotti.basketball.dao.repository.TeamRepository;
 
+@SuppressWarnings("CanBeFinal")
 @RunWith(MockitoJUnitRunner.class)
 public class RosterPlayerServiceTest {
 	@Mock

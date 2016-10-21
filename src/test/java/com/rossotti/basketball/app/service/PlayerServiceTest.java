@@ -17,6 +17,7 @@ import com.rossotti.basketball.dao.model.Player;
 import com.rossotti.basketball.dao.model.StatusCodeDAO;
 import com.rossotti.basketball.dao.repository.PlayerRepository;
 
+@SuppressWarnings("CanBeFinal")
 @RunWith(MockitoJUnitRunner.class)
 public class PlayerServiceTest {
 	@Mock

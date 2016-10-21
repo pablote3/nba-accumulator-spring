@@ -10,7 +10,7 @@ import com.rossotti.basketball.app.integration.GatewayService;
 import com.rossotti.basketball.app.integration.ServiceProperties;
 import com.rossotti.basketball.dao.model.AppStandings;
 
-public class ScoreGame {
+class ScoreGame {
 	public static void main(String[] args) {
 		System.setProperty(org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "INFO");
 		System.setProperty(org.slf4j.impl.SimpleLogger.SHOW_DATE_TIME_KEY, "TRUE");

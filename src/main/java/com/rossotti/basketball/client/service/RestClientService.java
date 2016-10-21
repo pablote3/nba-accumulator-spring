@@ -34,7 +34,7 @@ public class RestClientService {
 	private static ObjectMapper mapper = JsonProvider.buildObjectMapper();
 	private final Logger logger = LoggerFactory.getLogger(RestClientService.class);
 
-	ClientRequestFilter clientFilter = new ClientRequestFilter() {
+	private ClientRequestFilter clientFilter = new ClientRequestFilter() {
 		public void filter(ClientRequestContext requestContext) throws PropertyException {
 			String accessToken = propertyService.getProperty_String("xmlstats.accessToken");
 			String userAgent = propertyService.getProperty_String("xmlstats.userAgent");

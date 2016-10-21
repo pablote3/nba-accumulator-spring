@@ -52,7 +52,7 @@ public class Official {
 
 	@OneToMany(mappedBy="official", fetch = FetchType.LAZY)
 	private List<GameOfficial> gameOfficials = new ArrayList<GameOfficial>();
-	public List<GameOfficial> getGameOfficials() {
+	private List<GameOfficial> getGameOfficials() {
 		return gameOfficials;
 	}
 	@JsonManagedReference(value="gameOfficial-to-official")

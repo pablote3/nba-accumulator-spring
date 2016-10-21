@@ -11,7 +11,7 @@ import com.fasterxml.jackson.datatype.joda.JodaModule;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 public class JsonProvider extends JacksonJsonProvider {
-	Logger logger = LoggerFactory.getLogger(this.getClass());
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	public JsonProvider() {
 		logger.info("----------------JsonProvider Loading----------------");

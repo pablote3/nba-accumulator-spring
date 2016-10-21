@@ -9,9 +9,9 @@ import org.joda.time.format.DateTimeFormatter;
 
 public class DateTimeUtil {
 
-	static DateTimeFormatter dateNakedFormatter = DateTimeFormat.forPattern("yyyyMMdd");
-	static DateTimeFormatter dateFormatter = DateTimeFormat.forPattern("yyyy-MM-dd");
-	static DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm");
+	private static DateTimeFormatter dateNakedFormatter = DateTimeFormat.forPattern("yyyyMMdd");
+	private static DateTimeFormatter dateFormatter = DateTimeFormat.forPattern("yyyy-MM-dd");
+	private static DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm");
 	
 	static public String getStringDate(LocalDate date) {
 		return date.toString(dateFormatter);

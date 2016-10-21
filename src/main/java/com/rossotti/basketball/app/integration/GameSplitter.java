@@ -40,11 +40,11 @@ public class GameSplitter extends AbstractMessageSplitter {
 		return messages;
 	}
 
-	public Map<String, List<Message<?>>> getSplittedMessages() {
+	private Map<String, List<Message<?>>> getSplittedMessages() {
 		return this.splittedMessages;
 	}
 
-	public List<Message<?>> getSplittedMessagesByKey(String key) {
+	private List<Message<?>> getSplittedMessagesByKey(String key) {
 		if (!getSplittedMessages().containsKey(key)) {
 			addListOfSplittedMessages(key);
 		}

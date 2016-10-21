@@ -75,7 +75,7 @@ public class RosterPlayer {
 
 	@OneToMany(mappedBy="rosterPlayer", fetch = FetchType.LAZY, cascade= CascadeType.ALL)
 	private List<BoxScorePlayer> boxScorePlayers = new ArrayList<BoxScorePlayer>();
-	public List<BoxScorePlayer> getBoxScorePlayers()  {
+	private List<BoxScorePlayer> getBoxScorePlayers()  {
 		return boxScorePlayers;
 	}
 	@JsonManagedReference(value="boxScorePlayer-to-rosterPlayer")

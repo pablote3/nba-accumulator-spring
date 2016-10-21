@@ -29,8 +29,7 @@ import com.rossotti.basketball.util.DateTimeUtil;
 
 @Service
 public class RestClientService {
-	@Autowired
-	private PropertyService propertyService;
+	private final PropertyService propertyService;
 
 	private static ObjectMapper mapper = JsonProvider.buildObjectMapper();
 	private final Logger logger = LoggerFactory.getLogger(RestClientService.class);
@@ -45,6 +44,11 @@ public class RestClientService {
 			requestContext.getHeaders().add(HttpHeaders.USER_AGENT, userAgent);
 		}
 	};
+
+	@Autowired
+	public RestClientService(PropertyService propertyService) {
+		this.propertyService = propertyService;
+	}
 
 	private Client getClient() {
 		client = ClientBuilder.newBuilder().build();

@@ -79,16 +79,7 @@ public class RestClientService {
 				}
 				statsDTO = mapper.readValue(baseJson, statsDTO.getClass());
 				statsDTO.setStatusCode(StatusCodeDTO.Found);
-			}
-			catch (JsonParseException jpe) {
-				statsDTO.setStatusCode(StatusCodeDTO.ClientException);
-				jpe.printStackTrace();
-			}
-			catch (JsonMappingException jme) {
-				statsDTO.setStatusCode(StatusCodeDTO.ClientException);
-				jme.printStackTrace();
-			}
-			catch (IOException ioe) {
+			} catch (IOException ioe) {
 				statsDTO.setStatusCode(StatusCodeDTO.ClientException);
 				ioe.printStackTrace();
 			}

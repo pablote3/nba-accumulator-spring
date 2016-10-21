@@ -45,9 +45,6 @@ public class FileClientService {
 		} catch (FileNotFoundException fnf) {
 			statsDTO.setStatusCode(StatusCodeDTO.NotFound);
 			fnf.printStackTrace();
-		} catch (JsonParseException | JsonMappingException jpe) {
-			statsDTO.setStatusCode(StatusCodeDTO.ClientException);
-			jpe.printStackTrace();
 		} catch (IOException ioe) {
 			statsDTO.setStatusCode(StatusCodeDTO.ClientException);
 			ioe.printStackTrace();

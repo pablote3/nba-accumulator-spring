@@ -38,4 +38,8 @@ public class GameService {
 	public Game updateGame(Game game) {
 		return gameRepo.updateGame(game);
 	}
+
+	public Game createGame(Game game) {
+		return gameRepo.createGame(game);
+	}
 }

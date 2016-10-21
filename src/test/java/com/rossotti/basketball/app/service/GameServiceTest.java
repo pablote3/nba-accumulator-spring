@@ -113,6 +113,22 @@ public class GameServiceTest {
 		Assert.assertTrue(game.isUpdated());
 	}
 
+	@Test
+	public void createGame_found() {
+		when(gameRepo.createGame((Game) anyObject()))
+				.thenReturn(createMockGame_StatusCode(StatusCodeDAO.Found));
+		Game game = gameService.createGame(createMockGame_Scheduled());
+		Assert.assertTrue(game.isFound());
+	}
+
+	@Test
+	public void createGame_created() {
+		when(gameRepo.createGame((Game) anyObject()))
+				.thenReturn(createMockGame_StatusCode(StatusCodeDAO.Created));
+		Game game = gameService.createGame(createMockGame_Scheduled());
+		Assert.assertTrue(game.isCreated());
+	}
+
 	private List<Game> createMockGames() {
 		return Arrays.asList(
 			createMockGame_Completed(),

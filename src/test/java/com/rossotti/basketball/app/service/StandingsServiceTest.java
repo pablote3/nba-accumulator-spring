@@ -160,7 +160,7 @@ public class StandingsServiceTest {
 	public void buildStandingsMap_noEntries() {
 		when(gameRepo.findByDateTeamSeason((LocalDate) anyObject(), anyString()))
 			.thenReturn(new ArrayList<Game>());
-		Map<String, StandingRecord> standingsMap = standingsService.buildStandingsMap(new ArrayList<Standing>(), new LocalDate(2015, 12, 05));
+		Map<String, StandingRecord> standingsMap = standingsService.buildStandingsMap(new ArrayList<Standing>(), new LocalDate(2015, 12, 5));
 		Assert.assertEquals(new HashMap<String, StandingRecord>(), standingsMap);
 	}
 
@@ -169,7 +169,7 @@ public class StandingsServiceTest {
 		when(gameRepo.findByDateTeamSeason((LocalDate) anyObject(), anyString()))
 			.thenReturn(createMockGames_Kings())
 			.thenReturn(createMockGames_Jazz());
-		Map<String, StandingRecord> standingsMap = standingsService.buildStandingsMap(createMockStandings(), new LocalDate(2015, 12, 05));
+		Map<String, StandingRecord> standingsMap = standingsService.buildStandingsMap(createMockStandings(), new LocalDate(2015, 12, 5));
 		Assert.assertEquals(5, standingsMap.size());
 		Assert.assertEquals(3, standingsMap.get("utah-jazz").getGamesWon().intValue());
 		Assert.assertEquals(4, standingsMap.get("utah-jazz").getGamesPlayed().intValue());
@@ -184,14 +184,14 @@ public class StandingsServiceTest {
 			.thenReturn(createMockGames_Jazz());
 		Map<String, StandingRecord> headToHeadMap;
 		//headToHead map with entries
-		headToHeadMap = standingsService.buildHeadToHeadMap("sacramento-kings", new LocalDate(2015, 12, 05), createMockStandingsMap());
+		headToHeadMap = standingsService.buildHeadToHeadMap("sacramento-kings", new LocalDate(2015, 12, 5), createMockStandingsMap());
 		Assert.assertEquals(3, headToHeadMap.size());
 		Assert.assertEquals(0, headToHeadMap.get("detroit-pistons").getGamesWon().intValue());
 		Assert.assertEquals(1, headToHeadMap.get("detroit-pistons").getGamesPlayed().intValue());
 		Assert.assertEquals(1, headToHeadMap.get("detroit-pistons").getOpptGamesWon().intValue());
 		Assert.assertEquals(4, headToHeadMap.get("detroit-pistons").getOpptGamesPlayed().intValue());
 
-		headToHeadMap = standingsService.buildHeadToHeadMap("utah-jazz", new LocalDate(2015, 12, 05), createMockStandingsMap());
+		headToHeadMap = standingsService.buildHeadToHeadMap("utah-jazz", new LocalDate(2015, 12, 5), createMockStandingsMap());
 		Assert.assertEquals(3, headToHeadMap.size());
 		Assert.assertEquals(0, headToHeadMap.get("phoenix-suns").getGamesWon().intValue());
 		Assert.assertEquals(2, headToHeadMap.get("phoenix-suns").getGamesPlayed().intValue());
@@ -204,7 +204,7 @@ public class StandingsServiceTest {
 		when(gameRepo.findByDateTeamSeason((LocalDate) anyObject(), anyString()))
 			.thenReturn(createMockGames_Kings())
 			.thenReturn(createMockGames_Jazz());
-		StandingRecord standingRecord = standingsService.calculateStrengthOfSchedule("sacramento-kings", new LocalDate(2015, 12, 05), createMockStandingsMap(), createMockHeadToHeadMap_Kings());
+		StandingRecord standingRecord = standingsService.calculateStrengthOfSchedule("sacramento-kings", new LocalDate(2015, 12, 5), createMockStandingsMap(), createMockHeadToHeadMap_Kings());
 		Assert.assertEquals(3, standingRecord.getGamesWon().intValue());
 		Assert.assertEquals(7, standingRecord.getGamesPlayed().intValue());
 		Assert.assertEquals(-12, standingRecord.getOpptGamesWon().intValue());

@@ -131,7 +131,7 @@ public class GameBusiness {
 				}
 			}
 			else {
-				logger.info(game.getStatus() + " game not eligible to be scored: " + event.toString());
+				logger.info(game.getStatus() + " game not eligible to be scored: " + event);
 				appGame.setAppStatus(AppStatus.Completed);
 			}
 		}

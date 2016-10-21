@@ -129,15 +129,13 @@ public class RosterPlayer {
 	}
 
 	public String toString() {
-		return new StringBuffer()
-			.append("\r" + "  id: " + this.id + "\n")
-			.append("  lastName: " + player.getLastName() + "\n")
-			.append("  firstName: " + player.getFirstName() + "\n")
-			.append("  birthDate: " + player.getBirthdate() + "\n")
-			.append("  teamKey: " + team.getTeamKey() + "\n")
-			.append("  fromDate: " + this.getFromDate() + "\n")
-			.append("  toDate: " + this.getToDate() + "\n")
-			.append("  statusCode: " + this.statusCode)
-			.toString();
+		return ("\r" + "  id: " + this.id + "\n") +
+				"  lastName: " + player.getLastName() + "\n" +
+				"  firstName: " + player.getFirstName() + "\n" +
+				"  birthDate: " + player.getBirthdate() + "\n" +
+				"  teamKey: " + team.getTeamKey() + "\n" +
+				"  fromDate: " + this.getFromDate() + "\n" +
+				"  toDate: " + this.getToDate() + "\n" +
+				"  statusCode: " + this.statusCode;
 	}
 }

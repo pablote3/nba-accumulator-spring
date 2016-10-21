@@ -202,12 +202,11 @@ public class RosterPlayerBusiness {
 	}
 
 	private String generateLogMessage(String messageType, RosterPlayer rosterPlayer) {
-		StringBuilder sb = new StringBuilder();
-		sb	.append(FormatUtil.padString(messageType, 40))
-			.append(" fromDate = " + DateTimeUtil.getStringDate(rosterPlayer.getFromDate()))
-			.append(" toDate = " + DateTimeUtil.getStringDate(rosterPlayer.getToDate()))
-			.append(" dob = " + DateTimeUtil.getStringDate(rosterPlayer.getPlayer().getBirthdate()))
-			.append(" name = " + FormatUtil.padString(rosterPlayer.getPlayer().getFirstName() + " " + rosterPlayer.getPlayer().getLastName(), 35));
-		return sb.toString();
+		String sb = FormatUtil.padString(messageType, 40) +
+				" fromDate = " + DateTimeUtil.getStringDate(rosterPlayer.getFromDate()) +
+				" toDate = " + DateTimeUtil.getStringDate(rosterPlayer.getToDate()) +
+				" dob = " + DateTimeUtil.getStringDate(rosterPlayer.getPlayer().getBirthdate()) +
+				" name = " + FormatUtil.padString(rosterPlayer.getPlayer().getFirstName() + " " + rosterPlayer.getPlayer().getLastName(), 35);
+		return sb;
 	}
 }

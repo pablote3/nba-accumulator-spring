@@ -25,12 +25,10 @@ public class PlayerRepository {
 	}
 
 	public Player findPlayer(String lastName, String firstName, LocalDate birthdate) {
-		String sql = new StringBuilder()
-				.append("from Player ")
-				.append("where lastName = :lastName ")
-				.append("and firstName = :firstName ")
-				.append("and birthdate = :birthdate")
-				.toString();
+		String sql =    "from Player " +
+						"where lastName = :lastName " +
+						"and firstName = :firstName " +
+						"and birthdate = :birthdate";
 		Query query = getSession().createQuery(sql);
 		query.setParameter("lastName", lastName);
 		query.setParameter("firstName", firstName);
@@ -48,11 +46,9 @@ public class PlayerRepository {
 
 	@SuppressWarnings("unchecked")
 	public List<Player> findPlayers(String lastName, String firstName) {
-		String sql = new StringBuilder()
-				.append("from Player ")
-				.append("where lastName = :lastName ")
-				.append("and firstName = :firstName ")
-				.toString();
+		String sql =    "from Player " +
+						"where lastName = :lastName " +
+						"and firstName = :firstName ";
 		Query query = getSession().createQuery(sql);
 		query.setParameter("lastName", lastName);
 		query.setParameter("firstName", firstName);

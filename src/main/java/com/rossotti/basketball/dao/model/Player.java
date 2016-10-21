@@ -126,12 +126,10 @@ public class Player {
 	}
 
 	public String toString() {
-		return new StringBuffer()
-			.append("\n" + "  id: " + this.id + "\n")
-			.append("  lastName: " + this.lastName + "\n")
-			.append("  firstName: " + this.firstName + "\n")
-			.append("  birthdate: " + this.birthdate + "\n")
-			.append("  statusCode: " + this.statusCode)
-			.toString();
+		return ("\n" + "  id: " + this.id + "\n") +
+				"  lastName: " + this.lastName + "\n" +
+				"  firstName: " + this.firstName + "\n" +
+				"  birthdate: " + this.birthdate + "\n" +
+				"  statusCode: " + this.statusCode;
 	}
 }

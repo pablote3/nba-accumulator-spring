@@ -335,17 +335,15 @@ public class BoxScore {
 	}
 
 	public String toString() {
-		return new StringBuffer()
-			.append("\n" + this.team.getTeamKey() + "\n")
-			.append("  id: " + this.id + "\n")
-			.append("  location: " + this.location + "\n")
-			.append("  result: " + this.result + "\n")
-			.append("  points: " + this.points + "\n")
-			.append("  assists: " + this.assists + "\n")
-			.append("  turnovers: " + this.turnovers + "\n")
-			.append("  steals: " + this.steals + "\n")
-			.append("  blocks: " + this.blocks)
-			.toString();
+		return ("\n" + this.team.getTeamKey() + "\n") +
+				"  id: " + this.id + "\n" +
+				"  location: " + this.location + "\n" +
+				"  result: " + this.result + "\n" +
+				"  points: " + this.points + "\n" +
+				"  assists: " + this.assists + "\n" +
+				"  turnovers: " + this.turnovers + "\n" +
+				"  steals: " + this.steals + "\n" +
+				"  blocks: " + this.blocks;
 	}
 
 	public void updateTotals(BoxScoreDTO stats) {

@@ -25,13 +25,11 @@ public class OfficialRepository {
 	}
 
 	public Official findOfficial(String lastName, String firstName, LocalDate asOfDate) {
-		String sql = new StringBuilder()
-				.append("from Official ")
-				.append("where lastName = :lastName ")
-				.append("and firstName = :firstName ")
-				.append("and fromDate <= :asOfDate ")
-				.append("and toDate >= :asOfDate")
-				.toString();
+		String sql =    "from Official " +
+						"where lastName = :lastName " +
+						"and firstName = :firstName " +
+						"and fromDate <= :asOfDate " +
+						"and toDate >= :asOfDate";
 		Query query = getSession().createQuery(sql);
 		query.setParameter("lastName", lastName);
 		query.setParameter("firstName", firstName);
@@ -49,11 +47,9 @@ public class OfficialRepository {
 
 	@SuppressWarnings("unchecked")
 	public List<Official> findOfficials(String lastName, String firstName) {
-		String sql = new StringBuilder()
-				.append("from Official ")
-				.append("where lastName = :lastName ")
-				.append("and firstName = :firstName")
-				.toString();
+		String sql =    "from Official " +
+						"where lastName = :lastName " +
+						"and firstName = :firstName";
 		Query query = getSession().createQuery(sql);
 		query.setParameter("lastName", lastName);
 		query.setParameter("firstName", firstName);
@@ -67,11 +63,9 @@ public class OfficialRepository {
 
 	@SuppressWarnings("unchecked")
 	public List<Official> findOfficials(LocalDate asOfDate) {
-		String sql = new StringBuilder()
-				.append("from Official ")
-				.append("where fromDate <= :asOfDate ")
-				.append("and toDate >= :asOfDate")
-				.toString();
+		String sql =    "from Official " +
+						"where fromDate <= :asOfDate " +
+						"and toDate >= :asOfDate";
 		Query query = getSession().createQuery(sql);
 		query.setParameter("asOfDate", asOfDate);
 

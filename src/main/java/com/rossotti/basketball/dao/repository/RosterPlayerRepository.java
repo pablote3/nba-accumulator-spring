@@ -25,15 +25,13 @@ public class RosterPlayerRepository {
 	}
 
 	public RosterPlayer findRosterPlayer(String lastName, String firstName, LocalDate birthdate, LocalDate asOfDate) {
-		String sql = new StringBuilder()
-				.append("select rp from RosterPlayer rp ")
-				.append("inner join rp.player p ")
-				.append("where p.lastName = :lastName ")
-				.append("and p.firstName = :firstName ")
-				.append("and p.birthdate = :birthdate ")
-				.append("and rp.fromDate <= :asOfDate ")
-				.append("and rp.toDate >= :asOfDate")
-				.toString();
+		String sql =    "select rp from RosterPlayer rp " +
+						"inner join rp.player p " +
+						"where p.lastName = :lastName " +
+						"and p.firstName = :firstName " +
+						"and p.birthdate = :birthdate " +
+						"and rp.fromDate <= :asOfDate " +
+						"and rp.toDate >= :asOfDate";
 		Query query = getSession().createQuery(sql);
 		query.setParameter("lastName", lastName);
 		query.setParameter("firstName", firstName);
@@ -51,16 +49,14 @@ public class RosterPlayerRepository {
 	}
 
 	public RosterPlayer findRosterPlayer(String lastName, String firstName, String teamKey, LocalDate asOfDate) {
-		String sql = new StringBuilder()
-				.append("select rp from RosterPlayer rp ")
-				.append("inner join rp.player p ")
-				.append("inner join rp.team t ")
-				.append("where p.lastName = :lastName ")
-				.append("and p.firstName = :firstName ")
-				.append("and t.teamKey = :teamKey ")
-				.append("and rp.fromDate <= :asOfDate ")
-				.append("and rp.toDate >= :asOfDate")
-				.toString();
+		String sql =    "select rp from RosterPlayer rp " +
+						"inner join rp.player p " +
+						"inner join rp.team t " +
+						"where p.lastName = :lastName " +
+						"and p.firstName = :firstName " +
+						"and t.teamKey = :teamKey " +
+						"and rp.fromDate <= :asOfDate " +
+						"and rp.toDate >= :asOfDate";
 		Query query = getSession().createQuery(sql);
 		query.setParameter("lastName", lastName);
 		query.setParameter("firstName", firstName);
@@ -79,13 +75,11 @@ public class RosterPlayerRepository {
 
 	@SuppressWarnings("unchecked")
 	public List<RosterPlayer> findRosterPlayers(String lastName, String firstName, LocalDate birthdate) {
-		String sql = new StringBuilder()
-				.append("select rp from RosterPlayer rp ")
-				.append("inner join rp.player p ")
-				.append("where p.lastName = :lastName ")
-				.append("and p.firstName = :firstName ")
-				.append("and p.birthdate = :birthdate ")
-				.toString();
+		String sql =    "select rp from RosterPlayer rp " +
+						"inner join rp.player p " +
+						"where p.lastName = :lastName " +
+						"and p.firstName = :firstName " +
+						"and p.birthdate = :birthdate ";
 		Query query = getSession().createQuery(sql);
 		query.setParameter("lastName", lastName);
 		query.setParameter("firstName", firstName);
@@ -100,14 +94,12 @@ public class RosterPlayerRepository {
 
 	@SuppressWarnings("unchecked")
 	public List<RosterPlayer> findRosterPlayers(String teamKey, LocalDate asOfDate) {
-		String sql = new StringBuilder()
-				.append("select rp from RosterPlayer rp ")
-				.append("inner join rp.player p ")
-				.append("inner join rp.team t ")
-				.append("where t.teamKey = :teamKey ")
-				.append("and rp.fromDate <= :asOfDate ")
-				.append("and rp.toDate >= :asOfDate")
-				.toString();
+		String sql =    "select rp from RosterPlayer rp " +
+						"inner join rp.player p " +
+						"inner join rp.team t " +
+						"where t.teamKey = :teamKey " +
+						"and rp.fromDate <= :asOfDate " +
+						"and rp.toDate >= :asOfDate";
 		Query query = getSession().createQuery(sql);
 		query.setParameter("teamKey", teamKey);
 		query.setParameter("asOfDate", asOfDate);

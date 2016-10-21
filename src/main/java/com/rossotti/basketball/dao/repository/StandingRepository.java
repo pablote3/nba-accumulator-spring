@@ -25,12 +25,10 @@ public class StandingRepository {
 	}
 
 	public Standing findStanding(String teamKey, LocalDate asOfDate) {
-		String sql = new StringBuilder()
-				.append("select s from Standing s ")
-				.append("inner join s.team t ")
-				.append("where t.teamKey = :teamKey ")
-				.append("and s.standingDate = :asOfDate")
-				.toString();
+		String sql =    "select s from Standing s " +
+						"inner join s.team t " +
+						"where t.teamKey = :teamKey " +
+						"and s.standingDate = :asOfDate";
 		Query query = getSession().createQuery(sql);
 		query.setParameter("teamKey", teamKey);
 		query.setParameter("asOfDate", asOfDate);
@@ -47,11 +45,9 @@ public class StandingRepository {
 
 	@SuppressWarnings("unchecked")
 	public List<Standing> findStandings(LocalDate asOfDate) {
-		String sql = new StringBuilder()
-				.append("select s from Standing s ")
-				.append("inner join s.team t ")
-				.append("where s.standingDate = :asOfDate")
-				.toString();
+		String sql =    "select s from Standing s " +
+						"inner join s.team t " +
+						"where s.standingDate = :asOfDate";
 		Query query = getSession().createQuery(sql);
 		query.setParameter("asOfDate", asOfDate);
 

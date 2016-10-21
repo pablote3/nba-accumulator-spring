@@ -34,14 +34,12 @@ public class GameRepository {
 	public Game findByDateTeam(LocalDate gameDate, String teamKey) {
 		LocalDateTime fromDateTime = DateTimeUtil.getLocalDateTimeMin(gameDate);
 		LocalDateTime toDateTime = DateTimeUtil.getLocalDateTimeMax(gameDate);
-		String sql = new StringBuilder()
-			.append("select game from Game game ")
-			.append("inner join game.boxScores boxScores ")
-			.append("inner join boxScores.team team ")
-			.append("where game.gameDateTime >= :fromDateTime ")
-			.append("and game.gameDateTime <= :toDateTime ")
-			.append("and team.teamKey = :teamKey")
-			.toString();
+		String sql =    "select game from Game game " +
+						"inner join game.boxScores boxScores " +
+						"inner join boxScores.team team " +
+						"where game.gameDateTime >= :fromDateTime " +
+						"and game.gameDateTime <= :toDateTime " +
+						"and team.teamKey = :teamKey";
 		Query query = getSession().createQuery(sql);
 		query.setParameter("fromDateTime", fromDateTime);
 		query.setParameter("toDateTime", toDateTime);
@@ -62,17 +60,15 @@ public class GameRepository {
 	public List<Game> findByDateTeamSeason(LocalDate gameDate, String teamKey) {
 		LocalDateTime fromDateTime = DateTimeUtil.getLocalDateTimeSeasonMin(gameDate);
 		LocalDateTime toDateTime = DateTimeUtil.getLocalDateTimeMax(gameDate);
-		String sql = new StringBuilder()
-			.append("select game from Game game ")
-			.append("left join game.boxScores boxScores ")
-			.append("inner join boxScores.team team ")
-			.append("where game.gameDateTime >= :fromDateTime ")
-			.append("and game.gameDateTime <= :toDateTime ")
-			.append("and (game.status = :gameStatus1 ")
-			.append("or game.status = :gameStatus2) ")
-			.append("and team.teamKey = :teamKey ")
-			.append("order by gameDateTime asc")
-			.toString();
+		String sql =    "select game from Game game " +
+						"left join game.boxScores boxScores " +
+						"inner join boxScores.team team " +
+						"where game.gameDateTime >= :fromDateTime " +
+						"and game.gameDateTime <= :toDateTime " +
+						"and (game.status = :gameStatus1 " +
+						"or game.status = :gameStatus2) " +
+						"and team.teamKey = :teamKey " +
+						"order by gameDateTime asc";
 		Query query = getSession().createQuery(sql);
 
 		query.setParameter("fromDateTime", fromDateTime);
@@ -139,15 +135,13 @@ public class GameRepository {
 	@SuppressWarnings("unchecked")
 	public LocalDateTime findPreviousGameDateTimeByDateTeam(LocalDate gameDate, String teamKey) {
 		LocalDateTime gameDateTime = DateTimeUtil.getLocalDateTimeMin(gameDate);
-		String sql = new StringBuilder()
-			.append("select game from Game game ")
-			.append("left join game.boxScores boxScores ")
-			.append("inner join boxScores.team team ")
-			.append("where game.gameDateTime <= :gameDateTime ")
-			.append("and game.status = :gameStatus ")
-			.append("and team.teamKey = :teamKey ")
-			.append("order by gameDateTime desc")
-			.toString();
+		String sql =    "select game from Game game " +
+						"left join game.boxScores boxScores " +
+						"inner join boxScores.team team " +
+						"where game.gameDateTime <= :gameDateTime " +
+						"and game.status = :gameStatus " +
+						"and team.teamKey = :teamKey " +
+						"order by gameDateTime desc";
 		Query query = getSession().createQuery(sql);
 		query.setParameter("gameDateTime", gameDateTime);
 		query.setParameter("gameStatus", GameStatus.Completed);

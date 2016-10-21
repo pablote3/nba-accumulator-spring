@@ -320,13 +320,11 @@ public class Standing {
 	}
 
 	public String toString() {
-		return new StringBuffer()
-			.append("\r" + "  id: " + this.id + "\n")
-			.append("  standingDate: " + this.standingDate + "\n")
-			.append("  teamKey: " + team.getTeamKey() + "\n")
-			.append("  gamesWon: " + this.gamesWon + "\n")
-			.append("  gamesLost: " + this.gamesLost + "\n")
-			.append("  statusCode: " + this.statusCode)
-			.toString();
+		return ("\r" + "  id: " + this.id + "\n") +
+				"  standingDate: " + this.standingDate + "\n" +
+				"  teamKey: " + team.getTeamKey() + "\n" +
+				"  gamesWon: " + this.gamesWon + "\n" +
+				"  gamesLost: " + this.gamesLost + "\n" +
+				"  statusCode: " + this.statusCode;
 	}
 }

@@ -8,6 +8,7 @@ import com.rossotti.basketball.dao.model.Game;
 
 public class GameRouter {
 	private final Logger logger = LoggerFactory.getLogger(GameRouter.class);
+	@SuppressWarnings("SameReturnValue")
 	public String routeGame(Game game) {
 		logger.info("Game " + game.getBoxScoreAway().getTeam().getAbbr() + " at " + 
 					game.getBoxScoreHome().getTeam().getAbbr() + " " + 

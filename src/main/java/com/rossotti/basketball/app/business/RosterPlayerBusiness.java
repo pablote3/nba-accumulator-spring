@@ -52,7 +52,7 @@ public class RosterPlayerBusiness {
 	public AppRoster loadRoster(String asOfDateString, String teamKey) {
 		AppRoster appRoster = new AppRoster();
 		try {
-			RosterDTO rosterDTO = null;
+			RosterDTO rosterDTO;
 			LocalDate fromDate = DateTimeUtil.getLocalDate(asOfDateString);
 			LocalDate toDate = DateTimeUtil.getLocalDateSeasonMax(fromDate);
 			ClientSource clientSource = propertyService.getProperty_ClientSource("accumulator.source.roster");

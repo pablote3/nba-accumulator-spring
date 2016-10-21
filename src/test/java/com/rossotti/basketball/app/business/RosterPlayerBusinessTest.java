@@ -213,7 +213,7 @@ public class RosterPlayerBusinessTest {
 	}
 
 	private RosterDTO createMockRosterDTO_Found() {
-		RosterDTO roster = null;
+		RosterDTO roster;
 		try {
 			ObjectMapper mapper = JsonProvider.buildObjectMapper();
 			InputStream baseJson = this.getClass().getClassLoader().getResourceAsStream("mockClient/rosterClient.json");

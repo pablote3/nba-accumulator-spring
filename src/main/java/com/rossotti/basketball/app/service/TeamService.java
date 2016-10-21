@@ -12,10 +12,14 @@ import com.rossotti.basketball.dao.repository.TeamRepository;
 
 @Service
 public class TeamService {
-	@Autowired
-	private TeamRepository teamRepo;
+	private final TeamRepository teamRepo;
 	
 	private final Logger logger = LoggerFactory.getLogger(TeamService.class);
+
+	@Autowired
+	public TeamService(TeamRepository teamRepo) {
+		this.teamRepo = teamRepo;
+	}
 
 	public Team findTeam(String teamKey, LocalDate gameDate) {
 		Team team = teamRepo.findTeam(teamKey, gameDate);

@@ -17,8 +17,12 @@ import com.rossotti.basketball.dao.model.StatusCodeDAO;
 @Repository
 @Transactional
 public class StandingRepository {
+	private final SessionFactory sessionFactory;
+
 	@Autowired
-	private SessionFactory sessionFactory;
+	public StandingRepository(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
 	public Standing findStanding(String teamKey, LocalDate asOfDate) {
 		String sql = new StringBuilder()

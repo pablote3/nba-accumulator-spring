@@ -16,13 +16,17 @@ import com.rossotti.basketball.client.dto.StatusCodeDTO;
 @Service
 
 public class RestStatsService {
-	@Autowired
-	private PropertyService propertyService;
+	private final PropertyService propertyService;
 
-	@Autowired
-	private RestClientService restClientService;
+	private final RestClientService restClientService;
 
 	private final Logger logger = LoggerFactory.getLogger(RestStatsService.class);
+
+	@Autowired
+	public RestStatsService(RestClientService restClientService, PropertyService propertyService) {
+		this.restClientService = restClientService;
+		this.propertyService = propertyService;
+	}
 
 	public GameDTO retrieveBoxScore(String event, LocalDate asOfDate) {
 		GameDTO gameDTO = new GameDTO();

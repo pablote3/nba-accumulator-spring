@@ -12,8 +12,12 @@ import com.rossotti.basketball.dao.repository.GameRepository;
 
 @Service
 public class GameService {
+	private final GameRepository gameRepo;
+
 	@Autowired
-	private GameRepository gameRepo;
+	public GameService(GameRepository gameRepo) {
+		this.gameRepo = gameRepo;
+	}
 
 	public List<Game> findByDate(LocalDate gameDate) {
 		return gameRepo.findByDate(gameDate);

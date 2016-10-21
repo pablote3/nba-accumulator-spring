@@ -28,22 +28,26 @@ import com.rossotti.basketball.util.FormatUtil;
 
 @Service
 public class RosterPlayerBusiness {
-	@Autowired
-	private RestStatsService restStatsService;
+	private final RestStatsService restStatsService;
 
-	@Autowired
-	private FileStatsService fileStatsService;
+	private final FileStatsService fileStatsService;
 
-	@Autowired
-	private RosterPlayerService rosterPlayerService;
+	private final RosterPlayerService rosterPlayerService;
 
-	@Autowired
-	private PlayerService playerService;
+	private final PlayerService playerService;
 
-	@Autowired
-	private PropertyService propertyService;
+	private final PropertyService propertyService;
 
 	private final Logger logger = LoggerFactory.getLogger(RosterPlayerBusiness.class);
+
+	@Autowired
+	public RosterPlayerBusiness(RosterPlayerService rosterPlayerService, PropertyService propertyService, FileStatsService fileStatsService, RestStatsService restStatsService, PlayerService playerService) {
+		this.rosterPlayerService = rosterPlayerService;
+		this.propertyService = propertyService;
+		this.fileStatsService = fileStatsService;
+		this.restStatsService = restStatsService;
+		this.playerService = playerService;
+	}
 
 	public AppRoster loadRoster(String asOfDateString, String teamKey) {
 		AppRoster appRoster = new AppRoster();

@@ -16,8 +16,12 @@ import java.util.List;
 @Repository
 @Transactional
 public class TeamRepository {
+	private final SessionFactory sessionFactory;
+
 	@Autowired
-	private SessionFactory sessionFactory;
+	public TeamRepository(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
 	public Team findTeam(String teamKey, LocalDate asOfDate) {
 		Team team = (Team)getSession().createCriteria(Team.class)

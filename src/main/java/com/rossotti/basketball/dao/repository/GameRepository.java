@@ -24,8 +24,12 @@ import com.rossotti.basketball.util.DateTimeUtil;
 @Repository
 @Transactional
 public class GameRepository {
+	private final SessionFactory sessionFactory;
+
 	@Autowired
-	private SessionFactory sessionFactory;
+	public GameRepository(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
 	public Game findByDateTeam(LocalDate gameDate, String teamKey) {
 		LocalDateTime fromDateTime = DateTimeUtil.getLocalDateTimeMin(gameDate);

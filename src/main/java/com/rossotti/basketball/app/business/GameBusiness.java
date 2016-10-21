@@ -31,29 +31,33 @@ import com.rossotti.basketball.util.DateTimeUtil;
 
 @Service
 public class GameBusiness {
-	@Autowired
-	private PropertyService propertyService;
+	private final PropertyService propertyService;
 
-	@Autowired
-	private RestStatsService restStatsService;
+	private final RestStatsService restStatsService;
 
-	@Autowired
-	private FileStatsService fileStatsService;
+	private final FileStatsService fileStatsService;
 
-	@Autowired
-	private OfficialService officialService;
+	private final OfficialService officialService;
 
-	@Autowired
-	private RosterPlayerService rosterPlayerService;
+	private final RosterPlayerService rosterPlayerService;
 
-	@Autowired
-	private TeamService teamService;
+	private final TeamService teamService;
 	
-	@Autowired
-	private GameService gameService;
+	private final GameService gameService;
 	
 	private final Logger logger = LoggerFactory.getLogger(GameBusiness.class);
-	
+
+	@Autowired
+	public GameBusiness(OfficialService officialService, RestStatsService restStatsService, TeamService teamService, RosterPlayerService rosterPlayerService, GameService gameService, PropertyService propertyService, FileStatsService fileStatsService) {
+		this.officialService = officialService;
+		this.restStatsService = restStatsService;
+		this.teamService = teamService;
+		this.rosterPlayerService = rosterPlayerService;
+		this.gameService = gameService;
+		this.propertyService = propertyService;
+		this.fileStatsService = fileStatsService;
+	}
+
 	public AppGame scoreGame(Game game, boolean initial) {
 		AppGame appGame = new AppGame();
 		try {

@@ -29,19 +29,23 @@ import com.rossotti.basketball.util.DateTimeUtil;
 
 @Service
 public class StandingsBusiness {
-	@Autowired
-	private PropertyService propertyService;
+	private final PropertyService propertyService;
 
-	@Autowired
-	private RestStatsService restStatsService;
+	private final RestStatsService restStatsService;
 
-	@Autowired
-	private FileStatsService fileStatsService;
+	private final FileStatsService fileStatsService;
 
-	@Autowired
-	private StandingsService standingsService;
+	private final StandingsService standingsService;
 
 	private final Logger logger = LoggerFactory.getLogger(StandingsBusiness.class);
+
+	@Autowired
+	public StandingsBusiness(FileStatsService fileStatsService, RestStatsService restStatsService, PropertyService propertyService, StandingsService standingsService) {
+		this.fileStatsService = fileStatsService;
+		this.restStatsService = restStatsService;
+		this.propertyService = propertyService;
+		this.standingsService = standingsService;
+	}
 
 	public AppStandings rankStandings(String asOfDateString) {
 		AppStandings appStandings = new AppStandings();

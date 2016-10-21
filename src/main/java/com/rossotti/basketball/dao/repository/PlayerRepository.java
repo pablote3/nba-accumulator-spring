@@ -17,8 +17,12 @@ import com.rossotti.basketball.dao.model.StatusCodeDAO;
 @Repository
 @Transactional
 public class PlayerRepository {
+	private final SessionFactory sessionFactory;
+
 	@Autowired
-	private SessionFactory sessionFactory;
+	public PlayerRepository(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
 	public Player findPlayer(String lastName, String firstName, LocalDate birthdate) {
 		String sql = new StringBuilder()

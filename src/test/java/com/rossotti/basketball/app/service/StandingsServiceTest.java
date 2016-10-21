@@ -260,14 +260,13 @@ public class StandingsServiceTest {
 	}
 
 	private List<Standing> createMockStandings() {
-		List<Standing> standings = Arrays.asList(
+		return Arrays.asList(
 			createMockStanding("sacramento-kings", (short)1, (short)4, 7, 11, StatusCodeDAO.Found),
 			createMockStanding("utah-jazz", (short)3, (short)4, 3, 10, StatusCodeDAO.Found),
 			createMockStanding("detroit-pistons", (short)1, (short)3, 3, 4, StatusCodeDAO.Found),
 			createMockStanding("phoenix-suns", (short)1, (short)2, 3, 4, StatusCodeDAO.Found),
 			createMockStanding("miami-heat", (short)2, (short)3, 3, 6, StatusCodeDAO.Found)
 		);
-		return standings;
 	}
 
 	private Standing createMockStanding(String teamKey, Short gamesWon, Short gamesPlayed, Integer opptGamesWon, Integer opptGamesPlayed, StatusCodeDAO statusCode) {
@@ -309,23 +308,21 @@ public class StandingsServiceTest {
 	}
 
 	private List<Game> createMockGames_Kings() {
-		List<Game> games = Arrays.asList(
+		return Arrays.asList(
 				createMockGame(new LocalDateTime("2015-12-02T10:00"), "detroit-pistons", "sacramento-kings"),
 				createMockGame(new LocalDateTime("2015-12-03T10:00"), "sacramento-kings", "miami-heat"),
 				createMockGame(new LocalDateTime("2015-12-04T10:00"), "miami-heat", "sacramento-kings"),
 				createMockGame(new LocalDateTime("2015-12-05T10:00"), "utah-jazz", "sacramento-kings")
-			);
-			return games;
+		);
 	}
 
 	private List<Game> createMockGames_Jazz() {
-		List<Game> games = Arrays.asList(
+		return Arrays.asList(
 				createMockGame(new LocalDateTime("2015-12-02T10:00"), "phoenix-suns", "utah-jazz"),
 				createMockGame(new LocalDateTime("2015-12-03T10:00"), "detroit-pistons", "utah-jazz"),
 				createMockGame(new LocalDateTime("2015-12-04T10:00"), "utah-jazz", "phoenix-suns"),
 				createMockGame(new LocalDateTime("2015-12-05T10:00"), "utah-jazz", "sacramento-kings")
-			);
-			return games;
+		);
 	}
 
 	private Game createMockGame(LocalDateTime gameDateTime, String homeTeamKey, String awayTeamKey) {

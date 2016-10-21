@@ -114,11 +114,10 @@ public class GameServiceTest {
 	}
 
 	private List<Game> createMockGames() {
-		List<Game> games = Arrays.asList(
+		return Arrays.asList(
 			createMockGame_Completed(),
 			createMockGame_Scheduled()
 		);
-		return games;
 	}
 
 	private Game createMockGame_Scheduled() {

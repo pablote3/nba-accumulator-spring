@@ -227,11 +227,10 @@ public class RosterPlayerServiceTest {
 	}
 
 	private List<RosterPlayer> createMockRosterPlayers() {
-		List<RosterPlayer> rosterPlayers = Arrays.asList(
+		return Arrays.asList(
 			createMockRosterPlayer("Simpson", "Homer", StatusCodeDAO.Found),
 			createMockRosterPlayer("Simpson", "Lisa", StatusCodeDAO.Found)
 		);
-		return rosterPlayers;
 	}
 
 	private RosterPlayer createMockRosterPlayer(String lastName, String firstName, StatusCodeDAO statusCode) {

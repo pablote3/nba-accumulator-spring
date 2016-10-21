@@ -52,10 +52,9 @@ public class GameRepository {
 			return new Game(StatusCodeDAO.NotFound);
 		} 
 		else {
-			Game game = (Game)getSession().createCriteria(Game.class)
+			return (Game)getSession().createCriteria(Game.class)
 				.add(Restrictions.eq("id", findGame.getId()))
 				.uniqueResult();
-			return game;
 		}
 	}
 

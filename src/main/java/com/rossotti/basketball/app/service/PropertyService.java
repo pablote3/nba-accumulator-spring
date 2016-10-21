@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.rossotti.basketball.app.exception.PropertyException;
 
+@SuppressWarnings("CanBeFinal")
 @Service
 @Configuration
 @PropertySource("classpath:/service.properties")

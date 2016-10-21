@@ -73,7 +73,7 @@ public class TeamRepository {
 		}
 	}
 
-	public Team updateTeam(Team updateTeam) {
+	public void updateTeam(Team updateTeam) {
 		Team team = findTeam(updateTeam.getTeamKey(), updateTeam.getFromDate());
 		if (team.isFound()) {
 			team.setLastName(updateTeam.getLastName());
@@ -90,7 +90,6 @@ public class TeamRepository {
 			team.setStatusCode(StatusCodeDAO.Updated);
 			getSession().saveOrUpdate(team);
 		}
-		return team;
 	}
 
 	public Team deleteTeam(String teamKey, LocalDate asOfDate) {

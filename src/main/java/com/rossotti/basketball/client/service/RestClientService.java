@@ -31,10 +31,10 @@ import com.rossotti.basketball.util.DateTimeUtil;
 public class RestClientService {
 	private final PropertyService propertyService;
 
-	private static ObjectMapper mapper = JsonProvider.buildObjectMapper();
+	private static final ObjectMapper mapper = JsonProvider.buildObjectMapper();
 	private final Logger logger = LoggerFactory.getLogger(RestClientService.class);
 
-	private ClientRequestFilter clientFilter = new ClientRequestFilter() {
+	private final ClientRequestFilter clientFilter = new ClientRequestFilter() {
 		public void filter(ClientRequestContext requestContext) throws PropertyException {
 			String accessToken = propertyService.getProperty_String("xmlstats.accessToken");
 			String userAgent = propertyService.getProperty_String("xmlstats.userAgent");

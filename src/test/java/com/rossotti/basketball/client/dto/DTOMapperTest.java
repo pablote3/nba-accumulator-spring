@@ -13,7 +13,7 @@ import com.rossotti.basketball.client.dto.RosterDTO;
 import com.rossotti.basketball.client.dto.StandingsDTO;
 
 public class DTOMapperTest {
-	private ObjectMapper mapper = JsonProvider.buildObjectMapper();
+	private final ObjectMapper mapper = JsonProvider.buildObjectMapper();
 
 	@Test
 	public void deserializeRoster() throws IOException {

@@ -24,7 +24,7 @@ import com.rossotti.basketball.util.DateTimeUtil;
 @Service
 public class FileClientService {
 
-	private static ObjectMapper mapper = JsonProvider.buildObjectMapper();
+	private static final ObjectMapper mapper = JsonProvider.buildObjectMapper();
 
 	public StatsDTO retrieveStats(String stringPath, String event, StatsDTO statsDTO, LocalDate asOfDate) {
 		String stringFile;

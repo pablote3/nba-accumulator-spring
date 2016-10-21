@@ -17,7 +17,7 @@ import com.rossotti.basketball.dao.model.Game;
 
 public class GameSplitter extends AbstractMessageSplitter {
 	private final Logger logger = LoggerFactory.getLogger(GameSplitter.class);
-	private Map<String, List<Message<?>>> splittedMessages = new HashMap<String, List<Message<?>>>();
+	private final Map<String, List<Message<?>>> splittedMessages = new HashMap<String, List<Message<?>>>();
 
 	@Override
 	protected Object splitMessage(Message<?> message) { 

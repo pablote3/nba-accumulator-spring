@@ -38,6 +38,21 @@ public class TeamRepository {
 		return team;
 	}
 
+	public Team findTeamByLastName(String lastName, LocalDate asOfDate) {
+		Team team = (Team)getSession().createCriteria(Team.class)
+				.add(Restrictions.eq("lastName", lastName))
+				.add(Restrictions.le("fromDate", asOfDate))
+				.add(Restrictions.ge("toDate", asOfDate))
+				.uniqueResult();
+		if (team == null) {
+			team = new Team(StatusCodeDAO.NotFound);
+		}
+		else {
+			team.setStatusCode(StatusCodeDAO.Found);
+		}
+		return team;
+	}
+
 	@SuppressWarnings("unchecked")
 	public List<Team> findTeams(LocalDate asOfDate) {
 		List<Team> teams = getSession().createCriteria(Team.class)

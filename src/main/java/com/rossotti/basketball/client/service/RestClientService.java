@@ -33,7 +33,6 @@ public class RestClientService {
 
 	private static ObjectMapper mapper = JsonProvider.buildObjectMapper();
 	private final Logger logger = LoggerFactory.getLogger(RestClientService.class);
-	private Client client;
 
 	ClientRequestFilter clientFilter = new ClientRequestFilter() {
 		public void filter(ClientRequestContext requestContext) throws PropertyException {
@@ -51,7 +50,7 @@ public class RestClientService {
 	}
 
 	private Client getClient() {
-		client = ClientBuilder.newBuilder().build();
+		Client client = ClientBuilder.newBuilder().build();
 		client.register(clientFilter);
 		logger.debug("Client service initialized");
 		return client;

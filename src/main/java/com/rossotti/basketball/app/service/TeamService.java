@@ -29,4 +29,13 @@ public class TeamService {
 		}
 		return team;
 	}
+
+	public Team findTeamByLastName(String lastName, LocalDate gameDate) {
+		Team team = teamRepo.findTeamByLastName(lastName, gameDate);
+		if (team.isNotFound()) {
+			logger.info("Team not found " + lastName);
+			throw new NoSuchEntityException(Team.class);
+		}
+		return team;
+	}
 }

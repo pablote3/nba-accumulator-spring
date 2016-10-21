@@ -10,26 +10,29 @@ import java.nio.file.Paths;
 import java.util.StringTokenizer;
 
 import com.rossotti.basketball.app.service.GameService;
+import com.rossotti.basketball.app.service.PropertyService;
 import com.rossotti.basketball.app.service.TeamService;
 
 import com.rossotti.basketball.dao.model.BoxScore;
 import com.rossotti.basketball.dao.model.Game;
 import com.rossotti.basketball.dao.model.GameStatus;
 import com.rossotti.basketball.dao.model.Team;
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class LoadSchedule {
+class LoadSchedule {
 
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		TeamService teamService = (TeamService) context.getBean("teamService");
 		GameService gameService = (GameService) context.getBean("gameService");
+		PropertyService propertyService = (PropertyService) context.getBean("propertyService");
 
-		Path path =  Paths.get(System.getProperty("config.load")).resolve("Schedule_2014-2015.csv");
+		Path path =  Paths.get(propertyService.getProperty_Path("loader.fileSchedule")).resolve(System.getProperty("fileName"));
 		File file = path.toFile();
 
 		BufferedReader bufRdr = null;
@@ -42,12 +45,12 @@ public class LoadSchedule {
 		Game game;
 		LocalDate gameLocalDate;
 		LocalDateTime gameLocalDateTime;
+		DateTimeFormatter dateFormatter = DateTimeFormat.forPattern("MM/dd/yyyy");
+		DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("MM/dd/yyyy HH:mm");
 		BoxScore boxScoreHome;
 		BoxScore boxScoreAway;
 		Team teamHome;
 		Team teamAway;
-
-		DateTime date;
 		int i = 0;
 
 		//read each line of text file
@@ -61,11 +64,11 @@ public class LoadSchedule {
 				String awayTeam = st.nextToken().trim();
 				String homeTeam = st.nextToken().trim();
 
-				gameLocalDate = new LocalDate(gameDate);
-				gameLocalDateTime = new LocalDateTime(gameDateTime);
+				gameLocalDate = new LocalDate().parse(gameDate, dateFormatter);
+				gameLocalDateTime = new LocalDateTime().parse(gameDateTime, dateTimeFormatter);
 
-				teamHome = teamService.findTeam(homeTeam, gameLocalDate);
-				teamAway = teamService.findTeam(awayTeam, gameLocalDate);
+				teamHome = teamService.findTeamByLastName(homeTeam, gameLocalDate);
+				teamAway = teamService.findTeamByLastName(awayTeam, gameLocalDate);
 
 				game = new Game();
 				game.setGameDateTime(gameLocalDateTime);
@@ -82,11 +85,10 @@ public class LoadSchedule {
 				boxScoreHome.setTeam(teamHome);
 				game.addBoxScore(boxScoreHome);
 
-//				gameService.create(game, ProcessingType.batch);
-				System.out.println("i = " + i++ + " " + teamAway.getFullName() + " " + teamHome.getFullName());
+				gameService.createGame(game);
+				System.out.println("i = " + i++ + " " + teamAway.getFullName() + " at " + teamHome.getFullName());
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

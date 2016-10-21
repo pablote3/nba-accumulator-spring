@@ -147,7 +147,7 @@ public class Team {
 
 	public enum Conference {
 		East,
-		West;
+		West
 	}
 
 	@Enumerated(EnumType.STRING)
@@ -166,7 +166,7 @@ public class Team {
 		Southeast,
 		Southwest,
 		Northwest,
-		Pacific;
+		Pacific
 	}
 
 	@Column(name="siteName", length=30, nullable=false)

@@ -283,7 +283,7 @@ public class Standing {
 		this.pointDifferentialPerGame = pointDifferentialPerGame;
 	}
 
-	@Column(name="opptGamesWon", nullable=true)
+	@Column(name="opptGamesWon")
 	private Integer opptGamesWon;
 	public Integer getOpptGamesWon() {
 		return opptGamesWon;
@@ -292,7 +292,7 @@ public class Standing {
 		this.opptGamesWon = opptGamesWon;
 	}
 
-	@Column(name="opptGamesPlayed", nullable=true)
+	@Column(name="opptGamesPlayed")
 	private Integer opptGamesPlayed;
 	public Integer getOpptGamesPlayed() {
 		return opptGamesPlayed;
@@ -301,7 +301,7 @@ public class Standing {
 		this.opptGamesPlayed = opptGamesPlayed;
 	}
 
-	@Column(name="opptOpptGamesWon", nullable=true)
+	@Column(name="opptOpptGamesWon")
 	private Integer opptOpptGamesWon;
 	public Integer getOpptOpptGamesWon() {
 		return opptOpptGamesWon;
@@ -310,7 +310,7 @@ public class Standing {
 		this.opptOpptGamesWon = opptOpptGamesWon;
 	}
 
-	@Column(name="opptOpptGamesPlayed", nullable=true)
+	@Column(name="opptOpptGamesPlayed")
 	private Integer opptOpptGamesPlayed;
 	public Integer getOpptOpptGamesPlayed() {
 		return opptOpptGamesPlayed;

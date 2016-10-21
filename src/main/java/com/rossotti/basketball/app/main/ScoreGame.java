@@ -15,10 +15,7 @@ public class ScoreGame {
 		System.setProperty(org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "INFO");
 		System.setProperty(org.slf4j.impl.SimpleLogger.SHOW_DATE_TIME_KEY, "TRUE");
 		System.setProperty(org.slf4j.impl.SimpleLogger.DATE_TIME_FORMAT_KEY, "yyyy-MM-dd HH:mm:ss");
-		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {
-				"si-config.xml",
-				"applicationContext.xml"
-		});
+		ApplicationContext context = new ClassPathXmlApplicationContext("si-config.xml", "applicationContext.xml");
 		ServiceProperties properties = new ServiceProperties();
 
 		if (System.getProperty("gameDate") != null) {

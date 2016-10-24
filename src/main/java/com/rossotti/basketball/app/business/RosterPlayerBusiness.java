@@ -28,27 +28,31 @@ import com.rossotti.basketball.util.FormatUtil;
 
 @Service
 public class RosterPlayerBusiness {
-	@Autowired
-	private RestStatsService restStatsService;
+	private final RestStatsService restStatsService;
 
-	@Autowired
-	private FileStatsService fileStatsService;
+	private final FileStatsService fileStatsService;
 
-	@Autowired
-	private RosterPlayerService rosterPlayerService;
+	private final RosterPlayerService rosterPlayerService;
 
-	@Autowired
-	private PlayerService playerService;
+	private final PlayerService playerService;
 
-	@Autowired
-	private PropertyService propertyService;
+	private final PropertyService propertyService;
 
 	private final Logger logger = LoggerFactory.getLogger(RosterPlayerBusiness.class);
+
+	@Autowired
+	public RosterPlayerBusiness(RosterPlayerService rosterPlayerService, PropertyService propertyService, FileStatsService fileStatsService, RestStatsService restStatsService, PlayerService playerService) {
+		this.rosterPlayerService = rosterPlayerService;
+		this.propertyService = propertyService;
+		this.fileStatsService = fileStatsService;
+		this.restStatsService = restStatsService;
+		this.playerService = playerService;
+	}
 
 	public AppRoster loadRoster(String asOfDateString, String teamKey) {
 		AppRoster appRoster = new AppRoster();
 		try {
-			RosterDTO rosterDTO = null;
+			RosterDTO rosterDTO;
 			LocalDate fromDate = DateTimeUtil.getLocalDate(asOfDateString);
 			LocalDate toDate = DateTimeUtil.getLocalDateSeasonMax(fromDate);
 			ClientSource clientSource = propertyService.getProperty_ClientSource("accumulator.source.roster");
@@ -198,12 +202,10 @@ public class RosterPlayerBusiness {
 	}
 
 	private String generateLogMessage(String messageType, RosterPlayer rosterPlayer) {
-		StringBuilder sb = new StringBuilder();
-		sb	.append(FormatUtil.padString(messageType, 40))
-			.append(" fromDate = " + DateTimeUtil.getStringDate(rosterPlayer.getFromDate()))
-			.append(" toDate = " + DateTimeUtil.getStringDate(rosterPlayer.getToDate()))
-			.append(" dob = " + DateTimeUtil.getStringDate(rosterPlayer.getPlayer().getBirthdate()))
-			.append(" name = " + FormatUtil.padString(rosterPlayer.getPlayer().getFirstName() + " " + rosterPlayer.getPlayer().getLastName(), 35));
-		return sb.toString();
+		return FormatUtil.padString(messageType, 40) +
+				" fromDate = " + DateTimeUtil.getStringDate(rosterPlayer.getFromDate()) +
+				" toDate = " + DateTimeUtil.getStringDate(rosterPlayer.getToDate()) +
+				" dob = " + DateTimeUtil.getStringDate(rosterPlayer.getPlayer().getBirthdate()) +
+				" name = " + FormatUtil.padString(rosterPlayer.getPlayer().getFirstName() + " " + rosterPlayer.getPlayer().getLastName(), 35);
 	}
 }

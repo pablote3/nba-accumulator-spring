@@ -1,6 +1,7 @@
 package com.rossotti.basketball.app.service;
 
 import java.io.File;
+import java.util.concurrent.atomic.AtomicReference;
 
 import com.rossotti.basketball.client.dto.ClientSource;
 import org.apache.commons.lang3.StringUtils;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.rossotti.basketball.app.exception.PropertyException;
 
+@SuppressWarnings("CanBeFinal")
 @Service
 @Configuration
 @PropertySource("classpath:/service.properties")
@@ -45,12 +47,12 @@ public class PropertyService {
 
 	public ClientSource getProperty_ClientSource(String propertyName) {
 		String property = getProperty_String(propertyName);
-		ClientSource clientSource;
+		AtomicReference<ClientSource> clientSource = new AtomicReference<ClientSource>();
 		try {
-			clientSource = ClientSource.valueOf(property);
+			clientSource.set(ClientSource.valueOf(property));
 		} catch (IllegalArgumentException e) {
 			throw new PropertyException(propertyName);
 		}
-		return clientSource;
+		return clientSource.get();
 	}
 }

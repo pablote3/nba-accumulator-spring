@@ -1,11 +1,10 @@
 #IntelliJ
 /.idea/
-/nba-accumulator-spring.iml
 
 #Eclipse
-.classpath
-.project
-/.settings/
+#.classpath
+#.project
+#/.settings/
 
 #Ignore
 /target/

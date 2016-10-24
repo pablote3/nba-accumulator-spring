@@ -16,8 +16,12 @@ import java.util.List;
 @Repository
 @Transactional
 public class TeamRepository {
+	private final SessionFactory sessionFactory;
+
 	@Autowired
-	private SessionFactory sessionFactory;
+	public TeamRepository(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
 	public Team findTeam(String teamKey, LocalDate asOfDate) {
 		Team team = (Team)getSession().createCriteria(Team.class)
@@ -25,6 +29,21 @@ public class TeamRepository {
 			.add(Restrictions.le("fromDate", asOfDate))
 			.add(Restrictions.ge("toDate", asOfDate))
 			.uniqueResult();
+		if (team == null) {
+			team = new Team(StatusCodeDAO.NotFound);
+		}
+		else {
+			team.setStatusCode(StatusCodeDAO.Found);
+		}
+		return team;
+	}
+
+	public Team findTeamByLastName(String lastName, LocalDate asOfDate) {
+		Team team = (Team)getSession().createCriteria(Team.class)
+				.add(Restrictions.eq("lastName", lastName))
+				.add(Restrictions.le("fromDate", asOfDate))
+				.add(Restrictions.ge("toDate", asOfDate))
+				.uniqueResult();
 		if (team == null) {
 			team = new Team(StatusCodeDAO.NotFound);
 		}
@@ -69,7 +88,7 @@ public class TeamRepository {
 		}
 	}
 
-	public Team updateTeam(Team updateTeam) {
+	public void updateTeam(Team updateTeam) {
 		Team team = findTeam(updateTeam.getTeamKey(), updateTeam.getFromDate());
 		if (team.isFound()) {
 			team.setLastName(updateTeam.getLastName());
@@ -86,7 +105,6 @@ public class TeamRepository {
 			team.setStatusCode(StatusCodeDAO.Updated);
 			getSession().saveOrUpdate(team);
 		}
-		return team;
 	}
 
 	public Team deleteTeam(String teamKey, LocalDate asOfDate) {

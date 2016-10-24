@@ -16,6 +16,7 @@ import com.rossotti.basketball.dao.model.RosterPlayer;
 import com.rossotti.basketball.dao.model.Team;
 import com.rossotti.basketball.dao.model.Position;
 
+@SuppressWarnings("CanBeFinal")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:applicationContext.xml"})
 public class RosterPlayerRepositoryTest {

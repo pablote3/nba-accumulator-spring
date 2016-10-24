@@ -21,6 +21,7 @@ import com.rossotti.basketball.dao.model.Official;
 import com.rossotti.basketball.dao.model.StatusCodeDAO;
 import com.rossotti.basketball.dao.repository.OfficialRepository;
 
+@SuppressWarnings("CanBeFinal")
 @RunWith(MockitoJUnitRunner.class)
 public class OfficialServiceTest {
 	@Mock

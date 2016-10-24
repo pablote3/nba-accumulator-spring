@@ -52,7 +52,7 @@ public class Official {
 
 	@OneToMany(mappedBy="official", fetch = FetchType.LAZY)
 	private List<GameOfficial> gameOfficials = new ArrayList<GameOfficial>();
-	public List<GameOfficial> getGameOfficials() {
+	private List<GameOfficial> getGameOfficials() {
 		return gameOfficials;
 	}
 	@JsonManagedReference(value="gameOfficial-to-official")
@@ -114,13 +114,11 @@ public class Official {
 	}
 
 	public String toString() {
-		return new StringBuffer()
-			.append("\r" + "  id: " + this.id + "\n")
-			.append("  lastName: " + this.lastName + "\n")
-			.append("  firstName: " + this.firstName + "\n")
-			.append("  fromDate: " + this.fromDate + "\n")
-			.append("  toDate: " + this.toDate + "\n")
-			.append("  statusCode: " + this.statusCode)
-			.toString();
+		return ("\r" + "  id: " + this.id + "\n") +
+				"  lastName: " + this.lastName + "\n" +
+				"  firstName: " + this.firstName + "\n" +
+				"  fromDate: " + this.fromDate + "\n" +
+				"  toDate: " + this.toDate + "\n" +
+				"  statusCode: " + this.statusCode;
 	}
 }

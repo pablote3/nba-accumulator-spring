@@ -25,6 +25,7 @@ import com.rossotti.basketball.dao.model.BoxScore.Location;
 import com.rossotti.basketball.dao.model.Position;
 import com.rossotti.basketball.dao.model.Game.SeasonType;
 
+@SuppressWarnings("CanBeFinal")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:applicationContext.xml"})
 public class GameRepositoryTest {

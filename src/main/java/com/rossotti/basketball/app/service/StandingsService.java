@@ -29,16 +29,20 @@ import com.rossotti.basketball.util.DateTimeUtil;
 
 @Service
 public class StandingsService {
-	@Autowired
-	private StandingRepository standingRepo;
+	private final StandingRepository standingRepo;
 
-	@Autowired
-	private TeamRepository teamRepo;
+	private final TeamRepository teamRepo;
 
-	@Autowired
-	private GameRepository gameRepo;
+	private final GameRepository gameRepo;
 
 	private final Logger logger = LoggerFactory.getLogger(StandingsService.class);
+
+	@Autowired
+	public StandingsService(StandingRepository standingRepo, GameRepository gameRepo, TeamRepository teamRepo) {
+		this.standingRepo = standingRepo;
+		this.gameRepo = gameRepo;
+		this.teamRepo = teamRepo;
+	}
 
 	public List<Standing> getStandings(StandingsDTO standingsDTO) {
 		LocalDate asOfDate = DateTimeUtil.getLocalDate(standingsDTO.standings_date);

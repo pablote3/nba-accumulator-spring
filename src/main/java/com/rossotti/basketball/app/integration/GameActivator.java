@@ -13,9 +13,14 @@ import com.rossotti.basketball.dao.model.Game;
 import com.rossotti.basketball.util.DateTimeUtil;
 
 public class GameActivator {
-	@Autowired
-	private GameService gameService;
+	private final GameService gameService;
 	private final Logger logger = LoggerFactory.getLogger(GameActivator.class);
+
+	@Autowired
+	public GameActivator(GameService gameService) {
+		this.gameService = gameService;
+	}
+
 	public List<Game> processGames(ServiceProperties properties) {
 		List<Game> games = new ArrayList<Game>();
 		LocalDate gameDate = DateTimeUtil.getLocalDate(properties.getGameDate());

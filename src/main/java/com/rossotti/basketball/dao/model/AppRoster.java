@@ -4,9 +4,6 @@ import java.util.List;
 
 public class AppRoster {
 	private AppStatus appStatus;
-	public AppStatus getAppStatus() {
-		return appStatus;
-	}
 	public void setAppStatus(AppStatus appStatus) {
 		this.appStatus = appStatus;
 	}
@@ -20,9 +17,6 @@ public class AppRoster {
 		return appStatus == AppStatus.ServerError;
 	}
 	private List<RosterPlayer> rosterPlayers;
-	public List<RosterPlayer> getRosterPlayers() {
-		return rosterPlayers;
-	}
 	public void setRosterPlayers(List<RosterPlayer> rosterPlayers) {
 		this.rosterPlayers = rosterPlayers;
 	}

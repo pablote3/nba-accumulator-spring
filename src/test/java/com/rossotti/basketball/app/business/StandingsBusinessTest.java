@@ -34,6 +34,7 @@ import com.rossotti.basketball.dao.model.StandingRecord;
 import com.rossotti.basketball.dao.model.StatusCodeDAO;
 import com.rossotti.basketball.dao.model.Team;
 
+@SuppressWarnings("CanBeFinal")
 @RunWith(MockitoJUnitRunner.class)
 public class StandingsBusinessTest {
 	@Mock
@@ -182,7 +183,7 @@ public class StandingsBusinessTest {
 	}
 
 	private StandingsDTO createStandingsDTO_Found() {
-		StandingsDTO standings = null;
+		StandingsDTO standings;
 		try {
 			ObjectMapper mapper = JsonProvider.buildObjectMapper();
 			InputStream baseJson = this.getClass().getClassLoader().getResourceAsStream("mockClient/standingsClient.json");

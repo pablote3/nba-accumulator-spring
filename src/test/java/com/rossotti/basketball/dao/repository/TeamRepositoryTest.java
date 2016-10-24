@@ -15,6 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.List;
 
+@SuppressWarnings("CanBeFinal")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:applicationContext.xml"})
 public class TeamRepositoryTest {
@@ -51,6 +52,38 @@ public class TeamRepositoryTest {
 	@Test
 	public void findTeamByKey_NotFound_AfterAsOfDate() {
 		Team findTeam = teamRepo.findTeam("harlem-globetrotter's", new LocalDate("2010-07-01"));
+		Assert.assertTrue(findTeam.isNotFound());
+	}
+
+	@Test
+	public void findTeamByLastName_Found_FromDate() {
+		Team findTeam = teamRepo.findTeamByLastName("Globetrotter's", new LocalDate("2009-07-01"));
+		Assert.assertEquals("Harlem Globetrotter's", findTeam.getFullName());
+		Assert.assertTrue(findTeam.isFound());
+	}
+
+	@Test
+	public void findTeamByLastName_Found_ToDate() {
+		Team findTeam = teamRepo.findTeamByLastName("Globetrotter's", new LocalDate("2010-06-30"));
+		Assert.assertEquals("Harlem Globetrotter's", findTeam.getFullName());
+		Assert.assertTrue(findTeam.isFound());
+	}
+
+	@Test
+	public void findTeamByLastName_NotFound_TeamKey() {
+		Team findTeam = teamRepo.findTeamByLastName("Globetreker's", new LocalDate("2009-07-01"));
+		Assert.assertTrue(findTeam.isNotFound());
+	}
+
+	@Test
+	public void findTeamByLastName_NotFound_BeforeAsOfDate() {
+		Team findTeam = teamRepo.findTeamByLastName("Globetrotter's", new LocalDate("2009-06-30"));
+		Assert.assertTrue(findTeam.isNotFound());
+	}
+
+	@Test
+	public void findTeamByLastName_NotFound_AfterAsOfDate() {
+		Team findTeam = teamRepo.findTeamByLastName("Globetrotter's", new LocalDate("2010-07-01"));
 		Assert.assertTrue(findTeam.isNotFound());
 	}
 

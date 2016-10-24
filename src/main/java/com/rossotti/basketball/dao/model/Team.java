@@ -147,7 +147,7 @@ public class Team {
 
 	public enum Conference {
 		East,
-		West;
+		West
 	}
 
 	@Enumerated(EnumType.STRING)
@@ -166,7 +166,7 @@ public class Team {
 		Southeast,
 		Southwest,
 		Northwest,
-		Pacific;
+		Pacific
 	}
 
 	@Column(name="siteName", length=30, nullable=false)
@@ -197,12 +197,10 @@ public class Team {
 	}
 
 	public String toString() {
-		return new StringBuffer()
-			.append("\n" + "  id: " + this.id + "\n")
-			.append("  teamKey: " + this.teamKey + "\n")
-			.append("  fromDate: " + this.fromDate + "\n")
-			.append("  toDate: " + this.toDate + "\n")
-			.append("  statusCode: " + this.statusCode)
-			.toString();
+		return ("\n" + "  id: " + this.id + "\n") +
+				"  teamKey: " + this.teamKey + "\n" +
+				"  fromDate: " + this.fromDate + "\n" +
+				"  toDate: " + this.toDate + "\n" +
+				"  statusCode: " + this.statusCode;
 	}
 }

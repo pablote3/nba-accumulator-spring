@@ -151,12 +151,10 @@ public class Game {
 	}
 
 	public String toString() {
-		return new StringBuffer()
-			.append("\r" + "  id: " + this.id + "\n")
-			.append("  gameDateTime: " + this.gameDateTime + "\n")
-			.append("  status: " + this.status + "\n")
-			.append("  seasonType: " + this.seasonType + "\n")
-			.append("  statusCode: " + this.statusCode)
-			.toString();
+		return ("\r" + "  id: " + this.id + "\n") +
+				"  gameDateTime: " + this.gameDateTime + "\n" +
+				"  status: " + this.status + "\n" +
+				"  seasonType: " + this.seasonType + "\n" +
+				"  statusCode: " + this.statusCode;
 	}
 }

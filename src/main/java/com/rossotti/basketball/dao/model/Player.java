@@ -98,7 +98,7 @@ public class Player {
 		this.displayName = displayName;
 	}
 
-	@Column(name="height", nullable=true)
+	@Column(name="height")
 	private Short height;
 	public Short getHeight() {
 		return height;
@@ -107,7 +107,7 @@ public class Player {
 		this.height = height;
 	}
 
-	@Column(name="weight", nullable=true)
+	@Column(name="weight")
 	private Short weight;
 	public Short getWeight() {
 		return weight;
@@ -116,7 +116,7 @@ public class Player {
 		this.weight = weight;
 	}
 
-	@Column(name="birthplace", length=40, nullable=true)
+	@Column(name="birthplace", length=40)
 	private String birthplace;
 	public String getBirthplace() {
 		return birthplace;
@@ -126,12 +126,10 @@ public class Player {
 	}
 
 	public String toString() {
-		return new StringBuffer()
-			.append("\n" + "  id: " + this.id + "\n")
-			.append("  lastName: " + this.lastName + "\n")
-			.append("  firstName: " + this.firstName + "\n")
-			.append("  birthdate: " + this.birthdate + "\n")
-			.append("  statusCode: " + this.statusCode)
-			.toString();
+		return ("\n" + "  id: " + this.id + "\n") +
+				"  lastName: " + this.lastName + "\n" +
+				"  firstName: " + this.firstName + "\n" +
+				"  birthdate: " + this.birthdate + "\n" +
+				"  statusCode: " + this.statusCode;
 	}
 }

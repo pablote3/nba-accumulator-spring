@@ -4,7 +4,7 @@ import org.springframework.integration.aggregator.ReleaseStrategy;
 import org.springframework.integration.store.MessageGroup;
 import org.springframework.messaging.Message;
 
-public class GameReleaseStrategy implements ReleaseStrategy {
+class GameReleaseStrategy implements ReleaseStrategy {
 
 	public boolean canRelease(MessageGroup messageGroup) {
 		for (Message<?> msg : messageGroup.getMessages()) {

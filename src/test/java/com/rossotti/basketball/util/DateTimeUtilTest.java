@@ -184,9 +184,8 @@ public class DateTimeUtilTest {
 
 	@Test
 	public void calculateDateDiff_NullMinDate() {
-		LocalDateTime minDate = null;
 		LocalDateTime maxDate = new LocalDateTime("2013-06-01T20:00");
-		int days = DateTimeUtil.getDaysBetweenTwoDateTimes(minDate, maxDate);
+		int days = DateTimeUtil.getDaysBetweenTwoDateTimes(null, maxDate);
 		Assert.assertEquals(0, days);
 	}
 

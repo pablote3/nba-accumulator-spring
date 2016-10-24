@@ -17,7 +17,7 @@ import com.rossotti.basketball.dao.model.Game;
 
 public class GameSplitter extends AbstractMessageSplitter {
 	private final Logger logger = LoggerFactory.getLogger(GameSplitter.class);
-	private Map<String, List<Message<?>>> splittedMessages = new HashMap<String, List<Message<?>>>();
+	private final Map<String, List<Message<?>>> splittedMessages = new HashMap<String, List<Message<?>>>();
 
 	@Override
 	protected Object splitMessage(Message<?> message) { 
@@ -25,7 +25,7 @@ public class GameSplitter extends AbstractMessageSplitter {
 		@SuppressWarnings("unchecked")
 		List<Game> games = (List<Game>) message.getPayload();
 		for (int i = 0; i < games.size(); i++) {
-			Game game = (Game)games.get(i);
+			Game game = games.get(i);
 			Message<?> msg = MessageBuilder
 				.withPayload(game)
 				.setReplyChannel((MessageChannel)message.getHeaders().getReplyChannel())
@@ -40,11 +40,11 @@ public class GameSplitter extends AbstractMessageSplitter {
 		return messages;
 	}
 
-	public Map<String, List<Message<?>>> getSplittedMessages() {
+	private Map<String, List<Message<?>>> getSplittedMessages() {
 		return this.splittedMessages;
 	}
 
-	public List<Message<?>> getSplittedMessagesByKey(String key) {
+	private List<Message<?>> getSplittedMessagesByKey(String key) {
 		if (!getSplittedMessages().containsKey(key)) {
 			addListOfSplittedMessages(key);
 		}

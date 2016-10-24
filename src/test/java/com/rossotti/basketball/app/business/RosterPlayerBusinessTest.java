@@ -39,6 +39,7 @@ import com.rossotti.basketball.dao.model.RosterPlayer;
 import com.rossotti.basketball.dao.model.StatusCodeDAO;
 import com.rossotti.basketball.dao.model.Team;
 
+@SuppressWarnings("CanBeFinal")
 @RunWith(MockitoJUnitRunner.class)
 public class RosterPlayerBusinessTest {
 	@Mock
@@ -213,7 +214,7 @@ public class RosterPlayerBusinessTest {
 	}
 
 	private RosterDTO createMockRosterDTO_Found() {
-		RosterDTO roster = null;
+		RosterDTO roster;
 		try {
 			ObjectMapper mapper = JsonProvider.buildObjectMapper();
 			InputStream baseJson = this.getClass().getClassLoader().getResourceAsStream("mockClient/rosterClient.json");

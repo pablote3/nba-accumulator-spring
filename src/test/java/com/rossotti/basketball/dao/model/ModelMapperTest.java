@@ -11,7 +11,7 @@ import org.junit.Test;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ModelMapperTest {
-	private ObjectMapper mapper = JsonProvider.buildObjectMapper();
+	private final ObjectMapper mapper = JsonProvider.buildObjectMapper();
 
 	@Test
 	public void deserialize_JsonToPojo_Official() throws IOException {

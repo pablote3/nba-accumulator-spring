@@ -1,5 +1,6 @@
 package com.rossotti.basketball.client.dto;
 
+@SuppressWarnings("CanBeFinal")
 public class GameDTO extends StatsDTO {
 	public TeamDTO away_team;
 	public TeamDTO home_team;

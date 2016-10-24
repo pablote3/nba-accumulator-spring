@@ -20,6 +20,7 @@ import com.rossotti.basketball.client.dto.StandingsDTO;
 import com.rossotti.basketball.client.dto.StatsDTO;
 import com.rossotti.basketball.client.dto.StatusCodeDTO;
 
+@SuppressWarnings("CanBeFinal")
 @RunWith(MockitoJUnitRunner.class)
 public class FileStatsServiceTest {
 	@Mock

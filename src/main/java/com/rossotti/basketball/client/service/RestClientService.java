@@ -17,8 +17,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rossotti.basketball.app.exception.PropertyException;
 import com.rossotti.basketball.app.service.PropertyService;
@@ -29,14 +27,12 @@ import com.rossotti.basketball.util.DateTimeUtil;
 
 @Service
 public class RestClientService {
-	@Autowired
-	private PropertyService propertyService;
+	private final PropertyService propertyService;
 
-	private static ObjectMapper mapper = JsonProvider.buildObjectMapper();
+	private static final ObjectMapper mapper = JsonProvider.buildObjectMapper();
 	private final Logger logger = LoggerFactory.getLogger(RestClientService.class);
-	private Client client;
 
-	ClientRequestFilter clientFilter = new ClientRequestFilter() {
+	private final ClientRequestFilter clientFilter = new ClientRequestFilter() {
 		public void filter(ClientRequestContext requestContext) throws PropertyException {
 			String accessToken = propertyService.getProperty_String("xmlstats.accessToken");
 			String userAgent = propertyService.getProperty_String("xmlstats.userAgent");
@@ -46,8 +42,13 @@ public class RestClientService {
 		}
 	};
 
+	@Autowired
+	public RestClientService(PropertyService propertyService) {
+		this.propertyService = propertyService;
+	}
+
 	private Client getClient() {
-		client = ClientBuilder.newBuilder().build();
+		Client client = ClientBuilder.newBuilder().build();
 		client.register(clientFilter);
 		logger.debug("Client service initialized");
 		return client;
@@ -76,16 +77,7 @@ public class RestClientService {
 				}
 				statsDTO = mapper.readValue(baseJson, statsDTO.getClass());
 				statsDTO.setStatusCode(StatusCodeDTO.Found);
-			}
-			catch (JsonParseException jpe) {
-				statsDTO.setStatusCode(StatusCodeDTO.ClientException);
-				jpe.printStackTrace();
-			}
-			catch (JsonMappingException jme) {
-				statsDTO.setStatusCode(StatusCodeDTO.ClientException);
-				jme.printStackTrace();
-			}
-			catch (IOException ioe) {
+			} catch (IOException ioe) {
 				statsDTO.setStatusCode(StatusCodeDTO.ClientException);
 				ioe.printStackTrace();
 			}

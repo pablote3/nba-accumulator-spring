@@ -13,8 +13,6 @@ import java.nio.file.Paths;
 import org.joda.time.LocalDate;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rossotti.basketball.client.dto.RosterDTO;
 import com.rossotti.basketball.client.dto.StatsDTO;
@@ -24,7 +22,7 @@ import com.rossotti.basketball.util.DateTimeUtil;
 @Service
 public class FileClientService {
 
-	private static ObjectMapper mapper = JsonProvider.buildObjectMapper();
+	private static final ObjectMapper mapper = JsonProvider.buildObjectMapper();
 
 	public StatsDTO retrieveStats(String stringPath, String event, StatsDTO statsDTO, LocalDate asOfDate) {
 		String stringFile;
@@ -45,12 +43,6 @@ public class FileClientService {
 		} catch (FileNotFoundException fnf) {
 			statsDTO.setStatusCode(StatusCodeDTO.NotFound);
 			fnf.printStackTrace();
-		} catch (JsonParseException jpe) {
-			statsDTO.setStatusCode(StatusCodeDTO.ClientException);
-			jpe.printStackTrace();
-		} catch (JsonMappingException jme) {
-			statsDTO.setStatusCode(StatusCodeDTO.ClientException);
-			jme.printStackTrace();
 		} catch (IOException ioe) {
 			statsDTO.setStatusCode(StatusCodeDTO.ClientException);
 			ioe.printStackTrace();

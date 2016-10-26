@@ -71,7 +71,8 @@ public class RestClientService {
 			try {
 				String baseJson = response.readEntity(String.class);
 				if (statsDTO instanceof RosterDTO) {
-					OutputStream outputStream = new FileOutputStream(event + "-" + DateTimeUtil.getStringDateNaked(asOfDate) + ".json", false);
+					String file = propertyService.getProperty_Path("xmlstats.fileRoster") + "/" + event + "-" + DateTimeUtil.getStringDateNaked(asOfDate) + ".json";
+					OutputStream outputStream = new FileOutputStream(file, false);
 					outputStream.write(baseJson.getBytes());
 					outputStream.close();
 				}

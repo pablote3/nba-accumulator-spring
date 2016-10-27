@@ -99,21 +99,21 @@ public class StandingsBusiness {
 						}
 					}
 					
-					logger.info("standingsCount: " + standings.size() + " Completed: route to outputChannel");
+					logger.info("StandingsCount: " + standings.size() + " Completed: route to outputChannel");
 					appStandings.setStandings(standingsService.findStandings(asOfDate));
 					appStandings.setAppStatus(AppStatus.Completed);
 				}
 				else {
-					logger.info('\n' + "" + " client exception - standings found with empty list");
+					logger.info("Client exception - standings found with empty list");
 					appStandings.setAppStatus(AppStatus.ClientError);
 				}
 			}
 			else if (standingsDTO.isNotFound()) {
-				logger.info('\n' + "" + " unable to find standings");
+				logger.info("Unable to find standings");
 				appStandings.setAppStatus(AppStatus.ClientError);
 			}
 			else {
-				logger.info('\n' + "" + " client error retrieving standings");
+				logger.info("Client error retrieving standings");
 				appStandings.setAppStatus(AppStatus.ClientError);
 			}
 		}
@@ -124,11 +124,11 @@ public class StandingsBusiness {
 			appStandings.setAppStatus(AppStatus.ClientError);
 		}
 		catch (PropertyException pe) {
-			logger.info("property exception = " + pe);
+			logger.info("Property exception = " + pe);
 			appStandings.setAppStatus(AppStatus.ServerError);
 		}
 		catch (Exception e) {
-			logger.info("unexpected exception = " + e);
+			logger.info("Unexpected exception = " + e);
 			appStandings.setAppStatus(AppStatus.ServerError);
 		}
 		return appStandings;

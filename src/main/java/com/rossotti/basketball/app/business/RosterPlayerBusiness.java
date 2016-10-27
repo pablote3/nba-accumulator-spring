@@ -162,16 +162,16 @@ public class RosterPlayerBusiness {
 					}
 				}
 				else {
-					logger.info('\n' + "" + " client exception - roster found with empty player list");
+					logger.info("Client exception - roster found with empty player list");
 					appRoster.setAppStatus(AppStatus.ClientError);
 				}
 			}
 			else if (rosterDTO.isNotFound()) {
-				logger.info('\n' + "" + " unable to find game");
+				logger.info("Unable to find roster");
 				appRoster.setAppStatus(AppStatus.ClientError);
 			}
 			else if (rosterDTO.isClientException()) {
-				logger.info('\n' + "" + " client exception");
+				logger.info("Client exception");
 				appRoster.setAppStatus(AppStatus.ClientError);
 			}
 		}
@@ -182,11 +182,11 @@ public class RosterPlayerBusiness {
 			appRoster.setAppStatus(AppStatus.ClientError);
 		}
 		catch (PropertyException pe) {
-			logger.info("property exception = " + pe);
+			logger.info("Property exception = " + pe);
 			appRoster.setAppStatus(AppStatus.ServerError);
 		}
 		catch (Exception e) {
-			logger.info("unexpected exception = " + e);
+			logger.info("Unexpected exception = " + e);
 			appRoster.setAppStatus(AppStatus.ServerError);
 		}
 		return appRoster;

@@ -156,11 +156,11 @@ public class GameBusiness {
 			}
 		}
 		catch (PropertyException pe) {
-			logger.info("property exception = " + pe);
+			logger.info("Property exception = " + pe);
 			appGame.setAppStatus(AppStatus.ServerError);
 		}
 		catch (Exception e) {
-			logger.info("unexpected exception = " + e);
+			logger.info("Unexpected exception = " + e);
 			appGame.setAppStatus(AppStatus.ServerError);
 		}
 		finally {

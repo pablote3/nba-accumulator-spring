@@ -20,6 +20,9 @@ public class AppGame {
 	public Boolean isAppRosterUpdate() {
 		return appStatus == AppStatus.RosterUpdate;
 	}
+	public Boolean isAppRosterComplete() {
+		return appStatus == AppStatus.RosterComplete;
+	}
 	public Boolean isAppRosterError() {
 		return appStatus == AppStatus.RosterError;
 	}

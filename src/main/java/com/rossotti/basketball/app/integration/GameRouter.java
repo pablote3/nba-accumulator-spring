@@ -26,6 +26,14 @@ public class GameRouter {
 			);
 			return "rosterLoadChannel";
 		}
+		else if(appGame.isAppRosterComplete()) {
+			logger.info("AppGame " + appGame.getGame().getBoxScoreAway().getTeam().getAbbr() + " at " +
+					appGame.getGame().getBoxScoreHome().getTeam().getAbbr() + " " +
+					appGame.getAppStatus() +
+					": route to gameScoreChannel"
+			);
+			return "gameScoreChannel";
+		}
 		else {
 			logger.info("AppGame " + appGame.getGame().getBoxScoreAway().getTeam().getAbbr() + " at " + 
 						appGame.getGame().getBoxScoreHome().getTeam().getAbbr() + " " +  

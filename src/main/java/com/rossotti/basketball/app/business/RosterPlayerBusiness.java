@@ -195,8 +195,14 @@ public class RosterPlayerBusiness {
 	public AppGame loadRoster(AppGame appGame) {
 		logger.info("Load Roster for team = " + appGame.getRosterLastTeam() + " gameDate = " + DateTimeUtil.getStringDate(appGame.getGame().getGameDateTime()));
 		AppRoster roster = loadRoster(DateTimeUtil.getStringDate(appGame.getGame().getGameDateTime()), appGame.getRosterLastTeam());
-		if (roster.isAppClientError() || roster.isAppServerError()) {
+		if (roster.isAppClientError()) {
+			appGame.setAppStatus(AppStatus.ClientError);
+		}
+		else if (roster.isAppServerError()) {
 			appGame.setAppStatus(AppStatus.ServerError);
+		}
+		else if (roster.isAppCompleted()) {
+			appGame.setAppStatus(AppStatus.RosterComplete);
 		}
 		return appGame;
 	}

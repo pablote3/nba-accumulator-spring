@@ -146,7 +146,7 @@ public class GameBusinessTest {
 			.thenReturn(createMockGameDTO_Found());
 		when(rosterPlayerService.getBoxScorePlayers((BoxScorePlayerDTO[]) anyObject(), (LocalDate) anyObject(), anyString()))
 			.thenThrow(new NoSuchEntityException(RosterPlayer.class));
-		AppGame game = gameBusiness.scoreGame(createMockGame_Scheduled(), false);
+		AppGame game = gameBusiness.scoreGame(createMockGame_Scheduled(), "detroit-pistons");
 		Assert.assertTrue(game.isAppRosterError());
 	}
 

@@ -35,7 +35,7 @@ public class RestStatsService {
 			gameDTO = (GameDTO)restClientService.retrieveStats(baseUrl, event, gameDTO, asOfDate);
 		}
 		catch (PropertyException pe) {
-			logger.info("property exception = " + pe);
+			logger.info("Property exception = " + pe);
 			gameDTO.setStatusCode(StatusCodeDTO.ServerException);
 		}
 		return gameDTO;
@@ -48,7 +48,7 @@ public class RestStatsService {
 			rosterDTO = (RosterDTO)restClientService.retrieveStats(baseUrl, event, rosterDTO, asOfDate);
 		}
 		catch (PropertyException pe) {
-			logger.info("property exception = " + pe);
+			logger.info("Property exception = " + pe);
 			rosterDTO.setStatusCode(StatusCodeDTO.ServerException);
 		}
 		return rosterDTO;
@@ -61,7 +61,7 @@ public class RestStatsService {
 			standingsDTO = (StandingsDTO)restClientService.retrieveStats(baseUrl, event, standingsDTO, asOfDate);
 		}
 		catch (PropertyException pe) {
-			logger.info("property exception = " + pe);
+			logger.info("Property exception = " + pe);
 			standingsDTO.setStatusCode(StatusCodeDTO.ServerException);
 		}
 		return standingsDTO;

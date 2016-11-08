@@ -58,7 +58,7 @@ public class GameBusiness {
 		this.fileStatsService = fileStatsService;
 	}
 
-	public AppGame scoreGame(Game game, boolean initial) {
+	public AppGame scoreGame(Game game, String previousUpdateTeam) {
 		AppGame appGame = new AppGame();
 		try {
 			BoxScore awayBoxScore = game.getBoxScoreAway();
@@ -145,7 +145,7 @@ public class GameBusiness {
 				appGame.setAppStatus(AppStatus.TeamError);
 			}
 			else if (nse.getEntityClass().equals(RosterPlayer.class)) {
-				if (initial) {
+				if (previousUpdateTeam == null || previousUpdateTeam != appGame.getRosterLastTeam()) {
 					logger.info("Roster Player not found - need to rebuild active roster");
 					appGame.setAppStatus(AppStatus.RosterUpdate);
 				}
@@ -156,11 +156,11 @@ public class GameBusiness {
 			}
 		}
 		catch (PropertyException pe) {
-			logger.info("property exception = " + pe);
+			logger.info("Property exception = " + pe);
 			appGame.setAppStatus(AppStatus.ServerError);
 		}
 		catch (Exception e) {
-			logger.info("unexpected exception = " + e);
+			logger.info("Unexpected exception = " + e);
 			appGame.setAppStatus(AppStatus.ServerError);
 		}
 		finally {
@@ -170,7 +170,7 @@ public class GameBusiness {
 	}
 	
 	public AppGame scoreGame(Game game) {
-		return scoreGame(game, true);
+		return scoreGame(game, null);
 	}
 	
 	public AppGame scoreGame(AppGame appGame) {
@@ -178,7 +178,7 @@ public class GameBusiness {
 			return appGame;
 		}
 		else if(appGame.isAppRosterUpdate()) {
-			return scoreGame(appGame.getGame(), false);
+			return scoreGame(appGame.getGame(), appGame.getRosterLastTeam());
 		}
 		else {
 			return scoreGame(appGame.getGame());

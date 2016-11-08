@@ -36,16 +36,12 @@
 	<bean id="scoreGameBean" class="com.rossotti.basketball.app.business.GameBusiness" />
 	<int:channel id="gameResultsChannel" />
 
-	<int:service-activator ref="loadRosterBean" input-channel="rosterLoadChannel" output-channel="rosterResultsChannel" method="loadRoster" />
+	<int:service-activator ref="loadRosterBean" input-channel="rosterLoadChannel" output-channel="gameRouterChannel" method="loadRoster" />
 	<bean id="loadRosterBean" class="com.rossotti.basketball.app.business.RosterPlayerBusiness" />
-	<int:channel id="rosterCompleteChannel" />
 
 	<int:router ref="gameResultsRouter" input-channel="gameResultsChannel" method="routeGame" />
 	<bean id="gameResultsRouter" class="com.rossotti.basketball.app.integration.GameResultsRouter" />
-	
-	<int:router ref="rosterResultsRouter" input-channel="rosterResultsChannel" method="routeResults" />
-	<bean id="rosterResultsRouter" class="com.rossotti.basketball.app.integration.RosterResultsRouter" />
-	
+
 	<int:aggregator ref="aggregatorBean" input-channel="gameAggregatorChannel" output-channel="standingsRouterChannel" />
 	<bean id="aggregatorBean" class="com.rossotti.basketball.app.integration.GameAggregator" />
 	<int:channel id="standingsRouteChannel" />

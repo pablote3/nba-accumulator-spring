@@ -58,12 +58,12 @@ public class RestClientService {
 		String eventUrl = baseUrl + event + ".json";
 		Response response = getClient().target(eventUrl).request().get();
 		if (response.getStatus() == 401) {
-			logger.info("invalid token supplied on client request - returning http status = 401");
+			logger.info("Invalid token supplied on client request - returning http status = 401");
 			statsDTO.setStatusCode(StatusCodeDTO.NotFound);
 			response.readEntity(String.class);
 		}
 		else if (response.getStatus() != 200) {
-			logger.info("unable to retrieve client request - returning http status = " + response.getStatus());
+			logger.info("Unable to retrieve client request - returning http status = " + response.getStatus());
 			statsDTO.setStatusCode(StatusCodeDTO.NotFound);
 			response.readEntity(String.class);
 		}
@@ -71,7 +71,8 @@ public class RestClientService {
 			try {
 				String baseJson = response.readEntity(String.class);
 				if (statsDTO instanceof RosterDTO) {
-					OutputStream outputStream = new FileOutputStream(event + "-" + DateTimeUtil.getStringDateNaked(asOfDate) + ".json", false);
+					String file = propertyService.getProperty_Path("xmlstats.fileRoster") + "/" + event + "-" + DateTimeUtil.getStringDateNaked(asOfDate) + ".json";
+					OutputStream outputStream = new FileOutputStream(file, false);
 					outputStream.write(baseJson.getBytes());
 					outputStream.close();
 				}

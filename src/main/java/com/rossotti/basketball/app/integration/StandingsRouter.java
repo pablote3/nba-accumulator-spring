@@ -14,7 +14,7 @@ public class StandingsRouter {
 			for (int i = 0; i < games.size(); i++) {
 				Game game = games.get(i);
 				if (game != null) {
-					if (!game.isCompleted()) {
+					if (!game.isCompleted() && !game.isPostponed() && !game.isCancelled()) {
 						logger.info("game " + i + " " + game.getStatus() + ": route to outputChannel");
 						return "outputChannel";
 					}
